@@ -1,9 +1,10 @@
 import React from 'react'
+import Header from '../../components/Header'
 import classes from './Home.module.scss'
 const Home = () => {
   return (
     <div className={classes.title}>
-        <h1>Home Page</h1>
+        <Header />
     </div>
   )
 }
