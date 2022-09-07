@@ -1,13 +1,33 @@
-@import '../../styles/mixins.scss';
+@import "../../styles/mixins.scss";
 
-.header{
-    width: 100%;
-    background: #fff;
+.header {
+  width: 100%;
+  background: #fff;
 }
 
-.container{
-    @include container;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container {
+  @include container;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  li {
+    margin: 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+  }
+}
+.navIcons img {
+  margin-right: 15px;
+}
+@media (min-width: 768px) {
+  .hamburgerIcon {
+    margin-left: 15px;
+    display: none;
+  }
 }
