@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./Header.module.scss";
 import logo from "../../assets/images/BlackLogo.svg";
 import CartIcon from "../../assets/images/CartIcon.svg";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import MegaDropDown from "../MegaDropDown";
 
 const Header = () => {
+  const [showDropDown, setShowDropDown] = useState(false);
   return (
     <header className={classes.header}>
       <div className={classes.container}>
@@ -18,7 +19,7 @@ const Header = () => {
         <nav>
           <ul>
             <li>ALL PRODUCTS</li>
-            <li>
+            <li onClick={() => setShowDropDown((prevState) => !prevState)}>
               SOLUTIONS <img src={downArrow} alt="down arrow" />
             </li>
             <li>ABOUT</li>
@@ -34,7 +35,7 @@ const Header = () => {
             alt="hambuger icon"
           />
         </div>
-        <MegaDropDown />
+        {showDropDown && <MegaDropDown />}
       </div>
     </header>
   );
