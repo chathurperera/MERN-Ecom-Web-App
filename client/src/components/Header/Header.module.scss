@@ -24,10 +24,28 @@ nav ul {
     cursor: pointer;
   }
 }
+nav{
+  @media (max-width:992px) {
+    border-top: 1px solid #d4d4d4;
+    position: absolute;
+    bottom: 0;
+    top: 100%;
+    left: 0;
+    right: 0;
+    ul{
+      display: block;
+      padding: 20px;
+    }
+    li{
+      padding: 15px 0;
+    }
+  }
+
+}
 .navIcons img {
   margin-right: 15px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .hamburgerIcon {
     margin-left: 15px;
     display: none;

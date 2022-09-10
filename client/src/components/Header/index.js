@@ -21,6 +21,7 @@ const Header = () => {
             <li>ALL PRODUCTS</li>
             <li onClick={() => setShowDropDown((prevState) => !prevState)}>
               SOLUTIONS <img src={downArrow} alt="down arrow" />
+            {showDropDown && <MegaDropDown />}
             </li>
             <li>ABOUT</li>
             <li>SUPPORT</li>
@@ -35,7 +36,6 @@ const Header = () => {
             alt="hambuger icon"
           />
         </div>
-        {showDropDown && <MegaDropDown />}
       </div>
     </header>
   );
