@@ -1,0 +1,7 @@
+@import '../../styles/mixins.scss';
+
+.sliderWrapper{
+@include container;
+margin-top: 20px;
+border: 1px solid black;
+}
