@@ -3,11 +3,11 @@
 .sliderWrapper{
     @include container;
     margin-top: 20px;
-
+    height:100%;
 }
 .slider{
     background-color: #dddddd00;
-    height:500px;
+    height:100%;
 }
 
 .slideHolder{

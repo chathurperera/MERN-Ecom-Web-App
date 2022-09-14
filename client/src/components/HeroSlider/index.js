@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, EffectFade, Autoplay } from "swiper";
+import { Pagination, Navigation, EffectFade} from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -16,12 +16,9 @@ const HeroSlider = () => {
       <Swiper
         effect={"fade"}
         navigation={true}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
+        
         pagination={true}
-        modules={[Pagination, Navigation, EffectFade , Autoplay]}
+        modules={[Pagination, Navigation, EffectFade ]}
         spaceBetween={50}
         slidesPerView={1}
       >
