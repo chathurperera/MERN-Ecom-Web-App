@@ -39,7 +39,7 @@ const HeroSlider = () => {
         <SwiperSlide className={classes.slider}>
           <div className={`${classes.slideHolder} ${classes.slideOne}`}>
             <div className={classes.slideContent}>
-              <h1>The new phones are here take a look.</h1>
+              <h1>The iPad just got a new purpose!</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Scelerisque in est dui, aliquam, tempor. Faucibus morbi turpis.
@@ -47,7 +47,7 @@ const HeroSlider = () => {
               <Link to="/">Explore</Link>
             </div>
             <div className={classes.slideImage}>
-              <img src={sliderImage1} alt="" />
+              <img src={sliderImage2} alt="" />
             </div>
           </div>
         </SwiperSlide>
