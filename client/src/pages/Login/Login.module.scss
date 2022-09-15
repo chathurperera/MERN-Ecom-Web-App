@@ -1,0 +1,24 @@
+.login{
+    min-height:100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.loginBanner{
+    height: 100%;
+    background-color: #dce5e2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    img{
+       width: 100%;
+       max-width: 500px; 
+    }
+}
+.content{
+    padding-top: 50px;
+    text-align: center;
+    h1{
+        font-size: 50px;
+    }
+}
