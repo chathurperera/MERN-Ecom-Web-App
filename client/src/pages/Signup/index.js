@@ -16,20 +16,20 @@ const Signup = () => {
       <div className={classes.loginRight}>
         <div className={classes.loginWrapper}>
           <h4>Sign Up</h4>
-          <p>
+          <p className={classes.signupDescription}>
             Sign up and you’ll be able to manage your account, track orders,
             save products and access easier returns
           </p>
           <form action="">
             <div className={classes.inputHolder}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email*</label>
               <input type="email" name="" id="" />
             </div>
             <div className={classes.inputHolder}>
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Password*</label>
               <input type="password" name="" id="" />
             </div>
-            <button>Log in</button>
+            <button>Create Account</button>
           </form>
           <p className={classes.newAccount}>
             New to California ? <Link to="/">Create an Account</Link>{" "}

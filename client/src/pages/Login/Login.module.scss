@@ -27,11 +27,17 @@
   place-items: center;
 }
 .loginWrapper {
-    max-width: 300px;
+  max-width: 300px;
   h4 {
     font-size: 28px;
     margin-bottom: 20px;
     text-align: center;
+  }
+  .signupDescription {
+    font-size: 12.5px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #6e6e6e;
   }
   .inputHolder {
     width: 100%;
@@ -64,16 +70,20 @@
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-    font-family: Montserrat, Helvetica, Arial, sans-serif;
+    font-family: 'Readex Pro', sans-serif;
     color: #fff;
     margin-top: 15px;
     background-color: #000;
     text-align: center;
+    transition: all 0.3s ease;
+    &:hover {
+      background: rgba(0, 0, 0, 0.884);
+    }
   }
   .newAccount {
     font-size: 14px;
     margin-top: 28px;
-
+    text-align: center;
     & a {
       color: blue;
       text-decoration: none;
