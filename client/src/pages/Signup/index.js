@@ -1,7 +1,8 @@
 import React from "react";
 import classes from "../Login/Login.module.scss";
 import sliderImage1 from "../../assets/images/sliderImage1.png";
-
+import showpassword from '../../assets/images/showpassword.svg'
+import hidepassword from '../../assets/images/hidepassword.svg'
 import { Link } from "react-router-dom";
 const Signup = () => {
   return (
@@ -28,6 +29,9 @@ const Signup = () => {
             <div className={classes.inputHolder}>
               <label htmlFor="password">Password*</label>
               <input type="password" name="" id="" />
+              <div className={classes.passwordReveal}>
+                <img src={hidepassword} alt="" />
+              </div>
             </div>
             <button>Create Account</button>
           </form>

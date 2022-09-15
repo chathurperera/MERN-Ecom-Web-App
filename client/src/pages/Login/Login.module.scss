@@ -53,12 +53,17 @@
       background: whitesmoke;
       border: 1px solidi;
       width: 100%;
+      position: relative;
       padding: 10px 5px;
       border: 1px solid #eee;
       &:focus {
         outline: none;
         border: 1px solid #007db5;
       }
+    }
+    .passwordReveal{
+        width: 25px;
+        // position: ;
     }
   }
   button {
