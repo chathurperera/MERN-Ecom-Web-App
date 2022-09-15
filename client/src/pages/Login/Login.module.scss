@@ -27,6 +27,7 @@
   place-items: center;
 }
 .loginWrapper {
+    max-width: 300px;
   h4 {
     font-size: 28px;
     margin-bottom: 20px;
@@ -69,13 +70,13 @@
     background-color: #000;
     text-align: center;
   }
-  .newAccount{
+  .newAccount {
     font-size: 14px;
     margin-top: 28px;
 
-    & a{
-        color: blue;
-        text-decoration: none;
+    & a {
+      color: blue;
+      text-decoration: none;
     }
   }
 }
