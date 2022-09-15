@@ -5,8 +5,13 @@ import showpassword from "../../assets/images/showpassword.svg";
 import hidepassword from "../../assets/images/hidepassword.svg";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
+import showIcon from "../../assets/images/login/show.png";
+import hideIcon from "../../assets/images/login/hide.png";
+
 const Signup = () => {
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  
   return (
     <main className={classes.login}>
       <div className={classes.loginLeft}>
@@ -42,10 +47,12 @@ const Signup = () => {
             </div>
             <div className={classes.inputHolder}>
               <label htmlFor="password">Password*</label>
-              <input type="password" name="" id="" />
-              <div className={classes.passwordReveal}>
-                <img src={hidepassword} alt="" />
-              </div>
+              <input type={showPassword ? "text" : "password"} name="" id="" />
+              <img
+                src={showPassword ?  hideIcon : showIcon }
+                onClick={() => setShowPassword((prevState) => !prevState)}
+                alt="password reveal icon"
+              />
             </div>
             <button>{loading ? <Spinner /> : "Sign up"}</button>
           </form>
