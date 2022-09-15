@@ -1,17 +1,19 @@
 import React from "react";
 import classes from "./Login.module.scss";
-import sliderImage1 from "../../assets/images/sliderImage1.png";
+import signUpImage from "../../assets/images/Sign Up Image (2).png";
 
 import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <main className={classes.login}>
       <div className={classes.loginLeft}>
-        <div className={classes.content}>
-          <p>iPhone 13 Pro</p>
-          <h1>Oh. So. Pro.</h1>
+      <div className={classes.loginLeftHolder}>
+          <div className={classes.content}>
+            <p>We bring you the latest and greatest</p>
+            <h1>Except the best</h1>
+          </div>
+          <img src={signUpImage} alt="phones" />
         </div>
-        <img src={sliderImage1} alt="phones" />
       </div>
       <div className={classes.loginRight}>
         <div className={classes.loginWrapper}>
