@@ -5,14 +5,15 @@ import showIcon from "../../assets/images/login/show.png";
 import hideIcon from "../../assets/images/login/hide.png";
 import Spinner from "../../components/Spinner";
 import { login } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [emailInput, setEmailInput] = useState("");
-  const [passwordInput, setPasswordInput] = useState("");
-
+  const [emailInput, setEmailInput] = useState("chathura@gmail.com");
+  const [passwordInput, setPasswordInput] = useState("12345678");
+  const navigate = useNavigate();
   const submit = async (e) => {
     e.preventDefault();
     console.log("submitted");
@@ -24,10 +25,12 @@ const Login = () => {
       email: emailInput,
       password: passwordInput,
     };
+    console.log("credentials", credentials);
     await login(credentials)
       .then((res) => {
         setLoading(false);
         console.log(res);
+        navigate("/");
       })
       .catch((error) => {
         setLoading(false);
