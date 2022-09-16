@@ -22,7 +22,7 @@ const Header = () => {
             <li>ALL PRODUCTS</li>
             <li onClick={() => setShowDropDown((prevState) => !prevState)}>
               SOLUTIONS <img src={downArrow} alt="down arrow" />
-            {showDropDown && <MegaDropDown />}
+              {showDropDown && <MegaDropDown />}
             </li>
             <li>ABOUT</li>
             <li>SUPPORT</li>
@@ -31,13 +31,15 @@ const Header = () => {
         <div className={classes.navIcons}>
           <img src={SearchIcon} alt="Search Icon" />
           <img src={CartIcon} alt="cart icon" />
-          <img src={user} alt="user icon" />
-          
+          <Link to="login">
+            <img src={user} alt="user icon" />
+          </Link>
+
           <img
             src={NavMenuButton}
             className={classes.hamburgerIcon}
             alt="hambuger icon"
-            />
+          />
         </div>
       </div>
     </header>
