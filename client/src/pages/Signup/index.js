@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import classes from "../Login/Login.module.scss";
 import signUpImage from "../../assets/images/Sign Up Image (2).png";
-import showpassword from "../../assets/images/showpassword.svg";
-import hidepassword from "../../assets/images/hidepassword.svg";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import showIcon from "../../assets/images/login/show.png";
@@ -11,7 +9,7 @@ import hideIcon from "../../assets/images/login/hide.png";
 const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  
+
   return (
     <main className={classes.login}>
       <div className={classes.loginLeft}>
@@ -49,7 +47,7 @@ const Signup = () => {
               <label htmlFor="password">Password*</label>
               <input type={showPassword ? "text" : "password"} name="" id="" />
               <img
-                src={showPassword ?  hideIcon : showIcon }
+                src={showPassword ? hideIcon : showIcon}
                 onClick={() => setShowPassword((prevState) => !prevState)}
                 alt="password reveal icon"
               />
