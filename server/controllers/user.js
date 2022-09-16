@@ -1,10 +1,29 @@
 const jwt = require("jsonwebtoken");
 const bycrypt = require("bcryptjs");
 const User = require("../models/userModel");
+const SECRET = process.env.JWT_SECRET;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  const user = User.findOne(email).lean();
+  const existingUser = await User.findOne({ email }).lean();
+
+  if (!existingUser) {
+    res.status(401).json({ status: "error", error: "User doesn't exists!" });
+  }
+  if (await bycrypt.compare(password, existingUser.password)) {
+    const token = jwt.sign(
+      {
+        id: existingUser._id,
+        email: existingUser.email,
+      },
+      SECRET
+    );
+    return res.status(200).json({ status: "success", data: token });
+  } else {
+    return res
+      .status(400)
+      .json({ status: "error", error: "Invalid credentials!" });
+  }
 };
 
 const signUp = async (req, res) => {
