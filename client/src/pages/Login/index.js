@@ -10,27 +10,29 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     console.log("submitted");
-    // if (!credentials.email || !credentials.password) {
-    //   return;
-    // }
-    // setLoading(true);
-    // await login(credentials)
-    //   .then((res) => {
-    //     setLoading(false);
-    //     console.log(res);
-    //   })
-    //   .catch((error) => {
-    //     setLoading(false);
-    //     console.log(error);
-    //   });
+    if (!emailInput || !passwordInput) {
+      return;
+    }
+    setLoading(true);
+    const credentials = {
+      email: emailInput,
+      password: passwordInput,
+    };
+    await login(credentials)
+      .then((res) => {
+        setLoading(false);
+        console.log(res);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
   };
   return (
     <main className={classes.login}>
@@ -49,7 +51,14 @@ const Login = () => {
           <form action="">
             <div className={classes.inputHolder}>
               <label htmlFor="email">Email</label>
-              <input type="email" required name=""  id="" />
+              <input
+                type="email"
+                required
+                name=""
+                id=""
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
+              />
             </div>
             <div className={classes.inputHolder}>
               <label htmlFor="password">Password</label>
@@ -58,8 +67,9 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 name=""
                 id=""
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
               />
-              <small>Please enter your password</small>
               <img
                 src={showPassword ? hideIcon : showIcon}
                 onClick={() => setShowPassword((prevState) => !prevState)}
