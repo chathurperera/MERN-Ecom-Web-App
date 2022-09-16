@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 require('dotenv').config();
 const connectDB = require("./db/connect");
-
+const userRoute = require('./routes/userRoutes');
 app.use(express.json());
-
 const PORT = process.env.PORT || 5000;
+
+app.use('/api/v1/',userRoute)
 
 const start = async () => {
   try {
