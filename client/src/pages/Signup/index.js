@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "../Login/Login.module.scss";
-import sliderImage1 from "../../assets/images/sliderImage1.png";
-import showpassword from '../../assets/images/showpassword.svg'
-import hidepassword from '../../assets/images/hidepassword.svg'
+import signUpImage from "../../assets/images/Sign Up Image (2).png";
 import { Link } from "react-router-dom";
+import Spinner from "../../components/Spinner";
+import showIcon from "../../assets/images/login/show.png";
+import hideIcon from "../../assets/images/login/hide.png";
+
 const Signup = () => {
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <main className={classes.login}>
       <div className={classes.loginLeft}>
-        <div className={classes.content}>
-          <p>iPhone 13 Pro</p>
-          <h1>Oh. So. Pro.</h1>
+        <div className={classes.loginLeftHolder}>
+          <div className={classes.content}>
+            <p>We bring you the latest and greatest</p>
+            <h1>Except the best</h1>
+          </div>
+          <img src={signUpImage} alt="phones" />
         </div>
-        <img src={sliderImage1} alt="phones" />
       </div>
       <div className={classes.loginRight}>
         <div className={classes.loginWrapper}>
@@ -22,18 +29,30 @@ const Signup = () => {
             save products and access easier returns
           </p>
           <form action="">
+            <div className={classes.inputGroup}>
+              <div className={classes.inputHolder}>
+                <label htmlFor="fName">First Name</label>
+                <input type="text" name="" id="" />
+              </div>
+              <div className={classes.inputHolder}>
+                <label htmlFor="lName">Last Name</label>
+                <input type="text" name="" id="" />
+              </div>
+            </div>
             <div className={classes.inputHolder}>
               <label htmlFor="email">Email*</label>
               <input type="email" name="" id="" />
             </div>
             <div className={classes.inputHolder}>
               <label htmlFor="password">Password*</label>
-              <input type="password" name="" id="" />
-              <div className={classes.passwordReveal}>
-                <img src={hidepassword} alt="" />
-              </div>
+              <input type={showPassword ? "text" : "password"} name="" id="" />
+              <img
+                src={showPassword ? hideIcon : showIcon}
+                onClick={() => setShowPassword((prevState) => !prevState)}
+                alt="password reveal icon"
+              />
             </div>
-            <button>Create Account</button>
+            <button>{loading ? <Spinner /> : "Sign up"}</button>
           </form>
           <p className={classes.newAccount}>
             New to California ? <Link to="/">Create an Account</Link>{" "}
