@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from "./Login.module.scss";
+import classes from "./login.module.scss";
 import signUpImage from "../../assets/images/Sign Up Image (2).png";
 import showIcon from "../../assets/images/login/show.png";
 import hideIcon from "../../assets/images/login/hide.png";

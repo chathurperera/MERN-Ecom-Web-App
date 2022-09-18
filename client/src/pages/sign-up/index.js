@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from "../Login/Login.module.scss";
+import classes from "../login/login.module.scss";
 import signUpImage from "../../assets/images/Sign Up Image (2).png";
 import { useNavigate, Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";

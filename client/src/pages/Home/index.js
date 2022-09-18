@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import HeroSlider from "../../components/HeroSlider";
 import OffersAndCategories from "../../components/OffersAndCategories";
-import classes from "./Home.module.scss";
+import classes from "./home.module.scss";
 const Home = () => {
   console.log('hello')
   const BASEURL = process.env.REACT_APP_BASE_URL;
