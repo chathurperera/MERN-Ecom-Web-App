@@ -10,21 +10,15 @@ const Sidebar = () => {
     <aside className={classes.sidebar}>
       <div className={classes.linksHolder}>
         <div className={classes.sideLink}>
-          <Link to="/user/dashboard">
-            <img src={dashboard} alt="dashboard" />
-            Dashboard
+          <Link to="/">
+            <img src={user} alt="user" />
+            Profile 
           </Link>
         </div>
         <div className={classes.sideLink}>
           <Link to="/">
             <img src={shoppingBag} alt="shopping bag" />
             Orders
-          </Link>
-        </div>
-        <div className={classes.sideLink}>
-          <Link to="/">
-            <img src={user} alt="user" />
-            Profile 
           </Link>
         </div>
       </div>
