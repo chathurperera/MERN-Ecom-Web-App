@@ -11,12 +11,10 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [emailInput, setEmailInput] = useState("chathura@gmail.com");
-  const [passwordInput, setPasswordInput] = useState("12345678");
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState({
-    email: "chathura@gmail.com",
-    password: "12345678",
+    email: "john@gmail.com",
+    password: "123456789",
   });
 
   const handleChange = (e) => {

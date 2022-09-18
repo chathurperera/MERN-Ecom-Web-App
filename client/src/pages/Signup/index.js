@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import classes from "../Login/Login.module.scss";
 import signUpImage from "../../assets/images/Sign Up Image (2).png";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import showIcon from "../../assets/images/login/show.png";
 import hideIcon from "../../assets/images/login/hide.png";
+import { register } from "../../api";
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
@@ -16,8 +17,34 @@ const Signup = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !userInputs.email ||
+      !userInputs.password ||
+      !userInputs.firstName ||
+      !userInputs.lastName
+    ) {
+      return;
+    }
+
+    setLoading(true);
+    await register(userInputs)
+      .then((res) => {
+        console.log(res);
+        setLoading(false);
+        navigate("/");
+      })
+      .catch((e) => {
+        setLoading(false);
+        console.log(e);
+      });
   };
   return (
     <main className={classes.login}>
@@ -37,7 +64,7 @@ const Signup = () => {
             Sign up and you’ll be able to manage your account, track orders,
             save products and access easier returns
           </p>
-          <form action="">
+          <form onSubmit={handleSubmit} autoComplete="off">
             <div className={classes.inputGroup}>
               <div className={classes.inputHolder}>
                 <label htmlFor="firstName">First Name</label>
@@ -45,7 +72,6 @@ const Signup = () => {
                   type="text"
                   name="firstName"
                   onChange={handleChange}
-                  id=""
                 />
               </div>
               <div className={classes.inputHolder}>
@@ -55,15 +81,15 @@ const Signup = () => {
             </div>
             <div className={classes.inputHolder}>
               <label htmlFor="email">Email*</label>
-              <input type="email" name="email" onChange={handleChange} id="" />
+              <input type="email" name="email" onChange={handleChange} />
             </div>
             <div className={classes.inputHolder}>
               <label htmlFor="password">Password*</label>
               <input
                 type={showPassword ? "text" : "password"}
+                autoComplete="off"
                 name="password"
                 onChange={handleChange}
-                id=""
               />
               <img
                 src={showPassword ? hideIcon : showIcon}
