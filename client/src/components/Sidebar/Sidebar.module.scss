@@ -1,0 +1,25 @@
+.sidebar {
+  border: 1px solid black;
+  min-height: 100vh;
+  padding: 50px 20px;
+  display: flex;
+
+  justify-content: center;
+}
+.linksHolder {
+  min-width: 250px;
+  border: 1px solid black;
+
+  .sideLink {
+    border: 1px solid red;
+    padding: 10px;
+    margin-bottom: 8px;
+    transition: all ease 0.2s;
+    cursor: pointer;
+    a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+}

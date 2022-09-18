@@ -1,13 +1,14 @@
 import React from "react";
-import {Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Header from "../../../components/Header";
+import Sidebar from "../../../components/Sidebar";
 import classes from "./userSharedLayout.module.scss";
 const userSharedLayout = () => {
   return (
     <div>
       <Header />
       <div className={classes.layoutWrapper}>
-        <aside className={classes.sidebar}></aside>
+        <Sidebar /> 
         <Outlet />
       </div>
     </div>
