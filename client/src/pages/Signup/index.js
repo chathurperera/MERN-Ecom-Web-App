@@ -9,7 +9,16 @@ import hideIcon from "../../assets/images/login/hide.png";
 const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [userInputs, setUserInputs] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
+  const handleChange = (e) => {
+    setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
+  };
   return (
     <main className={classes.login}>
       <div className={classes.loginLeft}>
@@ -31,21 +40,31 @@ const Signup = () => {
           <form action="">
             <div className={classes.inputGroup}>
               <div className={classes.inputHolder}>
-                <label htmlFor="fName">First Name</label>
-                <input type="text" name="" id="" />
+                <label htmlFor="firstName">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  onChange={handleChange}
+                  id=""
+                />
               </div>
               <div className={classes.inputHolder}>
-                <label htmlFor="lName">Last Name</label>
-                <input type="text" name="" id="" />
+                <label htmlFor="lastName">Last Name</label>
+                <input type="text" name="lastName" onChange={handleChange} />
               </div>
             </div>
             <div className={classes.inputHolder}>
               <label htmlFor="email">Email*</label>
-              <input type="email" name="" id="" />
+              <input type="email" name="email" onChange={handleChange} id="" />
             </div>
             <div className={classes.inputHolder}>
               <label htmlFor="password">Password*</label>
-              <input type={showPassword ? "text" : "password"} name="" id="" />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                onChange={handleChange}
+                id=""
+              />
               <img
                 src={showPassword ? hideIcon : showIcon}
                 onClick={() => setShowPassword((prevState) => !prevState)}
@@ -55,7 +74,7 @@ const Signup = () => {
             <button>{loading ? <Spinner /> : "Sign up"}</button>
           </form>
           <p className={classes.newAccount}>
-            New to California ? <Link to="/">Create an Account</Link>{" "}
+            Already have an account ? <Link to="/login">Login</Link>{" "}
           </p>
         </div>
       </div>

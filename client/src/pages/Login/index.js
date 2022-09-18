@@ -14,19 +14,23 @@ const Login = () => {
   const [emailInput, setEmailInput] = useState("chathura@gmail.com");
   const [passwordInput, setPasswordInput] = useState("12345678");
   const navigate = useNavigate();
-  const submit = async (e) => {
+  const [userInput, setUserInput] = useState({
+    email: "chathura@gmail.com",
+    password: "12345678",
+  });
+
+  const handleChange = (e) => {
+    setUserInput({ ...userInput, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("submitted");
-    if (!emailInput || !passwordInput) {
+    if (!userInput.email || !userInput.password) {
       return;
     }
     setLoading(true);
-    const credentials = {
-      email: emailInput,
-      password: passwordInput,
-    };
-    console.log("credentials", credentials);
-    await login(credentials)
+    await login(userInput)
       .then((res) => {
         setLoading(false);
         console.log(res);
@@ -37,6 +41,7 @@ const Login = () => {
         console.log(error);
       });
   };
+
   return (
     <main className={classes.login}>
       <div className={classes.loginLeft}>
@@ -51,16 +56,15 @@ const Login = () => {
       <div className={classes.loginRight}>
         <div className={classes.loginWrapper}>
           <h4>Login</h4>
-          <form action="">
+          <form action="" onSubmit={handleSubmit}>
             <div className={classes.inputHolder}>
               <label htmlFor="email">Email</label>
               <input
                 type="email"
                 required
-                name=""
-                id=""
-                value={emailInput}
-                onChange={(e) => setEmailInput(e.target.value)}
+                name="email"
+                value={userInput.email}
+                onChange={handleChange}
               />
             </div>
             <div className={classes.inputHolder}>
@@ -68,10 +72,9 @@ const Login = () => {
               <input
                 required
                 type={showPassword ? "text" : "password"}
-                name=""
-                id=""
-                value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
+                name="password"
+                value={userInput.password}
+                onChange={handleChange}
               />
               <img
                 src={showPassword ? hideIcon : showIcon}
@@ -79,12 +82,10 @@ const Login = () => {
                 alt="password reveal icon"
               />
             </div>
-            <button type="submit" onClick={(e) => submit(e)}>
-              {loading ? <Spinner /> : "Login"}
-            </button>
+            <button type="submit">{loading ? <Spinner /> : "Login"}</button>
           </form>
           <p className={classes.newAccount}>
-            New to California ? <Link to="/">Create an Account</Link>{" "}
+            New to California ? <Link to="/sign-up">Create an Account</Link>{" "}
           </p>
         </div>
       </div>
