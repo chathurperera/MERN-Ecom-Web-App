@@ -3,6 +3,8 @@ import classes from "./Sidebar.module.scss";
 import dashboard from "../../assets/images/userProfile/dashboard.png";
 import shoppingBag from "../../assets/images/userProfile/shopping-bag.png";
 import user from "../../assets/images/userProfile/user.png";
+import password from "../../assets/images/userProfile/password.png";
+import logout from "../../assets/images/userProfile/logout.png";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -23,7 +25,13 @@ const Sidebar = () => {
         </div>
         <div className={classes.sideLink}>
           <Link to="/my-account/orders" >
-            <img src={shoppingBag} alt="shopping bag" />
+            <img src={password} alt="password lock" />
+            Change password
+          </Link>
+        </div>
+        <div className={classes.sideLink}>
+          <Link to="/my-account/orders" >
+            <img src={logout} alt="shopping bag" />
             Logout
           </Link>
         </div>
