@@ -15,11 +15,12 @@ const dashboard = () => {
             <input type="text" name="" id="" />
           </div>
         </div>
-
           <div className={classes.inputGroup}>
             <label htmlFor="">Email</label>
             <input type="email" name="" id="" />
           </div>
+
+          <button className={classes.saveBtn}>Save Changes</button>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 .profile{
   padding: 20px;  
-  background-color: #fff;
+//   background-color: #fff;
 }
 .profileCard{   
+      background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     max-width: 600px;
@@ -31,5 +32,30 @@
         &:focus{
             outline: none;
         }
+    }
+}
+.saveBtn{
+    font-size: 12px;
+    margin: 0;
+    line-height: 1;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    overflow: visible;
+    padding: 0.618em 1em;
+    font-weight: 700;
+    border-radius: 3px;
+    left: auto;
+    color: #515151;
+    background-color: #ebe9eb;
+    border: 0;
+    margin-top: 10px;
+    display: inline-block;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    &:hover{
+        color: #515151;
+        background-color: #dfdcde;
     }
 }
