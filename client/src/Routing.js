@@ -6,6 +6,7 @@ import Signup from "./pages/sign-up";
 import UserSharedLayout from "./pages/my-account/userSharedLayout";
 import Profile from "./pages/my-account/profile";
 import Orders from "./pages/my-account/orders";
+import ViewOrder from "./pages/my-account/view-order";
 
 const Routing = () => {
   return (
@@ -17,6 +18,7 @@ const Routing = () => {
         <Route path="/my-account" element={<UserSharedLayout />}>
           <Route index element={<Profile />} />
           <Route path="/my-account/orders" element={<Orders />} />
+          <Route path="/my-account/orders/:id" element={<ViewOrder />} />
         </Route>
       </Routes>
     </BrowserRouter>
