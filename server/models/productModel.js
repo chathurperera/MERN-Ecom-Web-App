@@ -21,6 +21,10 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  date:{
+    type:Date,
+    default:Date.now
+  },
   countInStock: {
     type: Number,
     required: true,
