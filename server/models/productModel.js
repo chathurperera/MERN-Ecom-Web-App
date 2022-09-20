@@ -12,7 +12,6 @@ const productSchema = mongoose.Schema({
   },
   images: {
     type: Array,
-    required: true,
   },
   rating: {
     type: Number,

@@ -2,10 +2,12 @@ const Product = require("../models/productModel");
 
 const createProduct = async (req, res) => {
   try {
-    const newProduct = await Product.save(req.body);
-    res.send(201).json({ status: "success", data: newProduct });
+    const newProduct = new Product(req.body);
+    const savedProduct = await newProduct.save();
+    res.status(201).json({ status: "success", data: savedProduct });
   } catch (error) {
-    res.send(400).json({ status: "error", error: "Something went wrong" });
+    console.log(error)
+    res.status(400).json({ status: "error", error: "Something went wrong" });
   }
 };
 
@@ -14,7 +16,7 @@ const getAllProducts = async (req, res) => {
     const allProducts = await Product.find({}).sort({ date: -1 });
     res.status(200).json({ status: "success", data: allProducts });
   } catch (error) {
-    res.send(400).json({ status: "error", error: "Something went wrong" });
+    res.status(400).json({ status: "error", error: "Something went wrong" });
   }
 };
 
