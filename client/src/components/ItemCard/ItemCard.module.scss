@@ -1,0 +1,44 @@
+.itemCard {
+  border-radius: 5px;
+  a {
+    text-decoration: none;
+    color: unset;
+    &:hover .itemImage {
+      transform: scale(1.2);
+    }
+  }
+  .imageHolder {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: #fff;
+    height: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 2em;
+    .itemImage {
+      transition: all ease 0.3s;
+      width: 100%;
+    }
+  }
+  .contentHolder {
+    padding: 10px 0;
+
+    .title {
+      margin-bottom: 10px;
+      margin-top: 5px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .desc {
+      font-weight: 500;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: #4b4b4b;
+    }
+    .price {
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+}
