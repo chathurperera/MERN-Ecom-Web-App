@@ -1,5 +1,6 @@
 import React from "react";
 import BestSellersSection from "../../components/BestSellersSection";
+import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import HeroSlider from "../../components/HeroSlider";
 import OffersAndCategories from "../../components/OffersAndCategories";
@@ -14,6 +15,7 @@ const Home = () => {
       <HeroSlider />
       <OffersAndCategories />
       <BestSellersSection />
+      <Footer />
     </div>
   );
 };
