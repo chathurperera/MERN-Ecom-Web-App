@@ -5,7 +5,7 @@ const {
   verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
-} = require("../controllers/verifyToken");
+} = require("../middleware/verifyToken");
 
 router.post("/", verifyTokenAndAdmin , createProduct);
 router.get("/", getAllProducts);
