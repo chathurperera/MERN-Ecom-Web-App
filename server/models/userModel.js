@@ -17,6 +17,10 @@ const userSchema = mongoose.Schema(
     lastName: {
       type: String,
     },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     collection: "users",

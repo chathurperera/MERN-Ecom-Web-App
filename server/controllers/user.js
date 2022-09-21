@@ -16,7 +16,8 @@ const login = async (req, res) => {
         id: existingUser._id,
         email: existingUser.email,
       },
-      SECRET
+      SECRET,
+      { expiresIn: "3d" }
     );
     return res.status(200).json({ status: "success", data: token });
   } else {
@@ -27,7 +28,7 @@ const login = async (req, res) => {
 };
 
 const signUp = async (req, res) => {
-  const { email, password: plainTextPassword, firstName, lastName } = req.body;
+  const { email, password: plainTextPassword, firstName, lastName , isAdmin } = req.body;
 
   if (!email || typeof email !== "string") {
     return res.status(400).json({ status: "error", error: "Invalid email" });
@@ -50,6 +51,7 @@ const signUp = async (req, res) => {
       password,
       firstName,
       lastName,
+      isAdmin
     });
     res.status(201).json({ status: "success", message: "User created" });
   } catch (error) {

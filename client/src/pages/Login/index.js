@@ -32,6 +32,7 @@ const Login = () => {
       .then((res) => {
         setLoading(false);
         console.log(res);
+        localStorage.setItem("token", res.data);
         navigate("/");
       })
       .catch((error) => {
