@@ -1,12 +1,12 @@
 const Product = require("../models/productModel");
 
-const createProduct = async (req, res) => {
+const createProduct = async (req, res ) => {
   try {
     const newProduct = new Product(req.body);
     const savedProduct = await newProduct.save();
     res.status(201).json({ status: "success", data: savedProduct });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(400).json({ status: "error", error: "Something went wrong" });
   }
 };
