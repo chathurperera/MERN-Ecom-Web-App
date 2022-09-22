@@ -2,10 +2,10 @@ import React from "react";
 import classes from "./Footer.module.scss";
 import logo from "../../assets/images/BlackLogo.svg";
 import visa from "../../assets/images/footer/visa.png";
-import applePay from "../../assets/images/footer/apple-pay.png";
-import googlePay from "../../assets/images/footer/google-pay.png";
+import applePay from "../../assets/images/footer/applePay.png";
+import googlePay from "../../assets/images/footer/googlePay.png";
 import mastercard from "../../assets/images/footer/mastercard.png";
-import americanExpress from "../../assets/images/footer/american-express.png";
+import americanExpress from "../../assets/images/footer/americanExpress.png";
 
 const Footer = () => {
   return (
@@ -25,34 +25,34 @@ const Footer = () => {
             <img src={googlePay} alt="googlePay" />
           </div>
         </div>
-        <div>
+        <div className={classes.footerList}>
           <h3>All products</h3>
-          <ul>
+          <ul >
             <li>Phones</li>
             <li>Watch</li>
             <li>Tablet</li>
             <li>Laptops</li>
           </ul>
         </div>
-        <div>
+        <div className={classes.footerList}>
           <h3>Company</h3>
-          <ul>
+          <ul >
             <li>About</li>
             <li>Support</li>
             <li>Blog</li>
           </ul>
         </div>
-        <div>
+        <div className={classes.footerList}>
           <h3>Policies</h3>
-          <ul>
+          <ul >
             <li>Refund Policy</li>
             <li>Shipping Policy</li>
             <li>Privacy Policy</li>
           </ul>
         </div>
-        <div>
+        <div className={classes.footerList}>
           <h3>Follow us</h3>
-          <ul>
+          <ul >
             <li>Instagram</li>
             <li>Facebook</li>
             <li>Linkedin</li>
