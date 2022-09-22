@@ -23,6 +23,7 @@ const getAllProducts = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log('params id',id);
     const updatedProduct = await Product.findOneAndUpdate(
       { _id: id },
       req.body,
@@ -31,7 +32,7 @@ const updateProduct = async (req, res) => {
         runValidators: true,
       }
     );
-
+      console.log('updatedProduct',updatedProduct)
     if (!updatedProduct) {
       res
         .status(400)

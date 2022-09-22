@@ -13,6 +13,6 @@ const {
 
 router.post("/", verifyTokenAndAdmin, createProduct);
 router.get("/", getAllProducts);
-router.patch("/", verifyTokenAndAdmin, updateProduct);
+router.patch("/:id", verifyTokenAndAdmin, updateProduct);
 
 module.exports = router;
