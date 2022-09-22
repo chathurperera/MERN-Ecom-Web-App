@@ -1,13 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const { createProduct, getAllProducts } = require("../controllers/product");
+const {
+  createProduct,
+  getAllProducts,
+  updateProduct,
+} = require("../controllers/product");
 const {
   verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
 } = require("../middleware/verifyToken");
 
-router.post("/", verifyTokenAndAdmin , createProduct);
+router.post("/", verifyTokenAndAdmin, createProduct);
 router.get("/", getAllProducts);
+router.patch("/", verifyTokenAndAdmin, updateProduct);
 
 module.exports = router;

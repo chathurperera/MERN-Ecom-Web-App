@@ -1,6 +1,6 @@
 const Product = require("../models/productModel");
 
-const createProduct = async (req, res ) => {
+const createProduct = async (req, res) => {
   try {
     const newProduct = new Product(req.body);
     const savedProduct = await newProduct.save();
@@ -20,4 +20,27 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-module.exports = { getAllProducts, createProduct };
+const updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedProduct = await Product.findOneAndUpdate(
+      { _id: id },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedProduct) {
+      res
+        .status(400)
+        .json({ status: "error", error: "Product doesn't exists!" });
+    }
+
+    res.status(200).json({ status: "success", data: updatedProduct });
+  } catch (error) {
+    res.status(500).json({ status: "error", error: "Something went wrong" });
+  }
+};
+module.exports = { getAllProducts, createProduct, updateProduct };
