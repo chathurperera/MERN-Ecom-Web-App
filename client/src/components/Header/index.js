@@ -6,7 +6,7 @@ import user from "../../assets/images/user.png";
 import SearchIcon from "../../assets/images/SearchIcon.svg";
 import NavMenuButton from "../../assets/images/NavMenuButton.svg";
 import downArrow from "../../assets/images/downArrow.svg";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import MegaDropDown from "../MegaDropDown";
 
 const Header = () => {
@@ -15,11 +15,15 @@ const Header = () => {
     <header className={classes.header}>
       <div className={classes.container}>
         <div className={classes.logo}>
+          <NavLink to="/">
           <img src={logo} alt="logo" />
+          </NavLink>
         </div>
         <nav>
           <ul>
-            <li>ALL PRODUCTS</li>
+            <li>
+              <NavLink to="all-products"> ALL PRODUCTS</NavLink>
+            </li>
             <li onClick={() => setShowDropDown((prevState) => !prevState)}>
               SOLUTIONS <img src={downArrow} alt="down arrow" />
               {showDropDown && <MegaDropDown />}

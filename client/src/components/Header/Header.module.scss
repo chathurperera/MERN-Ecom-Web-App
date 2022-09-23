@@ -23,6 +23,10 @@ nav ul {
     font-weight: 600;
     color: #000;
     cursor: pointer;
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
   }
 }
 nav{

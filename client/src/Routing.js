@@ -8,6 +8,7 @@ import MainLayout from "./layouts/mainLayout";
 import Profile from "./pages/my-account/profile";
 import Orders from "./pages/my-account/orders";
 import ViewOrder from "./pages/my-account/view-order";
+import AllProducts from "./pages/all-products";
 
 const Routing = () => {
   return (
@@ -17,6 +18,7 @@ const Routing = () => {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="sign-up" element={<Signup />} />
+          <Route path="all-products" element={<AllProducts />} />
         </Route>
         <Route path="/my-account" element={<UserSharedLayout />}>
           <Route index element={<Profile />} />
