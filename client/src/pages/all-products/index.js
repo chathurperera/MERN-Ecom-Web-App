@@ -1,7 +1,12 @@
 import React from "react";
 import classes from "./allProducts.module.scss";
 import arrowIcon from "../../assets/images/down-arrow.png";
+import { Rating } from "react-simple-star-rating";
+
 const allProducts = () => {
+  const ratingStyle = {
+    width: "50px",
+  };
   return (
     <div className={classes.allProducts}>
       <div className={classes.wrapper}>
@@ -10,7 +15,7 @@ const allProducts = () => {
             <div className={classes.filterTitle}>Filters</div>
             <div className={classes.filterOption}>
               <div className={classes.filterCollapse}>
-                Category <img src={arrowIcon} alt="arrow icon" />
+                Category 
               </div>
               <ul className={classes.filtersList}>
                 <li>
@@ -29,7 +34,34 @@ const allProducts = () => {
             </div>
             <div className={classes.filterOption}>
               <div className={classes.filterCollapse}>
-                Price <img src={arrowIcon} alt="arrow icon" />
+                Ratings 
+              </div>
+              <ul className={classes.filtersList}>
+                <li>
+                  <input type="checkbox" name="" id="lvl2" />{" "}
+                  <Rating initialValue="5" size="18" readonly="true" />
+                </li>
+                <li>
+                  <input type="checkbox" name="" id="lvl2" />{" "}
+                  <Rating initialValue="4" size="18" readonly="true" />
+                </li>
+                <li>
+                  <input type="checkbox" name="" id="lvl2" />{" "}
+                  <Rating initialValue="3" size="18" readonly="true" />
+                </li>
+                <li>
+                  <input type="checkbox" name="" id="lvl2" />{" "}
+                  <Rating initialValue="2" size="18" readonly="true" />
+                </li>
+                <li>
+                  <input type="checkbox" name="" id="lvl2" />{" "}
+                  <Rating initialValue="1" size="18" readonly="true" />
+                </li>
+              </ul>
+            </div>
+            <div className={classes.filterOption}>
+              <div className={classes.filterCollapse}>
+                Price 
               </div>
               <ul className={classes.filtersList}>
                 <li>
@@ -52,7 +84,7 @@ const allProducts = () => {
             </div>
             <div className={classes.filterOption}>
               <div className={classes.filterCollapse}>
-                Availability <img src={arrowIcon} alt="arrow icon" />
+                Availability 
               </div>
               <ul className={classes.filtersList}>
                 <li>

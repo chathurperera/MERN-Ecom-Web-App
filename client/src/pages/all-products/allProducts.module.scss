@@ -3,7 +3,7 @@
 .wrapper {
   @include container;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 2fr 6fr;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -12,6 +12,7 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 .filter {
+    max-width: 250px;
   background-color: #fff;
   padding: 15px 18px;
   border-radius: 10px;
@@ -21,17 +22,18 @@
     font-size: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
   &Option {
-    margin-bottom: 12px;
+    margin-bottom: 25px;
   }
   &Collapse {
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 15px;
+    font-size: 17px;
+    font-weight: 600;
     img {
       width: 15px;
     }
@@ -45,6 +47,11 @@
         label{
             margin-left: 4px;
         }
+    }
+    .rating .star-svg{
+        background-color: #000;
+        border: 1p solid black;
+        width: 200px;
     }
   }
 }
