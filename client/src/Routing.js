@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/sign-up";
-import UserSharedLayout from "./pages/my-account/userSharedLayout";
+import UserSharedLayout from "./layouts/userSharedLayout";
+import MainLayout from "./layouts/mainLayout";
 import Profile from "./pages/my-account/profile";
 import Orders from "./pages/my-account/orders";
 import ViewOrder from "./pages/my-account/view-order";
@@ -12,9 +13,11 @@ const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="sign-up" element={<Signup />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="sign-up" element={<Signup />} />
+        </Route>
         <Route path="/my-account" element={<UserSharedLayout />}>
           <Route index element={<Profile />} />
           <Route path="/my-account/orders" element={<Orders />} />
