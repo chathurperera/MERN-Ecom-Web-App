@@ -29,7 +29,6 @@ const Header = () => {
               {showDropDown && <MegaDropDown />}
             </li>
             <li>ABOUT</li>
-            <li>SUPPORT</li>
           </ul>
         </nav>
         <div className={classes.navIcons}>
