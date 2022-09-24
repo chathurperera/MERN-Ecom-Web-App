@@ -21,7 +21,6 @@ const Cart = ({ setShowCart }) => {
         </div>
       </div>
     </div>
-    
   );
 };
 
