@@ -12,12 +12,13 @@ import Cart from "../Cart";
 
 const Header = () => {
   const [showDropDown, setShowDropDown] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   return (
     <header className={classes.header}>
       <div className={classes.container}>
         <div className={classes.logo}>
           <NavLink to="/">
-          <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" />
           </NavLink>
         </div>
         <nav>
@@ -34,7 +35,11 @@ const Header = () => {
         </nav>
         <div className={classes.navIcons}>
           <img src={SearchIcon} alt="Search Icon" />
-          <img src={CartIcon} alt="cart icon" />
+          <img
+            src={CartIcon}
+            alt="cart icon"
+            onClick={() => setShowCart(!showCart)}
+          />
           <Link to="login">
             <img src={user} alt="user icon" />
           </Link>
@@ -46,7 +51,7 @@ const Header = () => {
           />
         </div>
       </div>
-      <Cart />
+      {showCart && <Cart setShowCart={setShowCart} />}
     </header>
   );
 };
