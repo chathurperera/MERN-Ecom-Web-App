@@ -8,8 +8,20 @@
   bottom: 0;
   right: 0;
   z-index: 99;
+  @media (max-width: 968px) {
+    grid-template-columns: 3fr 2fr;
+  }
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
   &Overlay {
     background-color: #000000cc;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
   &Wrapper {
     background-color: rgb(255, 255, 255);
@@ -43,7 +55,7 @@
       }
     }
   }
-  &Body{
+  &Body {
     padding-top: 20px;
   }
 }
