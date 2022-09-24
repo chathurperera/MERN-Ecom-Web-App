@@ -8,6 +8,7 @@ import NavMenuButton from "../../assets/images/NavMenuButton.svg";
 import downArrow from "../../assets/images/downArrow.svg";
 import { Link, NavLink } from "react-router-dom";
 import MegaDropDown from "../MegaDropDown";
+import Cart from "../Cart";
 
 const Header = () => {
   const [showDropDown, setShowDropDown] = useState(false);
@@ -45,6 +46,7 @@ const Header = () => {
           />
         </div>
       </div>
+      <Cart />
     </header>
   );
 };

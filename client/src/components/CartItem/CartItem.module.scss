@@ -1,0 +1,26 @@
+.cartItem {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  border-bottom: 1px solid whitesmoke;
+  padding: 10px;
+  &__image {
+    // padding: 0 10px;
+    text-align: center;
+    img {
+      width: 80px;
+    }
+  }
+  &__content {
+  }
+  &__name {
+    display: flex;
+    justify-content: space-between;
+    .itemName{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    img{
+        width: 20px;
+    }
+}
+}

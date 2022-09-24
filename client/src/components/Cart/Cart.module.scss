@@ -1,0 +1,49 @@
+.cart {
+  display: grid;
+  grid-template-columns: 9fr 5fr;
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+  &Overlay {
+    background-color: #000000cc;
+  }
+  &Wrapper {
+    background-color: rgb(255, 255, 255);
+  }
+  &Header {
+    position: relative;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    p {
+      text-align: center;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      align-self: flex-end;
+      width: 32px;
+      height: 32px;
+      transition: all ease 0.3s;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      border-radius: 50%;
+      &:hover {
+        background-color: #00000027;
+      }
+
+      img {
+        color: #fff;
+        width: 14px;
+      }
+    }
+  }
+  &Body{
+    padding-top: 20px;
+  }
+}
