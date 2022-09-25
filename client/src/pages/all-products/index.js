@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Filter from "../../components/Filter";
+import ItemCard from "../../components/ItemCard";
 import ResultsCount from "../../components/ResultsCount";
 import classes from "./allProducts.module.scss";
 // import arrowIcon from "../../assets/images/down-arrow.png";
@@ -25,7 +26,14 @@ const AllProducts = () => {
         </aside>
         <div>
           <ResultsCount />
-          <div className={classes.productsGrid}></div>
+          <div className={classes.productsGrid}>
+            <ItemCard />
+            <ItemCard />
+            <ItemCard />
+            <ItemCard />
+            <ItemCard />
+            <ItemCard />
+          </div>
         </div>
       </div>
     </div>
