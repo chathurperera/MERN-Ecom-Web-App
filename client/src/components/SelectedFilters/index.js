@@ -12,6 +12,7 @@ const SelectedFilters = () => {
             <div className={classes.closeIcon}>
               <img src={close} alt="close icon" />
             </div>
+            
           </div>
         );
       })}
