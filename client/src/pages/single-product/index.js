@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./single-product.module.scss";
-import macBook1 from '../../assets/images/Mac Book 4.png'
-import macBook2 from '../../assets/images/Mac Book 3.png'
+import macBook1 from "../../assets/images/Mac Book 4.png";
+import macBook2 from "../../assets/images/Mac Book 3.png";
 const SingleProduct = () => {
   return (
     <div className={classes.singleProduct}>
@@ -25,7 +25,10 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <div className={classes.productSelection}></div>
+        <div className={classes.productSelection}>
+          <div className={classes.stockTag}>OUT OF STOCK</div>
+        
+        </div>
       </div>
     </div>
   );
