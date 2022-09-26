@@ -25,6 +25,7 @@
   }
   &Wrapper {
     background-color: rgb(255, 255, 255);
+    
   }
   &Header {
     position: relative;
@@ -57,5 +58,46 @@
   }
   &Body {
     padding-top: 20px;
+    overflow-y: scroll;
+    height: calc(100vh - 200px);
+  }
+  &Footer{
+    .total{
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .btns{
+      padding-top: 15px;
+
+      a{
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+        border-radius: 30px;
+        border:1px solid black;
+        padding: 15px 0;
+        text-align: center;
+        text-decoration: none;
+        font-size: 15px;
+      }
+      a:nth-child(1){
+        background-color: #010203;
+        color: #fff;
+        transition: all ease .3s;
+        &:hover{
+          background-color: #010203e8;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+      }
+      a:nth-child(2){
+        background-color: transparent;
+        color: #010203;
+
+      }
+    }
   }
 }

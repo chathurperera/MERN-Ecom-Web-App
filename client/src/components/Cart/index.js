@@ -1,6 +1,8 @@
 import React from "react";
 import classes from "./Cart.module.scss";
 import close from "../../assets/images/cancel.png";
+import { Link } from "react-router-dom";
+
 import CartItem from "../CartItem";
 const Cart = ({ setShowCart }) => {
   return (
@@ -18,6 +20,22 @@ const Cart = ({ setShowCart }) => {
         </div>
         <div className={classes.cartBody}>
           <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+        </div>
+        <div className={classes.cartFooter}>
+          <div className={classes.total}>
+            <p>Total</p>
+            <p>$30.00 USD</p>
+          </div>
+          <div className={classes.btns}>
+            < Link to="/" >Checkout </Link>
+          </div>
         </div>
       </div>
     </div>
