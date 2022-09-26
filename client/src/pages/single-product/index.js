@@ -30,7 +30,7 @@ const SingleProduct = () => {
           <div className={classes.stockTag}>OUT OF STOCK</div>
           <h2 className={classes.productTitle}>MacBook Pro 13</h2>
           <Rating initialValue="3" size="22" readonly="true" />
-          
+
           <p className={classes.productDesc}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere iste
             enim amet perferendis odit sapiente adipisci sed tempore. Quisquam,
@@ -41,7 +41,15 @@ const SingleProduct = () => {
           <div className={classes.shipping}>
             Delivery : <span>Free Shipping | 10-15 Business days</span>
           </div>
-          
+          <div className={classes.quantity}>
+            
+            <div className={classes.quantityCounter}>
+              <div>-</div>
+              <div>5</div>
+              <div>+</div>
+            </div>
+          </div>
+          <button className={classes.addToCart}>Add To Cart </button>
         </div>
       </div>
     </div>

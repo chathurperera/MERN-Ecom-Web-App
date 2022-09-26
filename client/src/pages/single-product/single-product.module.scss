@@ -36,7 +36,6 @@
   }
   .productSelection {
     padding: 10px;
-    border: 1px solid black;
     .stockTag {
       border-radius: 5px;
       background-color: #ff484229;
@@ -50,20 +49,53 @@
       font-size: 40px;
       font-weight: 600;
     }
-    .productDesc{
-        margin-top: 40px;
+    .productDesc {
+      margin-top: 40px;
+      font-size: 15px;
+    }
+    .shipping {
+      margin-top: 30px;
+      font-weight: 600;
+      font-size: 17px;
+      span {
         font-size: 15px;
+        color: #4b4b4b;
+      }
     }
-    .shipping{
-        margin-top: 30px;
-        font-weight: 600;
-        font-size: 17px;
-        span{
-            font-size: 15px;
-            color: #4b4b4b;
-            
+    .quantity {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      .quantityCounter {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        div {
+          width: 40px;
+          height: 40px;
+          display: grid;
+          place-content: center;
+          padding: 5px;
         }
+        div:nth-child(1) {
+          background: #eee;
+        }
+        div:nth-child(3) {
+          background: #eee;
+        }
+      }
     }
-
+    .addToCart {
+      display: block;
+      margin-top: 20px;
+      border: none;
+      min-width: 180px;
+      border-radius: 30px;
+      padding: 15px;
+      text-align: center;
+      color: #fff;
+      font-size: 15px;
+      background-color: #0063ff;
+    }
   }
 }
