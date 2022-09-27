@@ -2,5 +2,46 @@
 
 .checkout {
   @include container;
-  
+  .order {
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    grid-row-gap: 20px;
+    &Table {
+      &__card {
+        border-radius: 20px;
+        background-color: #fff;
+        box-shadow: rgb(145 158 171 / 20%) 0px 0px 2px 0px,
+          rgb(145 158 171 / 12%) 0px 12px 24px -4px;
+      }
+      table{
+        border: none;
+        
+        width: 100%;
+        padding: 5px;
+      }
+      table thead{
+        width: 100%;
+        background-color: #f4f6f8;
+        & tr th{
+            padding: 15px 12px;
+            text-align: left;
+            font-size: 15px;
+            color: #677381;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            &:first-child {
+                border-top-left-radius: 8px;
+                border-bottom-left-radius: 8px;
+            }
+            &:last-child {
+                border-top-right-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+        }
+      }
+      tbody{
+        padding: 10px 9px;
+      }
+    }
+  }
 }
