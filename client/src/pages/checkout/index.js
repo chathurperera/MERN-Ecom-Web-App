@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./checkout.module.scss";
 import check from "../../assets/images/check.png";
 const Checkout = () => {
-  const [checkoutStep, setCheckoutStep] = useState(3);
+  const [checkoutStep, setCheckoutStep] = useState(2);
   return (
     <div className={classes.checkout}>
       <div className={classes.stepProgress}>
