@@ -1,32 +1,44 @@
-@import '../../styles/mixins.scss';
+@import "../../styles/mixins.scss";
 
-.checkout{
-    @include container;
-    border: 1px solid;
-    .stepProgress{
-        border: 1px solid;
-        max-width: 700px;
-        margin: 0 auto;
-        margin-top: 50px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        align-items: center;
-        .step{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            .dot{
-                border-radius: 50%;
-                width: 8px;
-                height: 8px;
-                background-color: #919eab;
-            }
-            
+.checkout {
+  @include container;
+  .stepProgress {
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .dot {
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        position: relative;
+        background-color: #00ab55;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 225px;
+          height: 2px;
+          left: 100%;
+          right: 0;
+          top: 2.5px;
+          background-color: #0502ac;
         }
-        .step.currentStep{
-            .dot{
-                background-color:#00ab55;
-            }
-        }
+      }
+      &:nth-child(3) .dot::after {
+        width: 0;
+      }
     }
+    .step.currentStep {
+      .dot {
+        background-color: #00ab55;
+      }
+    }
+  }
 }
