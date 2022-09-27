@@ -1,0 +1,32 @@
+@import '../../styles/mixins.scss';
+
+.checkout{
+    @include container;
+    border: 1px solid;
+    .stepProgress{
+        border: 1px solid;
+        max-width: 700px;
+        margin: 0 auto;
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        .step{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .dot{
+                border-radius: 50%;
+                width: 8px;
+                height: 8px;
+                background-color: #919eab;
+            }
+            
+        }
+        .step.currentStep{
+            .dot{
+                background-color:#00ab55;
+            }
+        }
+    }
+}
