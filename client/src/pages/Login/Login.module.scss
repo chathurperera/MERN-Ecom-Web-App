@@ -32,9 +32,9 @@
   place-items: center;
 }
 .loginWrapper {
-  // max-width: 300px;
+  max-width: 450px;
   background-color: #fff;
-  padding: 20px 50px;
+  padding: 20px 40px;
   border-radius: 5px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   h4 {
@@ -51,7 +51,7 @@
   .inputHolder {
     width: 100%;
     margin-bottom: 10px;
-    position: relative ;
+    position: relative;
     label {
       margin-bottom: 2px;
       display: block;
@@ -64,21 +64,21 @@
       border: 1px solidi;
       width: 100%;
       padding: 10px 5px;
+      border-radius: 4px;
       border: 1px solid #eee;
       &:focus {
         outline: none;
         border: 1px solid #007db5;
       }
     }
-    small{
+    small {
       font-size: 11px;
       color: red;
-
     }
     img {
       cursor: pointer;
       width: 16px;
-      position:absolute;
+      position: absolute;
       top: 30px;
       right: 10px;
     }

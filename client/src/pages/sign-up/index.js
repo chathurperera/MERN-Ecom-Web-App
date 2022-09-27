@@ -48,15 +48,7 @@ const Signup = () => {
   };
   return (
     <main className={classes.login}>
-      <div className={classes.loginLeft}>
-        <div className={classes.loginLeftHolder}>
-          <div className={classes.content}>
-            <p>We bring you the latest and greatest</p>
-            <h1>Except the best</h1>
-          </div>
-          <img src={signUpImage} alt="phones" />
-        </div>
-      </div>
+      
       <div className={classes.loginRight}>
         <div className={classes.loginWrapper}>
           <h4>Sign Up</h4>
