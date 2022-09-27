@@ -1,7 +1,9 @@
 .login {
-  min-height: 100vh;
+  // min-height: 100vh;
+  padding: 100px 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  // grid-template-columns: 1fr 1fr;
 }
 .loginLeft {
   height: 100%;
@@ -30,7 +32,11 @@
   place-items: center;
 }
 .loginWrapper {
-  max-width: 300px;
+  // max-width: 300px;
+  background-color: #fff;
+  padding: 20px 50px;
+  border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   h4 {
     font-size: 28px;
     margin-bottom: 20px;
