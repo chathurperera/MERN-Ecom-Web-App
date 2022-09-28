@@ -41,6 +41,24 @@ const Checkout = () => {
                     </div>
                   </td>
                 </tr>
+                <tr>
+                  <td className={classes.product}>
+                    <div className={classes.productImage}>
+                      <img src={sampleProduct} alt="" />
+                    </div>
+                    <div className={classes.productDetails}>
+                      <p>Macbook pro</p>
+                    </div>
+                  </td>
+                  <td>$35.71</td>
+                  <td>2</td>
+                  <td>$71.42</td>
+                  <td>
+                    <div className={classes.deleteItem}>
+                      <img src={deleteIcon} alt="delete icon" />
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
