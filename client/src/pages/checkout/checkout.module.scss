@@ -2,5 +2,9 @@
 
 .checkout {
   @include container;
-  
+  .order {
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    grid-row-gap: 20px;
+  }
 }

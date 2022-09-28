@@ -8,7 +8,10 @@ const Checkout = () => {
   return (
     <div className={classes.checkout}>
       <CheckoutProgressBar checkoutStep={checkoutStep} />
-      <OrdersTable />
+      <div className={classes.order}>
+        <OrdersTable />
+        <div className={classes.orderSummary}></div>
+      </div>
     </div>
   );
 };
