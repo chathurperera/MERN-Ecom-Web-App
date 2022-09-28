@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classes from "./checkout.module.scss";
-import sampleProduct from '../../assets/images/Mac Book 3.png';
+import sampleProduct from "../../assets/images/Mac Book 3.png";
+import deleteIcon from "../../assets/images/delete.png";
 import CheckoutProgressBar from "../../components/CheckoutProgressBar";
 const Checkout = () => {
   const [checkoutStep, setCheckoutStep] = useState(2);
@@ -28,7 +29,15 @@ const Checkout = () => {
                       <img src={sampleProduct} alt="" />
                     </div>
                     <div className={classes.productDetails}>
-                        <p>Macbook pro</p>
+                      <p>Macbook pro</p>
+                    </div>
+                  </td>
+                  <td>$35.71</td>
+                  <td>2</td>
+                  <td>$71.42</td>
+                  <td>
+                    <div className={classes.deleteItem}>
+                      <img src={deleteIcon} alt="delete icon" />
                     </div>
                   </td>
                 </tr>
