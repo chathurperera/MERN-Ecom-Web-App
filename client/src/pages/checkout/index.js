@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import classes from "./checkout.module.scss";
-
+import sampleProduct from '../../assets/images/Mac Book 3.png';
 import CheckoutProgressBar from "../../components/CheckoutProgressBar";
 const Checkout = () => {
   const [checkoutStep, setCheckoutStep] = useState(2);
+
   return (
     <div className={classes.checkout}>
       <CheckoutProgressBar checkoutStep={checkoutStep} />
@@ -22,7 +23,14 @@ const Checkout = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
+                  <td className={classes.product}>
+                    <div className={classes.productImage}>
+                      <img src={sampleProduct} alt="" />
+                    </div>
+                    <div className={classes.productDetails}>
+                        <p>Macbook pro</p>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
