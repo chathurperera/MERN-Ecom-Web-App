@@ -1,0 +1,12 @@
+.buttons {
+    padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.MuiButton-root.add-address-btn {
+  background: rgb(0, 123, 85);
+  &:hover {
+    background: rgba(0, 123, 84, 0.678);
+  }
+}

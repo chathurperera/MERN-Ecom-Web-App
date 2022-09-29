@@ -1,9 +1,10 @@
 import React from "react";
 import classes from "./SelectAddress.module.scss";
 import backArrow from "../../assets/images/back.png";
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import AddNewAddress from "../AddNewAddress";
 const SelectAddress = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <>
       <div className={classes.selectAddress}>
@@ -22,6 +23,7 @@ const SelectAddress = () => {
             <button>Deliver to this Address</button>
           </div>
         </div>
+        <AddNewAddress />
         <div className={classes.backButton} onClick={() => navigate(-1)}>
           <img src={backArrow} alt="back arrow" />
           <Link to="">Back</Link>
