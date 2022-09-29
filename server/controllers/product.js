@@ -20,6 +20,16 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const getSingleProduct = async (req, res) => {
+  try {
+    const productID = req.params.id;
+    const product = await Product.findById(productID);
+    res.status(200).json({ status: "success", data: product });
+  } catch (error) {
+    res.status(500).json(err);
+  }
+};
+
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -43,4 +53,5 @@ const updateProduct = async (req, res) => {
     res.status(500).json({ status: "error", error: "Something went wrong" });
   }
 };
+
 module.exports = { getAllProducts, createProduct, updateProduct };
