@@ -13,7 +13,7 @@ const Checkout = () => {
       <CheckoutProgressBar checkoutStep={checkoutStep} />
       <div className={classes.order}>
         {checkoutStep === 1 && <OrdersTable />}
-        <SelectAddress />
+        {checkoutStep === 2 &&  <SelectAddress />}
         <OrderSummary />
       </div>
     </div>
