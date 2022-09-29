@@ -4,6 +4,7 @@ const {
   createProduct,
   getAllProducts,
   updateProduct,
+  getSingleProduct,
 } = require("../controllers/product");
 const {
   verifyToken,
@@ -13,6 +14,7 @@ const {
 
 router.post("/", verifyTokenAndAdmin, createProduct);
 router.get("/", getAllProducts);
+router.get("/:id", getSingleProduct);
 router.patch("/:id", verifyTokenAndAdmin, updateProduct);
 
 module.exports = router;

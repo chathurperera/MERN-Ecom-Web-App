@@ -54,4 +54,4 @@ const updateProduct = async (req, res) => {
   }
 };
 
-module.exports = { getAllProducts, createProduct, updateProduct };
+module.exports = { getAllProducts, createProduct, updateProduct , getSingleProduct };
