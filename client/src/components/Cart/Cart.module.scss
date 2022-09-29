@@ -59,7 +59,17 @@
   &Body {
     padding-top: 20px;
     overflow-y: scroll;
+    position: relative;
     height: calc(100vh - 200px);
+    h3{
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      font-weight: 600;
+      text-align: center;
+    }
   }
   &Footer{
     .total{
