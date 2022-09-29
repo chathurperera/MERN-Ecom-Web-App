@@ -20,14 +20,14 @@ const Cart = ({ setShowCart }) => {
           </div>
         </div>
         <div className={classes.cartBody}>
-          {/* <CartItem />
           <CartItem />
           <CartItem />
           <CartItem />
           <CartItem />
           <CartItem />
           <CartItem />
-          <CartItem /> */}
+          <CartItem />
+          <CartItem />
           {isEmptyCart && <h3 >Your Cart is Empty </h3>}
         </div>
         <div className={classes.cartFooter}>
