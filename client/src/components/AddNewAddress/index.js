@@ -3,7 +3,7 @@ import classes from "./AddNewAddress.module.scss";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import '../../styles/buttonStyles.scss'
+import 'styles/buttonStyles.scss'
 
 const AddNewAddress = () => {
   return (
@@ -68,8 +68,8 @@ const AddNewAddress = () => {
         </Grid>
       </Grid>
       <div className={classes.buttons}>
-        <Button variant="contained" className="add-address-btn" size="small">Add Address</Button>
-        <Button variant="outlined" size="small">Cancel</Button>
+        <Button variant="outlined" className="add-address-btn" size="small">Cancel</Button>
+        <Button variant="outlined" className="add-address-btn" size="small">Add Address</Button>
       </div>
     </div>
   );

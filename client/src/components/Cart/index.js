@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import CartItem from "../CartItem";
 const Cart = ({ setShowCart }) => {
-  const [isEmptyCart, setIsEmptyCart] = useState(true);
+  const [isEmptyCart, setIsEmptyCart] = useState(false);
   return (
     <div className={classes.cart}>
       <div className={classes.cartOverlay}></div>

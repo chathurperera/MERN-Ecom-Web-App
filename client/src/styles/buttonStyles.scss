@@ -1,12 +1,29 @@
-.buttons {
-    padding-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
 .MuiButton-root.add-address-btn {
-  background: rgb(0, 123, 85);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: transparent;
+  outline: 0px;
+  margin: 0px;
+  cursor: pointer;
+  vertical-align: middle;
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1.71429;
+  font-size: 0.8125rem;
+  min-width: 64px;
+  text-transform: none;
+  padding: 3px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 171, 85, 0.5);
+  color: rgb(0, 171, 85);
+  margin-right: 10px;
   &:hover {
-    background: rgba(0, 123, 84, 0.678);
+    background-color: rgba(145, 158, 171, 0.08);
+    border-color: rgb(207, 204, 204);
+  }
+  &:first-child {
+    color: #010203;
   }
 }
