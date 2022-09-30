@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./OrderSummary.module.scss";
 import { Link } from "react-router-dom";
-const OrderSummary = () => {
+const OrderSummary = ({ checkoutStep }) => {
   return (
     <div className={classes.orderSummary}>
       <div className={classes.card}>
@@ -24,9 +24,11 @@ const OrderSummary = () => {
           <span>$66.42</span>
         </div>
       </div>
-      <button className={classes.checkoutButton}>
-        <Link to="/">Check Out</Link>
-      </button>
+      {checkoutStep === 1 && (
+        <button className={classes.checkoutButton}>
+          <Link to="/">Check Out</Link>
+        </button>
+      )}
     </div>
   );
 };

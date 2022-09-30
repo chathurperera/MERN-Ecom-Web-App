@@ -20,14 +20,13 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  date:{
-    type:Date,
-    default:Date.now
+  date: {
+    type: Date,
+    default: () => Date.now(),
   },
   countInStock: {
     type: Number,
     required: true,
-    default: 0,
   },
 });
 
