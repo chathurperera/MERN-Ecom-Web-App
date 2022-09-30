@@ -14,7 +14,7 @@ const Checkout = () => {
       <div className={classes.order}>
         {checkoutStep === 1 && <OrdersTable />}
         {checkoutStep === 2 &&  <SelectAddress setCheckoutStep={setCheckoutStep} />}
-        {checkoutStep === 3 && <PaymentOptions />}
+        {checkoutStep === 3 && <PaymentOptions setCheckoutStep={setCheckoutStep}/>}
         <OrderSummary checkoutStep={checkoutStep} />
       </div>
     </div>

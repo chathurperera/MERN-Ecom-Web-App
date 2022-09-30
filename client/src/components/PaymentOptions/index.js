@@ -4,8 +4,9 @@ import Radio from "@mui/material/Radio";
 import paypal from "assets/images/paypal.png";
 import mastercard from "assets/images/mastercard.png";
 import visa from "assets/images/visa.png";
+import backArrow from "assets/images/back.png";
 
-const PaymentOptions = () => {
+const PaymentOptions = ({ setCheckoutStep }) => {
   const [selectedValue, setSelectedValue] = useState(null);
   const handleChange = (e) => {
     setSelectedValue(e.target.value);
@@ -39,7 +40,6 @@ const PaymentOptions = () => {
             <img src={visa} alt="visa logo" />
           </div>
         </div>
-
         <div
           className={classes.option}
           onClick={() => setSelectedValue("paypal")}
@@ -84,6 +84,10 @@ const PaymentOptions = () => {
           </div>
           <div className={classes.optionImage}></div>
         </div>
+      </div>
+      <div className={classes.backButton} onClick={() => setCheckoutStep(2)}>
+        <img src={backArrow} alt="back arrow" />
+        Back
       </div>
     </div>
   );
