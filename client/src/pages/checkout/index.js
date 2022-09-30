@@ -5,6 +5,7 @@ import OrdersTable from "components/OrdersTable";
 import OrderSummary from "components/OrderSummary";
 import SelectAddress from "components/SelectAddress";
 import PaymentOptions from "components/PaymentOptions";
+import BillingAddress from "components/BillingAddress";
 const Checkout = () => {
   const [checkoutStep, setCheckoutStep] = useState(3);
 
@@ -13,9 +14,16 @@ const Checkout = () => {
       <CheckoutProgressBar checkoutStep={checkoutStep} />
       <div className={classes.order}>
         {checkoutStep === 1 && <OrdersTable />}
-        {checkoutStep === 2 &&  <SelectAddress setCheckoutStep={setCheckoutStep} />}
-        {checkoutStep === 3 && <PaymentOptions setCheckoutStep={setCheckoutStep}/>}
-        <OrderSummary checkoutStep={checkoutStep} />
+        {checkoutStep === 2 && (
+          <SelectAddress setCheckoutStep={setCheckoutStep} />
+        )}
+        {checkoutStep === 3 && (
+          <PaymentOptions setCheckoutStep={setCheckoutStep} />
+        )}
+        <div>
+          <BillingAddress />
+          <OrderSummary checkoutStep={checkoutStep} />
+        </div>
       </div>
     </div>
   );
