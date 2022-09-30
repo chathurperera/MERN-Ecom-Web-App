@@ -1,6 +1,6 @@
 import React from "react";
-import classes from './AddressCard.module.scss'
-const AddressCard = () => {
+import classes from "./AddressCard.module.scss";
+const AddressCard = ({ setCheckoutStep }) => {
   return (
     <div className={classes.address}>
       <div className={classes.addressDetails}>
@@ -14,7 +14,9 @@ const AddressCard = () => {
       </div>
       <div className={classes.addressButtons}>
         <button>Delete</button>
-        <button>Deliver to this Address</button>
+        <button onClick={() => setCheckoutStep(3)}>
+          Deliver to this Address
+        </button>
       </div>
     </div>
   );
