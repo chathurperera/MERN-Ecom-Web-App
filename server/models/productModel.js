@@ -35,7 +35,6 @@ const productSchema = mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ["men", "woman", "kids"],
   },
   createdAt: {
     type: Date,

@@ -14,9 +14,17 @@ const createProduct = async (req, res) => {
 const getAllProducts = async (req, res) => {
   try {
     const { category, minPrice, maxPrice, rating } = req.query;
+    let queryObject = {};
 
-    const allProducts = await Product.find({}).sort({ date: -1 });
-    res.status(200).json({ status: "success", data: allProducts });
+    if (category) {
+      queryObject.category = category;
+    }
+    const allProducts = await Product.find(queryObject).sort({ createdAt: -1 });
+    res.status(200).json({
+      status: "success",
+      data: allProducts,
+      productsCount: allProducts.length,
+    });
   } catch (error) {
     res.status(400).json({ status: "error", error: "Something went wrong" });
   }
