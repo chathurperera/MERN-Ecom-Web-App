@@ -13,19 +13,33 @@ const createProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
-    const { category, minPrice, maxPrice, rating } = req.query;
+    const { category, sort, minPrice, maxPrice, rating } = req.query;
+
     let queryObject = {};
 
     if (category) {
       queryObject.category = category;
     }
-    const allProducts = await Product.find(queryObject).sort({ createdAt: -1 });
+
+    let result = Product.find(queryObject);
+
+    if (sort) {
+      const sortList = sort.split(",").join(" ");
+      result = result.sort(sortList);
+    } else {
+      result = result.sort({ createdAt: 1 });
+    }
+
+    const allProducts = await result;
+
     res.status(200).json({
       status: "success",
       data: allProducts,
       productsCount: allProducts.length,
     });
+
   } catch (error) {
+    console.log(error)
     res.status(400).json({ status: "error", error: "Something went wrong" });
   }
 };
@@ -99,5 +113,5 @@ module.exports = {
   updateProduct,
   getSingleProduct,
   deleteProduct,
-  searchProducts
+  searchProducts,
 };
