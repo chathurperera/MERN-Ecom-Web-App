@@ -21,8 +21,11 @@ const getAllProducts = async (req, res) => {
       queryObject.category = category;
     }
 
+    //Filtering the result with given queries
     let result = Product.find(queryObject);
 
+    /* checks if the users wants to sort the results
+      and sorting the results  */
     if (sort) {
       const sortList = sort.split(",").join(" ");
       result = result.sort(sortList);
