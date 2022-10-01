@@ -10,21 +10,38 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  images: {
-    type: Array,
+  brand: {
+    type: String,
+    required: true,
   },
-  rating: {
-    type: Number,
+  size:{
+    type:Array
+  },
+  colors:{
+    type:Array
+  },
+  imageUrl: {
+    type: String,
   },
   price: {
     type: Number,
     required: true,
   },
-  date: {
+  gender: {
+    type: String,
+    required: true,
+    enum: ["male", "female", "unisex"],
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: ["men", "woman", "kids"],
+  },
+  createdAt: {
     type: Date,
     default: () => Date.now(),
   },
-  countInStock: {
+  quantity: {
     type: Number,
     required: true,
   },
