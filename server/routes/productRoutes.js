@@ -6,6 +6,7 @@ const {
   updateProduct,
   deleteProduct,
   getSingleProduct,
+  searchProducts,
 } = require("../controllers/product");
 const {
   verifyToken,
@@ -15,6 +16,7 @@ const {
 
 router.post("/", verifyTokenAndAdmin, createProduct);
 router.get("/", getAllProducts);
+router.get("/search", searchProducts);
 router.get("/:id", getSingleProduct);
 router.delete("/:id", deleteProduct);
 router.patch("/:id", verifyTokenAndAdmin, updateProduct);
