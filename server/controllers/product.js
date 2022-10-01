@@ -30,6 +30,20 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const searchProducts = async (req, res) => {
+  try {
+    const { name } = req.query;
+    let queryObject = {};
+    if (name) {
+      queryObject.name = { $regex: name, $options: "i" };
+    }
+    const products = await Product.find(queryObject).sort({ price: 1 });
+    res.status(200).json({ status: "success", data: products });
+  } catch (error) {
+    res.status(500).json({ status: "error", error: "Something went wrong" });
+  }
+};
+
 const getSingleProduct = async (req, res) => {
   try {
     const productID = req.params.id;
@@ -85,4 +99,5 @@ module.exports = {
   updateProduct,
   getSingleProduct,
   deleteProduct,
+  searchProducts
 };
