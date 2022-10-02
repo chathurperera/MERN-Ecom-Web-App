@@ -13,7 +13,7 @@ const createProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
-    const { category, sort, minPrice, maxPrice, rating, numericFilters } =
+    const { category, sort, minPrice, maxPrice, rating, } =
       req.query;
 
     let queryObject = {};
@@ -21,22 +21,9 @@ const getAllProducts = async (req, res) => {
     if (category) {
       queryObject.category = category;
     }
-
-    if (numericFilters) {
-      const operatorMap = {
-        ">": "$gt",
-        ">=": "$gte",
-        "=": "$eq",
-        "<": "$lt",
-        "<=": "$lte",
-      };
-
-      const regEx = /\b(>|>=|=|<|<=)\b/g;
-
-      let filters  = numericFilters.replace(regEx,(match) => `-${operatorMap[match]}-`);
-      console.log(filters)
+    if (minPrice && maxPrice) {
+      queryObject.price = { $gte: minPrice, $lte: maxPrice };
     }
-
     //Filtering the result with given queries
     let result = Product.find(queryObject);
 
