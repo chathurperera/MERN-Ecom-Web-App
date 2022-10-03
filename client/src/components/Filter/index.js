@@ -2,9 +2,19 @@ import React, { useState } from "react";
 import classes from "./Filter.module.scss";
 import { Rating } from "react-simple-star-rating";
 
-const Filter = ({ filterValues, setFilterValues }) => {
- 
-  const [filters, setFilters] = useState([]);
+const Filter = ({ filters, setFilters }) => {
+
+
+  const handleCategoryChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    setFilters((prevFilters) => {
+      return {
+        ...prevFilters,
+        [name]: type === "checkbox" ? checked : value,
+      };
+    });
+  };
+
   return (
     <div className={classes.filter}>
       <div className={classes.filterTitle}>Filters</div>
@@ -12,16 +22,34 @@ const Filter = ({ filterValues, setFilterValues }) => {
         <div className={classes.filterCollapse}>Category</div>
         <ul className={classes.filtersList}>
           <li>
-            <input type="checkbox" name="phones" id="phones" />
-            <label htmlFor="phones">Phones</label>{" "}
+            <input
+              type="checkbox"
+              name="shorts"
+              checked={filters.shorts}
+              id="shorts"
+              onChange={handleCategoryChange}
+            />
+            <label htmlFor="shorts">Shorts</label>
           </li>
           <li>
-            <input type="checkbox" name="laptops" id="laptops" />
-            <label htmlFor="laptops">Laptops</label>{" "}
+            <input
+              type="checkbox"
+              name="shoes"
+              checked={filters.shoes}
+              id="shoes"
+              onChange={handleCategoryChange}
+            />
+            <label htmlFor="shoes">Shoes</label>
           </li>
           <li>
-            <input type="checkbox" name="" id="watches" />{" "}
-            <label htmlFor="watches">Watches</label>{" "}
+            <input
+              type="checkbox"
+              name="tanks"
+              checked={filters.tanks}
+              id="tanks"
+              onChange={handleCategoryChange}
+            />
+            <label htmlFor="tanks">Tanks</label>
           </li>
         </ul>
       </div>

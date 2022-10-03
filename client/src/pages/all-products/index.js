@@ -9,17 +9,13 @@ import classes from "./allProducts.module.scss";
 // import arrowIcon from "../../assets/images/down-arrow.png";
 
 const AllProducts = () => {
-  const [filterValues, setFilterValues] = useState({
-    category: [
-      { name: "phones", value: false },
-      { name: "laptops", value: false },
-      { name: "watches", value: false },
-    ],
-    rating: [
-      { name: "phones", value: false },
-      { name: "laptops", value: false },
-      { name: "watches", value: false },
-    ],
+  const [filters, setFilters] = useState({
+    shorts: false,
+    tanks: false,
+    shoes: false,
+    rating: "",
+    price: "",
+    availability: "",
   });
 
   const [products, setProducts] = useState([]);
@@ -35,24 +31,24 @@ const AllProducts = () => {
   }, []);
 
   const productsList = products?.map((product) => {
-    return <ItemCard product={product} />;
+    return <ItemCard product={product} key={product._id} />;
   });
 
-  const skeletonLoaders = [1,2,3,4,5,6,].map(() => {
-    return <ProductSkeleton />
-  })
-  
+  const skeletonLoaders = [1, 2, 3, 4, 5, 6].map((number) => {
+    return <ProductSkeleton key={number} />;
+  });
+
   return (
     <div className={classes.allProducts}>
       <div className={classes.wrapper}>
         <aside>
-          <Filter filterValues={filterValues} />
+          <Filter filters={filters} setFilters={setFilters}/>
         </aside>
         <div>
           <ResultsCount />
-          <SelectedFilters />
+          <SelectedFilters filters={filters} />
           <div className={classes.productsGrid}>
-          {products.length ? productsList : skeletonLoaders}
+            {products.length ? productsList : skeletonLoaders}
           </div>
         </div>
       </div>

@@ -18,10 +18,8 @@ const getAllProducts = async (req, res) => {
     let queryObject = {};
 
     if (category) {
-      console.log("category", category);
       const categories = category.split(',');
       queryObject.category = { $in: categories };
-      console.log("queryObject.category", queryObject.category);
     }
     if (minPrice && maxPrice) {
       queryObject.price = { $gte: minPrice, $lte: maxPrice };
