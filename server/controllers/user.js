@@ -43,6 +43,13 @@ const signUp = async (req, res) => {
     });
   }
 
+  //Check for duplicates
+  const duplicate = await User.findOne({email}).lean().exec();
+
+  if(duplicate){
+    return res.status(409).json({status:'error',error:'Duplicate email'})
+  }
+
   const password = await bycrypt.hash(plainTextPassword, 10);
 
   try {

@@ -3,8 +3,10 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/connect");
 const mongoose = require("mongoose");
+
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
+
 const userRoute = require("./routes/userRoutes");
 const productRoute = require("./routes/productRoutes");
 
