@@ -1,13 +1,13 @@
+import HeroSection from "components/HeroSection";
 import React from "react";
 import BestSellersSection from "../../components/BestSellersSection";
 import EmailSubSection from "../../components/EmailSubSection";
-import HeroSlider from "../../components/HeroSlider";
 import OffersAndCategories from "../../components/OffersAndCategories";
 
 const Home = () => {
   return (
     <div>
-      <HeroSlider />
+      <HeroSection />
       <OffersAndCategories />
       <BestSellersSection />
       <EmailSubSection />
