@@ -1,7 +1,7 @@
 @import '../../styles/mixins.scss';
 
 .bestSellersSection{
-@include container;
+max-width: 1800px;
 padding: 25px;
 }
 
