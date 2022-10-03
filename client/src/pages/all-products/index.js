@@ -41,6 +41,7 @@ const AllProducts = () => {
   const skeletonLoaders = [1,2,3,4,5,6,].map(() => {
     return <ProductSkeleton />
   })
+  
   return (
     <div className={classes.allProducts}>
       <div className={classes.wrapper}>

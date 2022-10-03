@@ -1,17 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./Filter.module.scss";
 import { Rating } from "react-simple-star-rating";
 
 const Filter = ({ filterValues, setFilterValues }) => {
-  const handleChange = (filterOption, name, setFilterValues) => {
-    setFilterValues((prevState) => {
-      prevState[filterOption].map((checkboxValue) => {
-        return checkboxValue === name
-          ? !checkboxValue.value
-          : checkboxValue.value;
-      });
-    });
-  };
+ 
+  const [filters, setFilters] = useState([]);
   return (
     <div className={classes.filter}>
       <div className={classes.filterTitle}>Filters</div>
@@ -19,23 +12,11 @@ const Filter = ({ filterValues, setFilterValues }) => {
         <div className={classes.filterCollapse}>Category</div>
         <ul className={classes.filtersList}>
           <li>
-            <input
-              onChange={(e) =>
-                handleChange("category", e.target.name, setFilterValues)
-              }
-              type="checkbox"
-              name="phones"
-              id="phones"
-            />{" "}
+            <input type="checkbox" name="phones" id="phones" />
             <label htmlFor="phones">Phones</label>{" "}
           </li>
           <li>
-            <input
-              onChange={(e) => handleChange("category", e.target.name)}
-              type="checkbox"
-              name="laptops"
-              id="laptops"
-            />{" "}
+            <input type="checkbox" name="laptops" id="laptops" />
             <label htmlFor="laptops">Laptops</label>{" "}
           </li>
           <li>
