@@ -29,7 +29,6 @@ const Login = () => {
       return;
     }
     setLoading(true);
-    // await login(userInput)
     await API.post("/login", userInput)
       .then((res) => {
         setLoading(false);

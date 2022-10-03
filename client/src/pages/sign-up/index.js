@@ -25,6 +25,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (
       !userInputs.email ||
       !userInputs.password ||
@@ -35,7 +36,6 @@ const Signup = () => {
     }
 
     setLoading(true);
-    // await register(userInputs)
     await API.post("/signup", userInputs)
       .then((res) => {
         console.log(res);
@@ -47,6 +47,7 @@ const Signup = () => {
         console.log(e);
       });
   };
+  
   return (
     <main className={classes.login}>
       <div className={classes.loginRight}>

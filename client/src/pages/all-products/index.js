@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import API from "api";
+import React, { useEffect, useState } from "react";
 import Filter from "../../components/Filter";
 import ItemCard from "../../components/ItemCard";
 import ResultsCount from "../../components/ResultsCount";
@@ -19,6 +20,23 @@ const AllProducts = () => {
       { name: "watches", value: false },
     ],
   });
+
+  const [products, setProducts] = useState([]);
+
+  const getAllProduct = async () => {
+    const res = await API.get("/products");
+    console.log(res);
+    setProducts(res.data.data);
+  };
+
+  useEffect(() => {
+    getAllProduct();
+  }, []);
+
+  const productsList = products?.map((product) => {
+    return <ItemCard product={product} />;
+  });
+
   return (
     <div className={classes.allProducts}>
       <div className={classes.wrapper}>
@@ -28,14 +46,7 @@ const AllProducts = () => {
         <div>
           <ResultsCount />
           <SelectedFilters />
-          <div className={classes.productsGrid}>
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-          </div>
+          <div className={classes.productsGrid}>{productsList}</div>
         </div>
       </div>
     </div>
