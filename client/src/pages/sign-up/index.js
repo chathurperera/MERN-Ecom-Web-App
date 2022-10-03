@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import showIcon from "../../assets/images/login/show.png";
 import hideIcon from "../../assets/images/login/hide.png";
-import { register } from "../../api";
+import API from "api";
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,8 @@ const Signup = () => {
     }
 
     setLoading(true);
-    await register(userInputs)
+    // await register(userInputs)
+    await API.post("/signup", userInputs)
       .then((res) => {
         console.log(res);
         setLoading(false);
@@ -48,7 +49,6 @@ const Signup = () => {
   };
   return (
     <main className={classes.login}>
-      
       <div className={classes.loginRight}>
         <div className={classes.loginWrapper}>
           <h4>Sign Up</h4>
@@ -60,11 +60,7 @@ const Signup = () => {
             <div className={classes.inputGroup}>
               <div className={classes.inputHolder}>
                 <label htmlFor="firstName">First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  onChange={handleChange}
-                />
+                <input type="text" name="firstName" onChange={handleChange} />
               </div>
               <div className={classes.inputHolder}>
                 <label htmlFor="lastName">Last Name</label>

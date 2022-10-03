@@ -6,6 +6,7 @@ import hideIcon from "../../assets/images/login/hide.png";
 import Spinner from "../../components/Spinner";
 import { login } from "../../api";
 import { useNavigate } from "react-router-dom";
+import API from "../../api";
 
 import { Link } from "react-router-dom";
 const Login = () => {
@@ -28,7 +29,8 @@ const Login = () => {
       return;
     }
     setLoading(true);
-    await login(userInput)
+    // await login(userInput)
+    await API.post("/login", userInput)
       .then((res) => {
         setLoading(false);
         console.log(res);
@@ -43,7 +45,6 @@ const Login = () => {
 
   return (
     <main className={classes.login}>
-      
       <div className={classes.loginRight}>
         <div className={classes.loginWrapper}>
           <h4>Login</h4>
