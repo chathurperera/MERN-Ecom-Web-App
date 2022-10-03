@@ -26,12 +26,12 @@ const Footer = () => {
           </div>
         </div>
         <div className={classes.footerList}>
-          <h3>All products</h3>
+          <h3>Category</h3>
           <ul >
-            <li>Phones</li>
-            <li>Watch</li>
-            <li>Tablet</li>
-            <li>Laptops</li>
+            <li>Mens</li>
+            <li>Women</li>
+            <li>Kids</li>
+            <li>Shoes</li>
           </ul>
         </div>
         <div className={classes.footerList}>
