@@ -1,28 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import classes from "./HeroSection.module.scss";
 import { Link } from "react-router-dom";
-import heroImage from "../../assets/images/UAHeroImage.png";
-import heroImageMobile from "../../assets/images/heroImageSmallScreen.png";
 
 const HeroSection = () => {
-  const [windowSize, setWindowSize] = useState(getWindowSize());
-
-  function getWindowSize() {
-    const { innerWidth } = window;
-    return { innerWidth };
-  }
-
-  useEffect(() => {
-    function handleWindowResize() {
-      setWindowSize(getWindowSize());
-    }
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, [windowSize]);
 
   return (
     <div className={classes.heroSection}>
