@@ -14,14 +14,15 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  size:{
-    type:Array
+  size: {
+    type: Array,
   },
-  colors:{
-    type:Array
+  colors: {
+    type: Array,
   },
   imageUrl: {
     type: String,
+    default: "https://i.ibb.co/R62DvRM/woocommerce-placeholder.png",
   },
   price: {
     type: Number,
@@ -44,7 +45,7 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  availability : {
+  availability: {
     type: Boolean,
     required: true,
   },

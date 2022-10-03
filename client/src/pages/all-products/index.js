@@ -1,4 +1,5 @@
 import API from "api";
+import ProductSkeleton from "components/ProductSkeleton";
 import React, { useEffect, useState } from "react";
 import Filter from "../../components/Filter";
 import ItemCard from "../../components/ItemCard";
@@ -37,6 +38,9 @@ const AllProducts = () => {
     return <ItemCard product={product} />;
   });
 
+  const skeletonLoaders = [1,2,3,4,5,6,].map(() => {
+    return <ProductSkeleton />
+  })
   return (
     <div className={classes.allProducts}>
       <div className={classes.wrapper}>
@@ -46,7 +50,9 @@ const AllProducts = () => {
         <div>
           <ResultsCount />
           <SelectedFilters />
-          <div className={classes.productsGrid}>{productsList}</div>
+          <div className={classes.productsGrid}>
+          {products.length ? productsList : skeletonLoaders}
+          </div>
         </div>
       </div>
     </div>
