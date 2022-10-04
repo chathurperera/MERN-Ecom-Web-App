@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import classes from "./Filter.module.scss";
 import { Rating } from "react-simple-star-rating";
+import Button from "@mui/material/Button";
 
 const Filter = ({ filters, setFilters, setCategories, categories }) => {
+  const [price, setPrice] = useState('');
+
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     setFilters((prevFilters) => {
@@ -11,6 +14,9 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
         [name]: type === "checkbox" ? checked : value,
       };
     });
+    if(name === 'price'){
+      setPrice(value)
+    }
   };
 
   const handleCheckbox = (event) => {
@@ -29,11 +35,14 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
       tanks: false,
       shoes: false,
     });
+    setPrice('')
   };
 
   return (
     <div className={classes.filter}>
-      <div className={classes.filterTitle}>Filters</div>
+      <div className={classes.filterTitle}>
+        Filters <button onClick={resetAllFilters}>Clear Filters</button>
+      </div>
       <div className={classes.filterOption}>
         <div className={classes.filterCollapse}>Category</div>
         <ul className={classes.filtersList}>
@@ -112,6 +121,7 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
               type="radio"
               name="price"
               value="40-500"
+              checked={price === '40-500'}
               onChange={handleChange}
               id="priceLvl1"
             />
@@ -122,6 +132,7 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
               type="radio"
               name="price"
               value="500-1000"
+              checked={price === '500-1000'}
               onChange={handleChange}
               id="priceLvl2"
             />
@@ -132,6 +143,7 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
               type="radio"
               name="price"
               value="1000-2000"
+              checked={price === '1000-2000'}
               onChange={handleChange}
               id="priceLvl3"
             />
@@ -142,6 +154,7 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
               type="radio"
               name="price"
               value="2000-3000"
+              checked={price === '2000-3000'}
               onChange={handleChange}
               id="priceLvl4"
             />

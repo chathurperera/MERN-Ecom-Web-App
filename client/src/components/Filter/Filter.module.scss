@@ -10,6 +10,17 @@
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
     margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button{
+      border: none;
+      padding: 5px 10px;
+      border-radius: 2px;
+      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid rgb(206, 205, 205);
+    }
   }
   &Option {
     margin-bottom: 25px;
