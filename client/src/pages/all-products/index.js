@@ -46,7 +46,7 @@ const AllProducts = () => {
         </aside>
         <div>
           <ResultsCount />
-          <SelectedFilters filters={filters} />
+          <SelectedFilters filters={filters} setFilters={setFilters} />
           <div className={classes.productsGrid}>
             {products.length ? productsList : skeletonLoaders}
           </div>

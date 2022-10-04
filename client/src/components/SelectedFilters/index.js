@@ -1,13 +1,20 @@
 import React from "react";
 import classes from "./SelectedFilters.module.scss";
-import close from "../../assets/images/cancel.png";
-const SelectedFilters = ({ filters }) => {
-  const numArray = [1, 2, 3, 4];
-  // Get the filters and create an array to display filtering options
+import close from "assets/images/cancel.png";
+const SelectedFilters = ({ filters, setFilters }) => {
   const filterTruthyValues = Object.keys(filters).filter(
     (value) => !!filters[value]
   );
-  console.log("filterTruthyValues", filterTruthyValues);
+
+  const removeFilter = (value) => {
+    const newValue = typeof filters[value] == "boolean" ? !filters[value] : "";
+    setFilters((prevState) => {
+      return {
+        ...prevState,
+        [value]: newValue,
+      };
+    });
+  };
 
   const filtersList =
     filterTruthyValues.length !== 0 &&
@@ -15,13 +22,12 @@ const SelectedFilters = ({ filters }) => {
       return (
         <div className={classes.filter} key={index}>
           <p>{option}</p>
-          <div className={classes.closeIcon}>
+          <div className={classes.closeIcon} onClick={() => removeFilter(option)}>
             <img src={close} alt="close icon" />
           </div>
         </div>
       );
     });
-
 
   return <div className={classes.selectedFilters}>{filtersList}</div>;
 };
