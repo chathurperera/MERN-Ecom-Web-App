@@ -15,20 +15,30 @@ const AllProducts = () => {
     shoes: false,
     rating: "",
     price: "",
-    availability: "",
+    availability: false,
   });
 
   const [products, setProducts] = useState([]);
+  const categoryQueryParams = Object.keys(filters)
+    .filter((value) => !!filters[value])
+    .join();
 
   const getAllProduct = async () => {
-    const res = await API.get("/products");
+    const queryParams = {
+      category: categoryQueryParams,
+      rating: "",
+      minPrice: "",
+      maxPrice: "",
+      availability: false,
+    };
+    const res = await API.get("/products", { params: queryParams });
     console.log(res);
     setProducts(res.data.data);
   };
 
   useEffect(() => {
     getAllProduct();
-  }, []);
+  }, [filters]);
 
   const productsList = products?.map((product) => {
     return <ItemCard product={product} key={product._id} />;
@@ -42,7 +52,7 @@ const AllProducts = () => {
     <div className={classes.allProducts}>
       <div className={classes.wrapper}>
         <aside>
-          <Filter filters={filters} setFilters={setFilters}/>
+          <Filter filters={filters} setFilters={setFilters} />
         </aside>
         <div>
           <ResultsCount />
