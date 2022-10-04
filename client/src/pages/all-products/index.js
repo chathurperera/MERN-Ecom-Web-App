@@ -9,6 +9,7 @@ import classes from "./allProducts.module.scss";
 // import arrowIcon from "../../assets/images/down-arrow.png";
 
 const AllProducts = () => {
+  const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({
     rating: "",
     price: "",
@@ -22,7 +23,7 @@ const AllProducts = () => {
     shoes: false,
   });
 
-  const [products, setProducts] = useState([]);
+
 
   const categoryQueryParams = Object.keys(categories)
     .filter((value) => !!categories[value])
@@ -79,7 +80,7 @@ const AllProducts = () => {
           />
         </aside>
         <div>
-          <ResultsCount />
+          <ResultsCount productsCount={products.length} />
           {/* <SelectedFilters
             filters={filters}
             setFilters={setFilters}
