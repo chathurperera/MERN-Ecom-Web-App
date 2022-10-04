@@ -21,8 +21,9 @@ const getAllProducts = async (req, res) => {
       const categories = category.split(',');
       queryObject.category = { $in: categories };
     }
+    console.log('minPrice:',minPrice,"maxPrice",maxPrice)
     if (minPrice && maxPrice) {
-      queryObject.price = { $gte: minPrice, $lte: maxPrice };
+      queryObject.price = { $gte: Number(minPrice), $lte: Number(maxPrice) };
     }
     //Filtering the result with given queries
     let result = Product.find(queryObject);

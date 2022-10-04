@@ -10,35 +10,54 @@ import classes from "./allProducts.module.scss";
 
 const AllProducts = () => {
   const [filters, setFilters] = useState({
-    shorts: false,
-    tanks: false,
-    shoes: false,
     rating: "",
     price: "",
     availability: false,
   });
+  const [isProductsLoading, setIsProductsLoading] = useState(false);
+
+  const [categories, setCategories] = useState({
+    shorts: false,
+    tanks: false,
+    shoes: false,
+  });
 
   const [products, setProducts] = useState([]);
-  const categoryQueryParams = Object.keys(filters)
-    .filter((value) => !!filters[value])
+
+  const categoryQueryParams = Object.keys(categories)
+    .filter((value) => !!categories[value])
     .join();
 
+  const queryParams = {
+    category: categoryQueryParams,
+    rating: "",
+    minPrice: "",
+    maxPrice: "",
+    availability: true,
+  };
+
+  //Setting up the price query
+  if (filters.price) {
+    const priceRange = filters.price?.split("-");
+    queryParams.minPrice = priceRange[0] && priceRange[0];
+    queryParams.maxPrice = priceRange[1] && priceRange[1];
+  }
+
   const getAllProduct = async () => {
-    const queryParams = {
-      category: categoryQueryParams,
-      rating: "",
-      minPrice: "",
-      maxPrice: "",
-      availability: false,
-    };
-    const res = await API.get("/products", { params: queryParams });
-    console.log(res);
-    setProducts(res.data.data);
+    setIsProductsLoading(true);
+    await API.get("/products", { params: queryParams })
+      .then((res) => {
+        setIsProductsLoading(false);
+        setProducts(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
     getAllProduct();
-  }, [filters]);
+  }, [filters, categories]);
 
   const productsList = products?.map((product) => {
     return <ItemCard product={product} key={product._id} />;
@@ -52,13 +71,23 @@ const AllProducts = () => {
     <div className={classes.allProducts}>
       <div className={classes.wrapper}>
         <aside>
-          <Filter filters={filters} setFilters={setFilters} />
+          <Filter
+            filters={filters}
+            setFilters={setFilters}
+            categories={categories}
+            setCategories={setCategories}
+          />
         </aside>
         <div>
           <ResultsCount />
-          <SelectedFilters filters={filters} setFilters={setFilters} />
+          {/* <SelectedFilters
+            filters={filters}
+            setFilters={setFilters}
+            categories={categories}
+            setCategories={setCategories}
+          /> */}
           <div className={classes.productsGrid}>
-            {products.length ? productsList : skeletonLoaders}
+            {!isProductsLoading ? productsList : skeletonLoaders}
           </div>
         </div>
       </div>
