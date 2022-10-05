@@ -7,6 +7,9 @@ import addProducts from '../../assets/images/addProducts.svg'
 const Sidebar = () => {
   return (
     <div className={classes.sidebar}>
+      <div className={classes.head}>
+        Welcome Jon doe
+      </div>
       <div className={classes.sidebar__option}>
           <Link to=""><img src={dashboardicon} alt="" /> Dashboard</Link>
       </div>
