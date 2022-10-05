@@ -47,7 +47,7 @@ const productSchema = mongoose.Schema({
   },
   availability: {
     type: Boolean,
-    required: true,
+    default:true
   },
 });
 

@@ -12,10 +12,11 @@ const ResultsCount = ({productsCount}) => {
   return (
     <div className={classes.resultsCount}>
       <div className={classes.count}>
-        Showing: <span>1-10 products of {productsCount} results</span>{" "}
+        Showing: <span>1-{productsCount < 10 ? productsCount : 10} products of {productsCount} results</span>{" "}
       </div>
       <div className={classes.sortBy}>
         Sort by
+        
         <Select
           placeholder=""
           className={classes.customSelect}

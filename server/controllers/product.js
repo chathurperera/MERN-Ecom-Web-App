@@ -27,7 +27,7 @@ const getAllProducts = async (req, res) => {
     }
     //Filtering the result with given queries
     let result = Product.find(queryObject);
-
+    
     /* checks if the users wants to sort the results
       and sorting the results  */
     if (sort) {

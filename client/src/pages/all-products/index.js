@@ -5,11 +5,13 @@ import Filter from "../../components/Filter";
 import ItemCard from "../../components/ItemCard";
 import ResultsCount from "../../components/ResultsCount";
 import SelectedFilters from "../../components/SelectedFilters";
+import Pagination from '@mui/material/Pagination';
 import classes from "./allProducts.module.scss";
 // import arrowIcon from "../../assets/images/down-arrow.png";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({
     rating: "",
     price: "",
@@ -23,14 +25,14 @@ const AllProducts = () => {
     shoes: false,
   });
 
-
-
+  //extracting only the selected categories
   const categoryQueryParams = Object.keys(categories)
     .filter((value) => !!categories[value])
     .join();
 
   const queryParams = {
     category: categoryQueryParams,
+    page:page,
     rating: "",
     minPrice: "",
     maxPrice: "",
@@ -44,6 +46,7 @@ const AllProducts = () => {
     queryParams.maxPrice = priceRange[1] && priceRange[1];
   }
 
+  //fetching products
   const getAllProduct = async () => {
     setIsProductsLoading(true);
     await API.get("/products", { params: queryParams })
@@ -56,9 +59,18 @@ const AllProducts = () => {
       });
   };
 
+//handle pagination
+
+const handlePagination = (event,value) => {
+  console.log('event',event);
+  console.log('value',value);
+  setPage(value);
+}
+
+
   useEffect(() => {
     getAllProduct();
-  }, [filters, categories]);
+  }, [filters, categories , page]);
 
   const productsList = products?.map((product) => {
     return <ItemCard product={product} key={product._id} />;
@@ -91,6 +103,9 @@ const AllProducts = () => {
             {!isProductsLoading ? productsList : skeletonLoaders}
           </div>
         </div>
+      </div>
+      <div className={classes.pagination}>
+      <Pagination count={10} page={page} onChange={handlePagination} />
       </div>
     </div>
   );
