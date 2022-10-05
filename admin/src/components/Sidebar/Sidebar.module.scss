@@ -1,0 +1,40 @@
+.sidebar {
+  border: 1px solid whitesmoke;
+  padding: 20px;
+  &__option {
+    padding: 15px 0; 
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+    &:nth-child(1){
+        border-top: 1px solid #eee;
+    }
+    img {
+      width: 18px;
+      opacity: 0.3;
+    }
+    &:hover {
+        cursor: pointer;
+        & a {
+        opacity: 1;
+        img {
+          opacity: 1;
+        }
+      }
+    }
+    & svg {
+        width: 20px;
+        transition: all ease 0.5s;
+    }
+    a {
+        color: #010203;
+        opacity: 0.6;
+        font-size: 14px;
+        transition: all ease 0.5s;
+      font-family: "Inter", sans-serif;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
