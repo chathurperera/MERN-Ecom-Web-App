@@ -17,5 +17,10 @@
   margin-bottom: 20px;
   display: flex;
   justify-content: flex-end;
+  max-width: 1170px;
+  margin: 0 auto;
+  &Holder{
+    margin: 15px 0;
+  }
 }
 

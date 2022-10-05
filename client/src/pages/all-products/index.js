@@ -5,7 +5,7 @@ import Filter from "../../components/Filter";
 import ItemCard from "../../components/ItemCard";
 import ResultsCount from "../../components/ResultsCount";
 import SelectedFilters from "../../components/SelectedFilters";
-import Pagination from '@mui/material/Pagination';
+import Pagination from "@mui/material/Pagination";
 import classes from "./allProducts.module.scss";
 // import arrowIcon from "../../assets/images/down-arrow.png";
 
@@ -16,8 +16,10 @@ const AllProducts = () => {
   const [filters, setFilters] = useState({
     rating: "",
     price: "",
+    sort: "",
     availability: false,
   });
+
   const [isProductsLoading, setIsProductsLoading] = useState(false);
 
   const [categories, setCategories] = useState({
@@ -33,7 +35,7 @@ const AllProducts = () => {
 
   const queryParams = {
     category: categoryQueryParams,
-    page:page,
+    page: page,
     rating: "",
     minPrice: "",
     maxPrice: "",
@@ -45,6 +47,10 @@ const AllProducts = () => {
     const priceRange = filters.price?.split("-");
     queryParams.minPrice = priceRange[0] && priceRange[0];
     queryParams.maxPrice = priceRange[1] && priceRange[1];
+  }
+
+  if (filters.sort) {
+    queryParams.sort = filters.sort;
   }
 
   //fetching products
@@ -61,18 +67,17 @@ const AllProducts = () => {
       });
   };
 
-//handle pagination
+  //handle pagination
 
-const handlePagination = (event,value) => {
-  console.log('event',event);
-  console.log('value',value);
-  setPage(value);
-}
-
+  const handlePagination = (event, value) => {
+    console.log("event", event);
+    console.log("value", value);
+    setPage(value);
+  };
 
   useEffect(() => {
     getAllProduct();
-  }, [filters, categories , page]);
+  }, [filters, categories, page]);
 
   const productsList = products?.map((product) => {
     return <ItemCard product={product} key={product._id} />;
@@ -94,7 +99,7 @@ const handlePagination = (event,value) => {
           />
         </aside>
         <div>
-          <ResultsCount productsCount={totalResults} />
+          <ResultsCount productsCount={totalResults} setFilters={setFilters} />
           {/* <SelectedFilters
             filters={filters}
             setFilters={setFilters}
@@ -107,7 +112,9 @@ const handlePagination = (event,value) => {
         </div>
       </div>
       <div className={classes.pagination}>
-      <Pagination count={10} page={page} onChange={handlePagination} />
+        <div className={classes.paginationHolder}>
+          <Pagination count={10} page={page} onChange={handlePagination} />
+        </div>
       </div>
     </div>
   );

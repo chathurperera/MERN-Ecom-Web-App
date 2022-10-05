@@ -28,12 +28,13 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
     setFilters({
       rating: "",
       price: "",
-      availability: false,
+      sort:"",
+      availability: false
     });
     setCategories({
       shorts: false,
       tanks: false,
-      shoes: false,
+      shoes: false
     });
     setPrice('')
   };

@@ -27,22 +27,16 @@ const getAllProducts = async (req, res) => {
     }
     //Filtering the result with given queries
     let result = Product.find(queryObject);
-    // let resultsCount = 0;
-    // Product.find(queryObject).countDocuments(function(err,count){
-    //   if(err) console.log(err);
-    //   else {
-    //     resultsCount = count;
-    //     console.log('resultsCount',resultsCount)
-    //   }
-    // })
+
+    //total results count
     const totalResultsCount = await Product.countDocuments(queryObject);
     console.log("totalResultsCount", totalResultsCount);
 
     /* checks if the users wants to sort the results
       and sorting the results  */
-    if (sort) {
-      const sortList = sort.split(",").join(" ");
-      result = result.sort(sortList);
+    if (sort && sort === '-1' || sort === '1'  ) {
+      // const sortList = sort.split(",").join(" ");
+      result = result.sort({ price: sort });
     } else {
       result = result.sort({ createdAt: 1 });
     }
