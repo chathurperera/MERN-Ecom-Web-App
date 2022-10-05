@@ -18,16 +18,26 @@ const getAllProducts = async (req, res) => {
     let queryObject = {};
 
     if (category) {
-      const categories = category.split(',');
+      const categories = category.split(",");
       queryObject.category = { $in: categories };
     }
-    console.log('minPrice:',minPrice,"maxPrice",maxPrice)
+
     if (minPrice && maxPrice) {
       queryObject.price = { $gte: Number(minPrice), $lte: Number(maxPrice) };
     }
     //Filtering the result with given queries
     let result = Product.find(queryObject);
-    
+    // let resultsCount = 0;
+    // Product.find(queryObject).countDocuments(function(err,count){
+    //   if(err) console.log(err);
+    //   else {
+    //     resultsCount = count;
+    //     console.log('resultsCount',resultsCount)
+    //   }
+    // })
+    const totalResultsCount = await Product.countDocuments(queryObject);
+    console.log("totalResultsCount", totalResultsCount);
+
     /* checks if the users wants to sort the results
       and sorting the results  */
     if (sort) {
@@ -48,7 +58,7 @@ const getAllProducts = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: allProducts,
-      productsCount: allProducts.length,
+      productsCount: totalResultsCount,
     });
   } catch (error) {
     console.log(error);

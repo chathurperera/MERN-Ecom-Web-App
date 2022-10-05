@@ -12,6 +12,7 @@ import classes from "./allProducts.module.scss";
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(null);
   const [filters, setFilters] = useState({
     rating: "",
     price: "",
@@ -53,6 +54,7 @@ const AllProducts = () => {
       .then((res) => {
         setIsProductsLoading(false);
         setProducts(res.data.data);
+        setTotalResults(res.data.productsCount);
       })
       .catch((err) => {
         console.log(err);
@@ -92,7 +94,7 @@ const handlePagination = (event,value) => {
           />
         </aside>
         <div>
-          <ResultsCount productsCount={products.length} />
+          <ResultsCount productsCount={totalResults} />
           {/* <SelectedFilters
             filters={filters}
             setFilters={setFilters}
