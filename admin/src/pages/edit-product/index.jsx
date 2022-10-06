@@ -88,6 +88,9 @@ const EditProduct = () => {
                 />
               </div>
             </div>
+            <div className={classes.uploadButtons}>
+                <button>Upload Files</button>
+            </div>
           </Grid>
         </Grid>
       </div>
