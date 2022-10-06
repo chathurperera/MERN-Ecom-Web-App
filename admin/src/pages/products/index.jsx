@@ -4,6 +4,24 @@ import addIcon from "assets/images/add.png";
 
 const Products = () => {
   const headings = ["Name", "Created At", "Quantity", "Price"];
+  const items = [
+    {
+      imageUrl:
+        "https://minimal-assets-api.vercel.app/assets/images/products/product_23.jpg",
+      name: "Chuck Taylor All Star Lift Sneaker",
+      createdAt: "14 September 2022",
+      quantity: 20,
+      price: "300,",
+    },
+    {
+      imageUrl:
+        "https://minimal-assets-api.vercel.app/assets/images/products/product_22.jpg",
+      name: "Superturf Adventure X Atmos",
+      createdAt: "14 September 2022",
+      quantity: 20,
+      price: "300,",
+    },
+  ];
   return (
     <div className={classes.products}>
       <div className={classes.head}>
@@ -22,22 +40,26 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className={classes.name}>
-                <div className={classes.productImage}>
-                  <img
-                    src="https://minimal-assets-api.vercel.app/assets/images/products/product_24.jpg"
-                    alt="product"
-                  />
-                </div>
-                <div className={classes.productName}>
-                  Run Star Hike Platform Sneaker
-                </div>
-              </td>
-              <td>12 September 2022</td>
-              <td>20</td>
-              <td>$50.99</td>
-            </tr>
+            {items.map((item) => {
+              return (
+                <tr>
+                  <td className={classes.name}>
+                    <div className={classes.productImage}>
+                      <img
+                        src={item.imageUrl}
+                        alt="product"
+                      />
+                    </div>
+                    <div className={classes.productName}>
+                      {item.name}
+                    </div>
+                  </td>
+                  <td>{item.createdAt}</td>
+                  <td>{item.quantity}</td>
+                  <td>${item.price}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
