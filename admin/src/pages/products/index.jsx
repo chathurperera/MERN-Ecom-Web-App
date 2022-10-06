@@ -1,6 +1,8 @@
 import React from "react";
 import classes from "./products.module.scss";
 import addIcon from "assets/images/add.png";
+import deleteIcon from "assets/images/delete.png";
+import editIcon from "assets/images/edit.png";
 
 const Products = () => {
   const headings = ["Name", "Created At", "Quantity", "Price"];
@@ -37,6 +39,7 @@ const Products = () => {
               {headings.map((heading) => (
                 <th>{heading}</th>
               ))}
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +60,12 @@ const Products = () => {
                   <td>{item.createdAt}</td>
                   <td>{item.quantity}</td>
                   <td>${item.price}</td>
+                  <td>
+                    <div className={classes.actionButtons}>
+                    <img src={deleteIcon} alt="delete item" />
+                    <img src={editIcon} alt="edit item" />
+                    </div>
+                  </td>
                 </tr>
               );
             })}

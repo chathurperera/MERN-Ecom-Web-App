@@ -78,6 +78,15 @@
         font-weight: 500;
         font-family: $poppins;
       }
+      .actionButtons{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        img{
+          width: 20px;
+          cursor: pointer;
+        }
+      }
     }
   }
 }
