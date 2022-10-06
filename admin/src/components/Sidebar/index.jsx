@@ -14,7 +14,7 @@ const Sidebar = () => {
         </Link>
       </div>
       <div className={classes.sidebar__option}>
-        <Link to="">
+        <Link to="/products">
           <img src={shoppingBag} alt="shopping cart" /> Products
         </Link>
       </div>
