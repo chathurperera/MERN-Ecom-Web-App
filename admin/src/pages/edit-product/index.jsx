@@ -9,6 +9,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import uploadImage from "assets/images/upload.svg";
+import closeIcon from "assets/images/close.png";
+
 const EditProduct = () => {
   return (
     <div className={classes.editProduct}>
@@ -65,13 +67,25 @@ const EditProduct = () => {
           </Grid>
           <Grid item xs={6} md={6}>
             <div className={classes.fileInputArea}>
-            <input type="file" name="" id="" />
+              <input type="file" name="" id="" />
               <div className={classes.imageWrapper}>
                 <img src={uploadImage} alt="upload" />
               </div>
               <div className={classes.content}>
                 <h3>Drop or Select file</h3>
                 <p>Drop files here or click browse thorough your machine</p>
+              </div>
+            </div>
+            <div className={classes.filesPreview}>
+              <div className={classes.imagePreview}>
+                <div className={classes.closeIconWrapper}>
+                  <img className={classes.closeIcon} src={closeIcon} alt="" />
+                </div>
+                <img
+                  className={classes.fileImage}
+                  src="https://minimal-assets-api.vercel.app/assets/images/products/product_2.jpg"
+                  alt=""
+                />
               </div>
             </div>
           </Grid>
