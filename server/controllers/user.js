@@ -93,14 +93,15 @@ const updateUser = async (req, res) => {
   try {
     const { firstName, lastName, email, id } = req.body;
     if (!id || !email || !firstName || !lastName) {
-      return res.status(400).json({ message: "provide the id" });
+      return res.status(400).json({ message: "Provide all fields" });
     }
+
     const user = await User.findById(id).exec();
 
     //Preventing from using an email address that already exists
     const duplicate = await User.find({ email }).lean().exec();
 
-    if (duplicate && duplicate.email.toString() !== id) {
+    if (duplicate.length && duplicate._id.toString() !== id) {
       return res.status(409).json({ message: "Duplicate email address" });
     }
 
@@ -108,9 +109,11 @@ const updateUser = async (req, res) => {
     user.lastName = lastName;
     user.email = email;
 
-    const updatedUser = user.save();
+    const updatedUser = await user.save();
     res.status(200).json({ message: `${updatedUser.firstName} updated` });
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong", error: error });
+  }
 };
 
-module.exports = { updateUser, getAllUsers ,  login, signUp };
+module.exports = { updateUser, getAllUsers, login, signUp };
