@@ -10,7 +10,7 @@
   }
   .productCard {
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     margin-top: 30px;
     box-shadow: rgb(145 158 171 / 20%) 0px 0px 2px 0px,
       rgb(145 158 171 / 12%) 0px 12px 24px -4px;
@@ -90,5 +90,17 @@
       color: #fff;
       background-color: #00ab55;
     }
+  }
+  .saveButtonWrapper{
+    display: flex;
+    justify-content: flex-end;
+    button{
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      color: #fff;
+      background-color: #00ab55;
+
+    } 
   }
 }

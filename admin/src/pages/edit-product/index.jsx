@@ -10,6 +10,11 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import uploadImage from "assets/images/upload.svg";
 import closeIcon from "assets/images/close.png";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const EditProduct = () => {
   return (
@@ -20,7 +25,12 @@ const EditProduct = () => {
       <div className={classes.productCard}>
         <Grid container spacing={2}>
           <Grid item xs={6} md={6}>
-            <TextField fullWidth label="Product Name" size="small" />
+            <TextField
+              fullWidth
+              label="Product Name"
+              size="small"
+              margin="dense"
+            />
           </Grid>
           <Grid item xs={6} md={6}>
             <FormControlLabel
@@ -29,14 +39,9 @@ const EditProduct = () => {
             />
           </Grid>
           <Grid item xs={6} md={6}>
-            <TextField
-              fullWidth
-              label="Description"
-              size="small"
-              multiline
-              maxRows={6}
-            />
+            <TextField fullWidth label="Description" size="small" multiline />
           </Grid>
+
           <Grid item xs={6} md={6}>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label">
@@ -66,6 +71,26 @@ const EditProduct = () => {
             </FormControl>
           </Grid>
           <Grid item xs={6} md={6}>
+            <TextField fullWidth label="Brand" size="small" />
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label" size="small">
+                Category
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                size="small"
+                label="Category"
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6} md={6}>
             <div className={classes.fileInputArea}>
               <input type="file" name="" id="" />
               <div className={classes.imageWrapper}>
@@ -89,7 +114,28 @@ const EditProduct = () => {
               </div>
             </div>
             <div className={classes.uploadButtons}>
-                <button>Upload Files</button>
+              <button>Upload Files</button>
+            </div>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <FormControl fullWidth>
+              <InputLabel htmlFor="outlined-adornment-amount" size="small">
+                Price
+              </InputLabel>
+              <OutlinedInput
+                size="small"
+                inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+                id="outlined-adornment-amount"
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
+                label="Amount"
+              />
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <div className={classes.saveButtonWrapper}>
+              <button className={classes.saveButton}>Save Changes</button>
             </div>
           </Grid>
         </Grid>
