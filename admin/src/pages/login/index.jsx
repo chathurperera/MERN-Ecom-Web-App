@@ -1,26 +1,40 @@
 import React, { useState } from "react";
 import classes from "./login.module.scss";
-
+import API from "api";
+import { useNavigate } from "react-router-dom";
+import Spinner from "components/Spinner";
 const Login = () => {
   const [userInput, setUserInput] = useState({
-    email: "",
-    password: "",
+    email: "admin@gmail.com",
+    password: "admin123",
   });
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUserInput({ ...userInput, [name]: value });
   };
 
-  const submitDetails = async(e) => {
+  const submitDetails = async (e) => {
     e.preventDefault();
     if (!userInput.email || !userInput.password) {
       return;
     }
     setLoading(true);
-    console.log('submitted');
-    await 
+    console.log("submitted");
+    await API.post("/login", userInput)
+      .then((res) => {
+        setLoading(false);
+        console.log(res);
+        localStorage.setItem("token", res.data);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   };
   return (
     <div className={classes.login}>
@@ -48,7 +62,7 @@ const Login = () => {
             placeholder="enter your password"
           />
         </div>
-        <button>Login</button>
+        <button>{loading ? <Spinner /> : " Login"}</button>
       </form>
     </div>
   );
