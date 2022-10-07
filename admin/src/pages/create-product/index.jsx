@@ -17,6 +17,9 @@ import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 
 const CreateProduct = () => {
+  const submitDetails = async() => {
+    
+  }
   return (
     <div className={classes.editProduct}>
       <div className={classes.head}>
@@ -135,7 +138,7 @@ const CreateProduct = () => {
           </Grid>
           <Grid item xs={12} md={12}>
             <div className={classes.saveButtonWrapper}>
-              <button className={classes.saveButton}>Save Changes</button>
+              <button className={classes.saveButton}>Create</button>
             </div>
           </Grid>
         </Grid>

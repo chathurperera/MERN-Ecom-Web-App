@@ -4,7 +4,6 @@ import signUpImage from "../../assets/images/Sign Up Image (2).png";
 import showIcon from "../../assets/images/login/show.png";
 import hideIcon from "../../assets/images/login/hide.png";
 import Spinner from "../../components/Spinner";
-import { login } from "../../api";
 import { useNavigate } from "react-router-dom";
 import API from "../../api";
 

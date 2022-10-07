@@ -8,7 +8,4 @@ const API = axios.create({
   },
 });
 
-// export const login = (formData) => API.post("/login", formData);
-// export const register = (formData) => API.post("/signup", formData);
-
 export default API
