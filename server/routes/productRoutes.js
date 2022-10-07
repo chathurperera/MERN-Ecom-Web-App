@@ -18,7 +18,7 @@ router.post("/", verifyTokenAndAdmin, createProduct);
 router.get("/", getAllProducts);
 router.get("/search", searchProducts);
 router.get("/:id", getSingleProduct);
-router.delete("/:id", deleteProduct);
+router.delete("/:id", verifyTokenAndAdmin, deleteProduct);
 router.patch("/:id", verifyTokenAndAdmin, updateProduct);
 
 module.exports = router;

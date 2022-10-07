@@ -21,6 +21,7 @@ const verifyToken = (req, res, next) => {
 
 const verifyTokenAndAuthorization = (req, res, next) => {
   if (req.user.id === req.params.id || req.user.isAdmin) {
+    console.log('verified')
     next();
   } else {
     res.status(403).json({ status: "error", error: "Authentication failed!" });
