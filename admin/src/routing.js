@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard";
 import PanelLayout from "./layouts/panelLayout";
 import Products from "./pages/products";
 import EditProduct from "pages/edit-product";
+import CreateProduct from "pages/create-product";
 
 const Routing = () => {
   return (
@@ -14,6 +15,7 @@ const Routing = () => {
         <Route path="/" element={<PanelLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="products" element={<Products />} />
+          <Route path="create-product" element={<CreateProduct />} />
           <Route path="products/edit/:id" element={<EditProduct />} />
         </Route>
       </Routes>
