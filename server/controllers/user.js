@@ -77,6 +77,18 @@ const signUp = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({ isAdmin: false })
+      .select("-password")
+      .lean();
+    if (!users) {
+      return res.status(400).json({ message: "No users found" });
+    }
+    res.status(200).json({ message: "success", data: users });
+  } catch (error) {}
+};
+
 const updateUser = async (req, res) => {
   try {
     const { firstName, lastName, email, id } = req.body;
@@ -101,4 +113,4 @@ const updateUser = async (req, res) => {
   } catch (error) {}
 };
 
-module.exports = { updateUser, login, signUp };
+module.exports = { updateUser, getAllUsers ,  login, signUp };
