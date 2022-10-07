@@ -28,7 +28,13 @@ const login = async (req, res) => {
 };
 
 const signUp = async (req, res) => {
-  const { email, password: plainTextPassword, firstName, lastName , isAdmin } = req.body;
+  const {
+    email,
+    password: plainTextPassword,
+    firstName,
+    lastName,
+    isAdmin,
+  } = req.body;
 
   if (!email || typeof email !== "string") {
     return res.status(400).json({ status: "error", error: "Invalid email" });
@@ -44,10 +50,10 @@ const signUp = async (req, res) => {
   }
 
   //Check for duplicates
-  const duplicate = await User.findOne({email}).lean().exec();
+  const duplicate = await User.findOne({ email }).lean().exec();
 
-  if(duplicate){
-    return res.status(409).json({status:'error',error:'Duplicate email'})
+  if (duplicate) {
+    return res.status(409).json({ status: "error", error: "Duplicate email" });
   }
 
   const password = await bycrypt.hash(plainTextPassword, 10);
@@ -58,7 +64,7 @@ const signUp = async (req, res) => {
       password,
       firstName,
       lastName,
-      isAdmin
+      isAdmin,
     });
     res.status(201).json({ status: "success", message: "User created" });
   } catch (error) {
@@ -71,4 +77,28 @@ const signUp = async (req, res) => {
   }
 };
 
-module.exports = { login, signUp };
+const updateUser = async (req, res) => {
+  try {
+    const { firstName, lastName, email, id } = req.body;
+    if (!id || !email || !firstName || !lastName) {
+      return res.status(400).json({ message: "provide the id" });
+    }
+    const user = await User.findById(id).exec();
+
+    //Preventing from using an email address that already exists
+    const duplicate = await User.find({ email }).lean().exec();
+
+    if (duplicate && duplicate.email.toString() !== id) {
+      return res.status(409).json({ message: "Duplicate email address" });
+    }
+
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.email = email;
+
+    const updatedUser = user.save();
+    res.status(200).json({ message: `${updatedUser.firstName} updated` });
+  } catch (error) {}
+};
+
+module.exports = { updateUser, login, signUp };
