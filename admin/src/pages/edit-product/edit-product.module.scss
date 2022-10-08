@@ -91,16 +91,37 @@
       background-color: #00ab55;
     }
   }
-  .saveButtonWrapper{
+  .saveButtonWrapper {
     display: flex;
     justify-content: flex-end;
-    button{
+    button {
+      cursor: pointer;
       border: none;
       padding: 10px 15px;
       border-radius: 4px;
       color: #fff;
       background-color: #00ab55;
-
-    } 
+    }
   }
+}
+.genderContainer {
+  display: flex;
+  gap: 15px;
+  padding-top: 8px;
+  .radioWrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    label {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: "Readex Pro", sans-serif;
+      color: #6e6e6e;
+    }
+  }
+}
+.inputWrapper {
+  @include inputWrapper;
 }

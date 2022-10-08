@@ -118,16 +118,18 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    console.log('controller')
+    console.log("controller");
     const { id } = req.params;
-    console.log(id)
+    if (!id) {
+      return res.status(400).json({ message: "user ID required" });
+    }
     const user = await User.findOneAndDelete({ _id: id });
     if (!user) {
       return res.status(400).json({ message: `No user with id ${id}` });
     }
     res.status(200).json({ message: "user deleted " });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 

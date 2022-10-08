@@ -14,9 +14,6 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  size: {
-    type: Array,
-  },
   colors: {
     type: Array,
   },
@@ -44,11 +41,7 @@ const productSchema = mongoose.Schema({
   quantity: {
     type: Number,
     required: true,
-  },
-  availability: {
-    type: Boolean,
-    default:true
-  },
+  }
 });
 
 module.exports = mongoose.model("Product", productSchema);

@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "../edit-product/edit-product.module.scss";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import uploadImage from "assets/images/upload.svg";
@@ -15,83 +12,222 @@ import MenuItem from "@mui/material/MenuItem";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
+import Checkbox from "@mui/material/Checkbox";
+import FormGroup from "@mui/material/FormGroup";
+import Spinner from "components/Spinner";
+import API from "api";
 
 const CreateProduct = () => {
-  const submitDetails = async() => {
-    
-  }
+  const [productDetails, setProductDetails] = useState({
+    name: "",
+    description:
+      "Make gains. Build legacies. Functional shapes, sweat-wicking tech and durable soft material mean you can train with passion and power. And the revamped original Gymshark logo makes Legacy a timeless classic that’ll never let you down. All that’s left is for you to put in the work, and build your own legacy.",
+    brand: "Gymshark",
+    colors: [],
+    price: "6000",
+    gender: "male",
+    category: "tanks",
+    quantity: "5",
+  });
+
+  const [submissionLoading, setSubmissionLoading] = useState(false);
+  const [fileUploadLoading, setFileUploadLoading] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setProductDetails({
+      ...productDetails,
+      [name]: name === "price" || name === "quantity" ? Number(value) : value,
+    });
+  };
+
+  const colors = ["black", "white", "blue"];
+
+  const handleCheckbox = (event) => {
+    const currentState = productDetails.colors;
+    const itemIndex = currentState.indexOf(event.target.value);
+    if (itemIndex > -1) {
+      currentState.splice(itemIndex, 1);
+    } else {
+      currentState.push(event.target.value);
+    }
+    setProductDetails({ ...productDetails, colors: currentState });
+  };
+
+  const colorCheckboxes = colors.map((color, index) => {
+    return (
+      <div className={classes.radioWrapper} key={index}>
+        <label htmlFor={color}>
+          {color.charAt(0).toUpperCase() + color.slice(1)}
+        </label>
+        <input
+          type="checkbox"
+          id={color}
+          onChange={handleCheckbox}
+          value={color}
+        />
+      </div>
+    );
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmissionLoading(true);
+    console.log("submitted");
+    if (
+      !productDetails.brand ||
+      !productDetails.category ||
+      !productDetails.colors.length ||
+      !productDetails.name ||
+      !productDetails.price ||
+      !productDetails.quantity ||
+      !productDetails.description ||
+      !productDetails.gender
+    ) {
+      setSubmissionLoading(false);
+      console.log("please complete all the fields");
+      return;
+    }
+    console.log(productDetails);
+    await API.post("/products",  productDetails )
+      .then((res) => {
+        setSubmissionLoading(false);
+        console.log('res',res);
+        console.log("product saved");
+      })
+      .catch((error) => {
+        console.log(error);
+        setSubmissionLoading(false);
+      });
+  };
   return (
     <div className={classes.editProduct}>
       <div className={classes.head}>
         <h3>Create Product</h3>{" "}
       </div>
-      <div className={classes.productCard}>
+      <form className={classes.productCard} onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={6} md={6}>
-            <TextField
-              fullWidth
-              label="Product Name"
-              size="small"
-              margin="dense"
-            />
+            <div className={classes.inputWrapper}>
+              <label htmlFor="">Product Name</label>
+              <input type="text" name="name" onChange={handleChange} id="" />
+            </div>
           </Grid>
           <Grid item xs={6} md={6}>
-            <FormControlLabel
-              control={<Switch defaultChecked />}
-              label="In Stock"
-            />
-          </Grid>
-          <Grid item xs={6} md={6}>
-            <TextField fullWidth label="Description" size="small" multiline />
-          </Grid>
-
-          <Grid item xs={6} md={6}>
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">
-                Gender
-              </FormLabel>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-              >
-                <FormControlLabel
-                  value="female"
-                  control={<Radio />}
-                  label="Female"
-                />
-                <FormControlLabel
+            <label htmlFor="">Gender</label>
+            <div className={classes.genderContainer}>
+              <div className={classes.radioWrapper}>
+                <label htmlFor="male">Male</label>
+                <input
+                  type="radio"
+                  id="male"
                   value="male"
-                  control={<Radio />}
-                  label="Male"
+                  name="gender"
+                  onChange={handleChange}
                 />
-                <FormControlLabel
-                  value="other"
-                  control={<Radio />}
-                  label="Other"
+              </div>
+              <div className={classes.radioWrapper}>
+                <label htmlFor="female">Female</label>
+                <input
+                  type="radio"
+                  id="female"
+                  name="gender"
+                  onChange={handleChange}
+                  value="female"
                 />
-              </RadioGroup>
-            </FormControl>
+              </div>
+              <div className={classes.radioWrapper}>
+                <label htmlFor="unisex">Unisex</label>
+                <input
+                  value="unisex"
+                  id="unisex"
+                  type="radio"
+                  name="gender"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
           </Grid>
           <Grid item xs={6} md={6}>
-            <TextField fullWidth label="Brand" size="small" />
+            <div className={classes.inputWrapper}>
+              <label htmlFor="">Description</label>
+              <input
+                type="text"
+                name="description"
+                value={productDetails.description}
+                onChange={handleChange}
+                id=""
+              />
+            </div>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <label htmlFor="">Colors</label>
+            <div className={classes.genderContainer}>{colorCheckboxes}</div>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <div className={classes.inputWrapper}>
+              <label htmlFor="">Brand</label>
+              <input
+                type="text"
+                name="brand"
+                value={productDetails.brand}
+                onChange={handleChange}
+                id=""
+              />
+            </div>
           </Grid>
           <Grid item xs={6} md={6}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label" size="small">
+              <label htmlFor="" className="mb-1">
                 Category
-              </InputLabel>
+              </label>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
                 size="small"
-                label="Category"
+                sx={{ mt: 1 }}
+                onChange={(e) =>
+                  setProductDetails({
+                    ...productDetails,
+                    category: e.target.value,
+                  })
+                }
+                value={productDetails.category}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value="shoes">Shoes</MenuItem>
+                <MenuItem defaultValue="" value="shorts">
+                  Shorts
+                </MenuItem>
+                <MenuItem defaultValue="" value="tanks">
+                  Tanks
+                </MenuItem>
               </Select>
             </FormControl>
+          </Grid>
+
+          <Grid item xs={6} md={6}>
+            <div className={classes.inputWrapper}>
+              <label htmlFor="">Quantity</label>
+              <input
+                type="number"
+                min={0}
+                name="quantity"
+                value={productDetails.quantity}
+                onChange={handleChange}
+                id=""
+              />
+            </div>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <div className={classes.inputWrapper}>
+              <label htmlFor="">Price</label>
+              <input
+                type="number"
+                min={0}
+                name="price"
+                value={productDetails.price}
+                onChange={handleChange}
+                id=""
+              />
+            </div>
           </Grid>
           <Grid item xs={6} md={6}>
             <div className={classes.fileInputArea}>
@@ -117,32 +253,20 @@ const CreateProduct = () => {
               </div>
             </div>
             <div className={classes.uploadButtons}>
-              <button>Upload Files</button>
+              <button type="button">
+                {fileUploadLoading ? <Spinner /> : "Upload Files"}
+              </button>
             </div>
-          </Grid>
-          <Grid item xs={6} md={6}>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="outlined-adornment-amount" size="small">
-                Price
-              </InputLabel>
-              <OutlinedInput
-                size="small"
-                inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-                id="outlined-adornment-amount"
-                startAdornment={
-                  <InputAdornment position="start">$</InputAdornment>
-                }
-                label="Amount"
-              />
-            </FormControl>
           </Grid>
           <Grid item xs={12} md={12}>
             <div className={classes.saveButtonWrapper}>
-              <button className={classes.saveButton}>Create</button>
+              <button className={classes.saveButton} type="submit">
+                {submissionLoading ? <Spinner /> : "Create"}
+              </button>
             </div>
           </Grid>
         </Grid>
-      </div>
+      </form>
     </div>
   );
 };
