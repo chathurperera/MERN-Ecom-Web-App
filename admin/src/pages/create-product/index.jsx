@@ -8,6 +8,8 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Spinner from "components/Spinner";
 import API from "api";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateProduct = () => {
   const [productDetails, setProductDetails] = useState({
@@ -84,10 +86,12 @@ const CreateProduct = () => {
       .then((res) => {
         setSubmissionLoading(false);
         console.log('res',res);
+        toast.success("Product Created")
         console.log("product saved");
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Something went wrong")
         setSubmissionLoading(false);
       });
   };
@@ -258,6 +262,7 @@ const CreateProduct = () => {
           </Grid>
         </Grid>
       </form>
+      <ToastContainer />
     </div>
   );
 };
