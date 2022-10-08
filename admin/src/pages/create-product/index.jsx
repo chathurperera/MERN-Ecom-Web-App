@@ -12,14 +12,13 @@ import API from "api";
 const CreateProduct = () => {
   const [productDetails, setProductDetails] = useState({
     name: "",
-    description:
-      "Make gains. Build legacies. Functional shapes, sweat-wicking tech and durable soft material mean you can train with passion and power. And the revamped original Gymshark logo makes Legacy a timeless classic that’ll never let you down. All that’s left is for you to put in the work, and build your own legacy.",
-    brand: "Gymshark",
+    description:"",
+    brand: "",
     colors: [],
-    price: "6000",
-    gender: "male",
-    category: "tanks",
-    quantity: "5",
+    price: "",
+    gender: "",
+    category: "",
+    quantity: "",
   });
 
   const [submissionLoading, setSubmissionLoading] = useState(false);
