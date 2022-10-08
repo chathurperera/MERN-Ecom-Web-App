@@ -1,19 +1,11 @@
 import React, { useState } from "react";
 import classes from "../edit-product/edit-product.module.scss";
-import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import uploadImage from "assets/images/upload.svg";
 import closeIcon from "assets/images/close.png";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import Checkbox from "@mui/material/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
 import Spinner from "components/Spinner";
 import API from "api";
 
