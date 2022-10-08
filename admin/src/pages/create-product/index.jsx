@@ -87,6 +87,7 @@ const CreateProduct = () => {
         setSubmissionLoading(false);
         console.log('res',res);
         toast.success("Product Created")
+        
         console.log("product saved");
       })
       .catch((error) => {
