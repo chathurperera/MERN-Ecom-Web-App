@@ -7,6 +7,7 @@ const HeroSection = () => {
   return (
     <div className={classes.heroSection}>
       <div className={classes.heroSection__content}>
+        
         <p className={classes.subTitle}>
           UA HOVR<sup>TM</sup> Phantom 3 Running Shoes{" "}
         </p>
