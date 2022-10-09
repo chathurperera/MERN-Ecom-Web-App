@@ -15,7 +15,6 @@ const SingleProduct = () => {
 
   const getProduct = async () => {
     API.get(`/products/${id}`).then((res) => {
-      console.log(res);
       setProduct(res.data.data);
     });
   };
@@ -43,29 +42,29 @@ const SingleProduct = () => {
           </div>
         </div>
         <div className={classes.productSelection}>
-          <div className={classes.stockTag}>OUT OF STOCK</div>
-          <h2 className={classes.productTitle}>MacBook Pro 13</h2>
+          {!product?.quantity && (
+            <div className={classes.stockTag}>OUT OF STOCK</div>
+          )}
+          <h2 className={classes.productTitle}>{product?.name}</h2>
           <Rating initialValue="3" size="22" readonly="true" />
-
           <p className={classes.productDesc}>{product?.description}</p>
           <div className={classes.colorPicker}>
             <p>Color :</p>
             <div className={classes.colors}>
-              <div
-                className={classes.colorWrapper}
-                style={{ border: "1px solid black" }}
-              >
-                <div
-                  className={classes.color}
-                  style={{ backgroundColor: "blue" }}
-                ></div>
-              </div>
-              <div className={classes.colorWrapper}>
-                <div
-                  className={classes.color}
-                  style={{ backgroundColor: "black" }}
-                ></div>
-              </div>
+              {product?.colors.map((color, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={classes.colorWrapper}
+                    style={{ border: "1px solid black" }}
+                  >
+                    <div
+                      className={classes.color}
+                      style={{ backgroundColor: `${color}` }}
+                    ></div>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className={classes.shipping}>
