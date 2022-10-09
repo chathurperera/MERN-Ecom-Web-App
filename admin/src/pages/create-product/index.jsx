@@ -104,7 +104,7 @@ const CreateProduct = () => {
       return;
     }
     // upload image
-    let imagePreviewURL = "" ;
+    let imageURL = "" ;
 
     const formData = new FormData();
     formData.append("image", file);
@@ -113,9 +113,8 @@ const CreateProduct = () => {
       .then((res) => {
         console.log(res);
         setFileUploadLoading(false);
-        setPublicImageURL(res.data.imageURL);
-        imagePreviewURL = res.data.imageURL;
-        console.log("imagePreviewURL", imagePreviewURL);
+        imageURL = res.data.imageURL;
+        console.log("imageURL", imageURL);
         setFile("");
       })
       .catch((err) => {
@@ -123,9 +122,9 @@ const CreateProduct = () => {
         console.log(err);
       });
 
-    console.log("after the upload - imagePreviewURL : ", imagePreviewURL);
 
-    await API.post("/products", { ...productDetails, imageUrl: imagePreviewURL })
+
+    await API.post("/products", { ...productDetails, imageUrl: imageURL })
       .then((res) => {
         setSubmissionLoading(false);
         toast.success("Product Created");
