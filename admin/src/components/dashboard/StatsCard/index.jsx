@@ -1,15 +1,15 @@
 import React from "react";
 import classes from "./StatsCard.module.scss";
-import totalProducts from "../../../assets/images/products.png";
-import revenue from "../../../assets/images/increasing.png";
-import users from "../../../assets/images/group.png";
-import cart from "../../../assets/images/shopping-cart.png";
+import totalProducts from "assets/images/products.png";
+import revenue from "assets/images/increasing.png";
+import users from "assets/images/group.png";
+import cart from "assets/images/shopping-cart.png";
 const StatsCard = () => {
   return (
     <div className={classes.statsCard}>
       <div className={classes.stats}>
         <div className={classes.data}>
-          <p className={classes.title}>Products Sold</p>
+          <p className={classes.title}>Total Products</p>
           <h3 className={classes.count}>765</h3>
         </div>
         <div className={classes.iconWrapper}>

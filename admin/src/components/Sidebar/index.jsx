@@ -9,7 +9,7 @@ const Sidebar = () => {
     <div className={classes.sidebar}>
       <div className={classes.head}>Welcome Jon doe</div>
       <div className={classes.sidebar__option}>
-        <Link to="dashboard">
+        <Link to="/">
           <img src={dashboardicon} alt="dashboard icon" /> Dashboard
         </Link>
       </div>
