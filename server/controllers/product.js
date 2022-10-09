@@ -1,5 +1,26 @@
 const Product = require("../models/productModel");
 
+const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+
+const BUCKET_NAME = process.env.BUCKET_NAME;
+const BUCKET_REGION = process.env.BUCKET_REGION;
+const ACCESS_KEY = process.env.ACCESS_KEY;
+const SECRET_ACCESS_KEY = process.env.SECRET_ACCESS_KEY;
+
+
+console.log(BUCKET_NAME)
+console.log(BUCKET_REGION)
+console.log(ACCESS_KEY)
+console.log(SECRET_ACCESS_KEY)
+
+const s3 = new S3Client({
+  credentials: {
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_ACCESS_KEY,
+  },
+  region: BUCKET_REGION,
+});
+
 const createProduct = async (req, res) => {
   try {
     const newProduct = new Product(req.body);
@@ -34,7 +55,7 @@ const getAllProducts = async (req, res) => {
 
     /* checks if the users wants to sort the results
       and sorting the results  */
-    if (sort && sort === '-1' || sort === '1'  ) {
+    if ((sort && sort === "-1") || sort === "1") {
       // const sortList = sort.split(",").join(" ");
       result = result.sort({ price: sort });
     } else {
@@ -123,13 +144,28 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-const uploadImage = async(req,res) => {
+const uploadImage = async (req, res) => {
   try {
-    
+    console.log("req.body", req.body);
+    console.log("req.file", req.file);
+    req.file.buffer;
+
+    const params = {
+      Bucket: BUCKET_NAME,
+      Key: req.file.originalname,
+      Body: req.file.buffer,
+      ContentType: req.file.mimetype,
+    };
+
+    const command = new PutObjectCommand(params);
+    await s3.send(command);
+
+   return res.status(200).json({message:'success'})
   } catch (error) {
-    res.send(400).json({status:'error' , error:error})
+    console.log(error)
+    return res.send(400).json({ status: "error", error: error });
   }
-}
+};
 
 module.exports = {
   getAllProducts,
@@ -138,4 +174,5 @@ module.exports = {
   getSingleProduct,
   deleteProduct,
   searchProducts,
+  uploadImage,
 };

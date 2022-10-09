@@ -8,13 +8,13 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Spinner from "components/Spinner";
 import API from "api";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateProduct = () => {
   const [productDetails, setProductDetails] = useState({
     name: "",
-    description:"",
+    description: "",
     brand: "",
     colors: [],
     price: "",
@@ -46,7 +46,6 @@ const CreateProduct = () => {
     setProductDetails({ ...productDetails, colors: currentState });
   };
 
-
   const colors = ["black", "white", "blue"];
 
   const colorCheckboxes = colors.map((color, index) => {
@@ -67,9 +66,15 @@ const CreateProduct = () => {
 
   const imageUpload = async () => {
     const formData = new FormData();
-    formData.append("image",file);
-    
-  }
+    formData.append("image", file);
+    await API.post("/products/upload", formData)
+      .then((res) => {
+        console.log(res.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,14 +95,14 @@ const CreateProduct = () => {
       return;
     }
     console.log(productDetails);
-    await API.post("/products",  productDetails )
+    await API.post("/products", productDetails)
       .then((res) => {
         setSubmissionLoading(false);
-        toast.success("Product Created")
+        toast.success("Product Created");
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Something went wrong")
+        toast.error("Something went wrong");
         setSubmissionLoading(false);
       });
   };
@@ -232,7 +237,13 @@ const CreateProduct = () => {
           </Grid>
           <Grid item xs={6} md={6}>
             <div className={classes.fileInputArea}>
-              <input type="file" name="" id="" />
+              <input
+                type="file"
+                name=""
+                id=""
+                onChange={(e) => setFile(e.target.files[0])}
+                accept="image/*"
+              />
               <div className={classes.imageWrapper}>
                 <img src={uploadImage} alt="upload" />
               </div>
@@ -254,7 +265,7 @@ const CreateProduct = () => {
               </div>
             </div>
             <div className={classes.uploadButtons}>
-              <button type="button">
+              <button type="button" onClick={imageUpload}>
                 {fileUploadLoading ? <Spinner /> : "Upload Files"}
               </button>
             </div>
