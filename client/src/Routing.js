@@ -8,7 +8,7 @@ import MainLayout from "./layouts/mainLayout";
 import Profile from "./pages/my-account/profile";
 import Orders from "./pages/my-account/orders";
 import ViewOrder from "./pages/my-account/view-order";
-import AllProducts from "./pages/all-products";
+import AllProducts from "./pages/shop";
 import SingleProduct from "./pages/single-product";
 import Checkout from "./pages/checkout";
 
@@ -20,7 +20,7 @@ const Routing = () => {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="sign-up" element={<Signup />} />
-          <Route path="all-products" element={<AllProducts />} />
+          <Route path="shop" element={<AllProducts />} />
           <Route path="all-products/:id" element={<SingleProduct />} />
           <Route path="checkout" element={<Checkout />} />
         </Route>

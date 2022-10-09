@@ -24,15 +24,21 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to="all-products"> ALL PRODUCTS</NavLink>
+              <NavLink to="shop"> SHOP</NavLink>
             </li>
             {/* <li onClick={() => setShowDropDown((prevState) => !prevState)}>
               SOLUTIONS <img src={downArrow} alt="down arrow" />
               {showDropDown && <MegaDropDown />}
             </li> */}
-            <li>MENS</li>
-            <li>WOMEN</li>
-            <li>KIDS</li>
+            <li>
+              <NavLink to="shop"> MENS </NavLink>
+            </li>
+            <li>
+              <NavLink to="shop"> WOMEN </NavLink>
+            </li>
+            <li>
+              <NavLink to="shop"> KIDS </NavLink>
+            </li>
           </ul>
         </nav>
         <div className={classes.navIcons}>
