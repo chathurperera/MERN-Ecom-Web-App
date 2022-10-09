@@ -13,20 +13,22 @@ import "react-toastify/dist/ReactToastify.css";
 
 const CreateProduct = () => {
   const [productDetails, setProductDetails] = useState({
-    name: "",
-    description: "",
-    brand: "",
-    colors: [],
-    price: "",
-    gender: "",
-    category: "",
-    quantity: "",
+    name: "SPORT 7' 2 IN 1 SHORTS",
+    description:
+      "Durable, breathable, never-want-to-take-offable. Sport is a multi-activity training collection made for people who love to play sport, finished off with reflective angled logos for a classic sport aesthetic.",
+    brand: "Gymshark",
+    colors: ["white", "black"],
+    price: 50,
+    gender: "male",
+    category: "shorts",
+    quantity: 5,
     imageUrl: "",
   });
 
   const [submissionLoading, setSubmissionLoading] = useState(false);
   const [fileUploadLoading, setFileUploadLoading] = useState(false);
-  const [file, setFile] = useState('');
+  const [publicImageURL, setPublicImageURL] = useState("");
+  const [file, setFile] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -73,8 +75,9 @@ const CreateProduct = () => {
       .then((res) => {
         console.log(res);
         setFileUploadLoading(false);
-        setProductDetails({...productDetails,imageUrl : res.data.imageURL})
-        setFile('');
+        setPublicImageURL(res.data.imageURL);
+        console.log("productDetails in imageUpload", productDetails);
+        setFile("");
       })
       .catch((err) => {
         setFileUploadLoading(false);
@@ -85,7 +88,7 @@ const CreateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmissionLoading(true);
-    console.log("submitted");
+
     if (
       !productDetails.brand ||
       !productDetails.category ||
@@ -94,14 +97,35 @@ const CreateProduct = () => {
       !productDetails.price ||
       !productDetails.quantity ||
       !productDetails.description ||
-      !productDetails.gender
+      !productDetails.gender 
     ) {
       setSubmissionLoading(false);
       console.log("please complete all the fields");
       return;
     }
-    console.log(productDetails);
-    await API.post("/products", productDetails)
+    // upload image
+    let imagePreviewURL = "" ;
+
+    const formData = new FormData();
+    formData.append("image", file);
+    setFileUploadLoading(true);
+    await API.post("/products/upload", formData)
+      .then((res) => {
+        console.log(res);
+        setFileUploadLoading(false);
+        setPublicImageURL(res.data.imageURL);
+        imagePreviewURL = res.data.imageURL;
+        console.log("imagePreviewURL", imagePreviewURL);
+        setFile("");
+      })
+      .catch((err) => {
+        setFileUploadLoading(false);
+        console.log(err);
+      });
+
+    console.log("after the upload - imagePreviewURL : ", imagePreviewURL);
+
+    await API.post("/products", { ...productDetails, imageUrl: imagePreviewURL })
       .then((res) => {
         setSubmissionLoading(false);
         toast.success("Product Created");
@@ -122,7 +146,13 @@ const CreateProduct = () => {
           <Grid item xs={6} md={6}>
             <div className={classes.inputWrapper}>
               <label htmlFor="">Product Name</label>
-              <input type="text" name="name" onChange={handleChange} id="" />
+              <input
+                type="text"
+                name="name"
+                value={productDetails.name}
+                onChange={handleChange}
+                id=""
+              />
             </div>
           </Grid>
           <Grid item xs={6} md={6}>
@@ -259,21 +289,18 @@ const CreateProduct = () => {
               </div>
             </div>
             <div className={classes.filesPreview}>
-              <div className={classes.imagePreview}>
-                <div className={classes.closeIconWrapper}>
-                  <img className={classes.closeIcon} src={closeIcon} alt="" />
+              {productDetails?.imageUrl && (
+                <div className={classes.imagePreview}>
+                  <div className={classes.closeIconWrapper}>
+                    <img className={classes.closeIcon} src={closeIcon} alt="" />
+                  </div>
+                  <img
+                    className={classes.fileImage}
+                    src={productDetails.imageUrl}
+                    alt=""
+                  />
                 </div>
-                <img
-                  className={classes.fileImage}
-                  src="https://minimal-assets-api.vercel.app/assets/images/products/product_2.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className={classes.uploadButtons}>
-              <button type="button" onClick={imageUpload}>
-                {fileUploadLoading ? <Spinner /> : "Upload Files"}
-              </button>
+              )}
             </div>
           </Grid>
           <Grid item xs={12} md={12}>
