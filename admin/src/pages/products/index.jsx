@@ -40,7 +40,9 @@ const Products = () => {
       <div className={classes.head}>
         <h3>Products List</h3>
         <button>
+          <Link to='/create-product'>
           <img src={addIcon} alt="add icon" /> Add Product
+          </Link>
         </button>
       </div>
       <div className={classes.tableCard}>
