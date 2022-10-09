@@ -68,7 +68,7 @@ const CreateProduct = () => {
   const imageUpload = async () => {
     const formData = new FormData();
     formData.append("image",file);
-
+    
   }
 
   const handleSubmit = async (e) => {
