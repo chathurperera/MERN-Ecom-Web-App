@@ -1,17 +1,17 @@
 const Product = require("../models/productModel");
-
-const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+const crypto = require("crypto");
 
 const BUCKET_NAME = process.env.BUCKET_NAME;
 const BUCKET_REGION = process.env.BUCKET_REGION;
 const ACCESS_KEY = process.env.ACCESS_KEY;
 const SECRET_ACCESS_KEY = process.env.SECRET_ACCESS_KEY;
 
-
-console.log(BUCKET_NAME)
-console.log(BUCKET_REGION)
-console.log(ACCESS_KEY)
-console.log(SECRET_ACCESS_KEY)
+const {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} = require("@aws-sdk/client-s3");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
 const s3 = new S3Client({
   credentials: {
@@ -150,22 +150,34 @@ const uploadImage = async (req, res) => {
     console.log("req.file", req.file);
     req.file.buffer;
 
+    const randomImageName = (bytes = 32) =>
+      crypto.randomBytes(bytes).toString("hex");
+
+    const imageName = randomImageName();
     const params = {
       Bucket: BUCKET_NAME,
-      Key: req.file.originalname,
+      Key: imageName,
       Body: req.file.buffer,
       ContentType: req.file.mimetype,
     };
 
-    const command = new PutObjectCommand(params);
-    await s3.send(command);
+    const putCommand = new PutObjectCommand(params);
+    await s3.send(putCommand);
 
-   return res.status(200).json({message:'success'})
+    const getObjectParams = {
+      Bucket: BUCKET_NAME,
+      Key: imageName,
+    };
+
+    const command = new GetObjectCommand(getObjectParams);
+    const url = await getSignedUrl(s3 , command);
+    console.log('url',url)
+    return res.status(200).json({ message: "success" , imageURL:url });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.send(400).json({ status: "error", error: error });
   }
-};
+}; 
 
 module.exports = {
   getAllProducts,

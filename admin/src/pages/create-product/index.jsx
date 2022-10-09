@@ -21,11 +21,12 @@ const CreateProduct = () => {
     gender: "",
     category: "",
     quantity: "",
+    imageUrl: "",
   });
 
   const [submissionLoading, setSubmissionLoading] = useState(false);
   const [fileUploadLoading, setFileUploadLoading] = useState(false);
-  const [file, setFile] = useState();
+  const [file, setFile] = useState('');
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -67,11 +68,16 @@ const CreateProduct = () => {
   const imageUpload = async () => {
     const formData = new FormData();
     formData.append("image", file);
+    setFileUploadLoading(true);
     await API.post("/products/upload", formData)
       .then((res) => {
-        console.log(res.data.message);
+        console.log(res);
+        setFileUploadLoading(false);
+        setProductDetails({...productDetails,imageUrl : res.data.imageURL})
+        setFile('');
       })
       .catch((err) => {
+        setFileUploadLoading(false);
         console.log(err);
       });
   };
