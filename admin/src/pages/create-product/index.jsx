@@ -25,6 +25,7 @@ const CreateProduct = () => {
 
   const [submissionLoading, setSubmissionLoading] = useState(false);
   const [fileUploadLoading, setFileUploadLoading] = useState(false);
+  const [file, setFile] = useState();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -33,8 +34,6 @@ const CreateProduct = () => {
       [name]: name === "price" || name === "quantity" ? Number(value) : value,
     });
   };
-
-  const colors = ["black", "white", "blue"];
 
   const handleCheckbox = (event) => {
     const currentState = productDetails.colors;
@@ -46,6 +45,9 @@ const CreateProduct = () => {
     }
     setProductDetails({ ...productDetails, colors: currentState });
   };
+
+
+  const colors = ["black", "white", "blue"];
 
   const colorCheckboxes = colors.map((color, index) => {
     return (
@@ -62,6 +64,12 @@ const CreateProduct = () => {
       </div>
     );
   });
+
+  const imageUpload = async () => {
+    const formData = new FormData();
+    formData.append("image",file);
+
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,9 +93,7 @@ const CreateProduct = () => {
     await API.post("/products",  productDetails )
       .then((res) => {
         setSubmissionLoading(false);
-        console.log('res',res);
         toast.success("Product Created")
-        console.log("product saved");
       })
       .catch((error) => {
         console.log(error);

@@ -123,6 +123,14 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+const uploadImage = async(req,res) => {
+  try {
+    
+  } catch (error) {
+    res.send(400).json({status:'error' , error:error})
+  }
+}
+
 module.exports = {
   getAllProducts,
   createProduct,
