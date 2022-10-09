@@ -80,7 +80,7 @@ const getSingleProduct = async (req, res) => {
     const product = await Product.findById(productID);
     res.status(200).json({ status: "success", data: product });
   } catch (error) {
-    res.status(500).json(err);
+    res.status(500).json(error);
   }
 };
 
