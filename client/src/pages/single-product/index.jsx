@@ -69,7 +69,7 @@ const SingleProduct = () => {
             </div>
           </div>
           <div className={classes.shipping}>
-            Delivery : <span>Free Shipping | 10-15 Business days</span>
+            Brand : <span>{product?.brand}</span>
           </div>
           <div className={classes.quantity}>
             <div className={classes.quantityCounter}>
