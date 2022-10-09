@@ -4,12 +4,16 @@
   @include container;
   margin: 0 auto;
   .productWrapper {
+    padding-top: 80px;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
   .productImage {
+
     .mainImage {
-      width: 100%;
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
       img {
         width: 100%;
         object-fit: contain;
@@ -36,6 +40,7 @@
   }
   .productSelection {
     padding: 10px;
+    padding-top: 40px;
     .stockTag {
       border-radius: 5px;
       background-color: #ff484229;
@@ -101,6 +106,30 @@
         &:hover{
             background: #0062ffe0;
         }
+    }
+  }
+  .colorPicker{
+    font-weight: 600;
+    padding-top:40px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    .colors{
+      display: flex;
+      align-items: center;
+      gap:10px;
+      .colorWrapper{
+        width: 25px;
+        height: 25px;
+        padding: 4px;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+      .color{
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
