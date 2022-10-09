@@ -5,13 +5,13 @@ import deleteIcon from "assets/images/delete.png";
 import editIcon from "assets/images/edit.png";
 import moment from "moment";
 import API from "api";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const headings = ["Name", "Created At", "Quantity", "Price"];
-  const notify = () => toast("Wow so easy!");
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -28,10 +28,10 @@ const Products = () => {
       .then((res) => {
         console.log(res);
         getAllProducts();
-        toast.success("Product Deleted")
+        toast.success("Product Deleted");
       })
       .catch((error) => {
-        toast.error("Something went wrong")
+        toast.error("Something went wrong");
         console.log(error);
       });
   };
@@ -44,7 +44,6 @@ const Products = () => {
         </button>
       </div>
       <div className={classes.tableCard}>
-        
         <table className={classes.productsTable}>
           <thead>
             <tr>
@@ -74,7 +73,9 @@ const Products = () => {
                         onClick={() => deleteProduct(item._id)}
                         alt="delete item"
                       />
-                      <img src={editIcon} alt="edit item" />
+                      <Link to={`edit/${item._id}`}>
+                        <img src={editIcon} alt="edit item" />
+                      </Link>
                     </div>
                   </td>
                 </tr>
