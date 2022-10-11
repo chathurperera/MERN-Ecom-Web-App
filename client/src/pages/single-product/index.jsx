@@ -4,15 +4,31 @@ import macBook1 from "../../assets/images/Mac Book 4.png";
 import macBook2 from "../../assets/images/Mac Book 3.png";
 import { Rating } from "react-simple-star-rating";
 import API from "api";
+import { addProduct } from "features/cartSlice";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 const SingleProduct = () => {
   const [product, setProduct] = useState();
   const { id } = useParams();
-
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
   useEffect(() => {
     getProduct();
   }, []);
 
+  const dispatch = useDispatch();
+
+  const addToCart = async () => {
+    dispatch(addProduct({ ...product, quantity, color }));
+  };
+
+  const handleQuantity = (type) => {
+    if (type === "remove") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
   const getProduct = async () => {
     API.get(`/products/${id}`).then((res) => {
       setProduct(res.data.data);
@@ -72,12 +88,14 @@ const SingleProduct = () => {
           </div>
           <div className={classes.quantity}>
             <div className={classes.quantityCounter}>
-              <div>-</div>
-              <div>5</div>
-              <div>+</div>
+              <div onClick={() => handleQuantity('remove')}>-</div>
+              <div>1</div>
+              <div onClick={() => handleQuantity('add')}>+</div>
             </div>
           </div>
-          <button className={classes.addToCart}>Add To Cart </button>
+          <button className={classes.addToCart} onClick={addToCart}>
+            Add To Cart{" "}
+          </button>
         </div>
       </div>
     </div>
