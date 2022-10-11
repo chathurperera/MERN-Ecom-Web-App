@@ -7,20 +7,6 @@ const BUCKET_REGION = process.env.BUCKET_REGION;
 const ACCESS_KEY = process.env.ACCESS_KEY;
 const SECRET_ACCESS_KEY = process.env.SECRET_ACCESS_KEY;
 
-const {
-  S3Client,
-  PutObjectCommand,
-  GetObjectCommand,
-} = require("@aws-sdk/client-s3");
-
-// const s3 = new S3Client({
-//   credentials: {
-//     accessKeyId: ACCESS_KEY,
-//     secretAccessKey: SECRET_ACCESS_KEY,
-//   },
-//   region: BUCKET_REGION,
-// });
-
 const s3 = new AWS.S3({
   accessKeyId: ACCESS_KEY, 
   secretAccessKey: SECRET_ACCESS_KEY
