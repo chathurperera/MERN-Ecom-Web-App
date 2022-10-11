@@ -1,5 +1,6 @@
 const Product = require("../models/productModel");
 const crypto = require("crypto");
+const AWS = require("aws-sdk");
 
 const BUCKET_NAME = process.env.BUCKET_NAME;
 const BUCKET_REGION = process.env.BUCKET_REGION;
@@ -11,14 +12,18 @@ const {
   PutObjectCommand,
   GetObjectCommand,
 } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
-const s3 = new S3Client({
-  credentials: {
-    accessKeyId: ACCESS_KEY,
-    secretAccessKey: SECRET_ACCESS_KEY,
-  },
-  region: BUCKET_REGION,
+// const s3 = new S3Client({
+//   credentials: {
+//     accessKeyId: ACCESS_KEY,
+//     secretAccessKey: SECRET_ACCESS_KEY,
+//   },
+//   region: BUCKET_REGION,
+// });
+
+const s3 = new AWS.S3({
+  accessKeyId: ACCESS_KEY, 
+  secretAccessKey: SECRET_ACCESS_KEY
 });
 
 const createProduct = async (req, res) => {
@@ -153,31 +158,26 @@ const uploadImage = async (req, res) => {
     const randomImageName = (bytes = 32) =>
       crypto.randomBytes(bytes).toString("hex");
 
-    const imageName = randomImageName();
     const params = {
       Bucket: BUCKET_NAME,
-      Key: imageName,
+      Key: `${req.file.originalname}-${Date.now()}`,
       Body: req.file.buffer,
       ContentType: req.file.mimetype,
     };
 
-    const putCommand = new PutObjectCommand(params);
-    await s3.send(putCommand);
+     s3.upload(params, (err, data) => {
+      if (err) {
+        console.log("Error occurred while trying to upload to S3 bucket", err);
+        return res.status(200).json({ message: "upload failed" });
+      }
+      return res.status(200).json({ message: "success" , imageURL:data.Location });
+    });
 
-    const getObjectParams = {
-      Bucket: BUCKET_NAME,
-      Key: imageName,
-    };
-
-    const command = new GetObjectCommand(getObjectParams);
-    const url = await getSignedUrl(s3 , command);
-    console.log('url',url)
-    return res.status(200).json({ message: "success" , imageURL:url });
   } catch (error) {
     console.log(error);
     return res.send(400).json({ status: "error", error: error });
   }
-}; 
+};
 
 module.exports = {
   getAllProducts,
