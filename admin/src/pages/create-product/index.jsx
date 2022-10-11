@@ -13,15 +13,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 const CreateProduct = () => {
   const [productDetails, setProductDetails] = useState({
-    name: "SPORT 7' 2 IN 1 SHORTS",
-    description:
-      "Durable, breathable, never-want-to-take-offable. Sport is a multi-activity training collection made for people who love to play sport, finished off with reflective angled logos for a classic sport aesthetic.",
-    brand: "Gymshark",
-    colors: ["white", "black"],
-    price: 50,
+    name: "",
+    description: "",
+    brand: "",
+    colors: [],
+    price: "",
     gender: "male",
     category: "shorts",
-    quantity: 5,
+    quantity: "",
     imageUrl: "",
   });
 
@@ -97,14 +96,14 @@ const CreateProduct = () => {
       !productDetails.price ||
       !productDetails.quantity ||
       !productDetails.description ||
-      !productDetails.gender 
+      !productDetails.gender
     ) {
       setSubmissionLoading(false);
       console.log("please complete all the fields");
       return;
     }
     // upload image
-    let imageURL = "" ;
+    let imageURL = "";
 
     const formData = new FormData();
     formData.append("image", file);
@@ -121,8 +120,6 @@ const CreateProduct = () => {
         setFileUploadLoading(false);
         console.log(err);
       });
-
-
 
     await API.post("/products", { ...productDetails, imageUrl: imageURL })
       .then((res) => {
