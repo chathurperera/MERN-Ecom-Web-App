@@ -5,14 +5,14 @@ import CartIcon from "../../assets/images/CartIcon.svg";
 import user from "../../assets/images/user.png";
 import SearchIcon from "../../assets/images/SearchIcon.svg";
 import NavMenuButton from "../../assets/images/NavMenuButton.svg";
-import downArrow from "../../assets/images/downArrow.svg";
 import { Link, NavLink } from "react-router-dom";
-import MegaDropDown from "../MegaDropDown";
 import Cart from "../Cart";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const [showDropDown, setShowDropDown] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const quantity = useSelector(state => state.cart.quantity);  
+  
   return (
     <header className={classes.header}>
       <div className={classes.container}>
@@ -42,12 +42,15 @@ const Header = () => {
           </ul>
         </nav>
         <div className={classes.navIcons}>
-          <img src={SearchIcon} alt="Search Icon" />
-          <img
-            src={CartIcon}
-            alt="cart icon"
-            onClick={() => setShowCart(!showCart)}
-          />
+          <div className={classes.cartIconWrapper}>
+            <img
+              src={CartIcon}
+              alt="cart icon"
+              
+              onClick={() => setShowCart(!showCart)}
+            />
+            {quantity > 0 && <div className={classes.cartCount}>{quantity}</div>}
+          </div>
           <Link to="login">
             <img src={user} alt="user icon" />
           </Link>

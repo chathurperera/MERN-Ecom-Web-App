@@ -76,17 +76,27 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         div {
+          cursor: pointer;
           width: 40px;
           height: 40px;
           display: grid;
           place-content: center;
           padding: 5px;
+          transition: all ease .3s;
         }
         div:nth-child(1) {
           background: #eee;
+          &:hover{
+            background-color: #010203;
+            color: #fff;
+          }
         }
         div:nth-child(3) {
           background: #eee;
+          &:hover{
+            background-color: #010203;
+            color: #fff;
+          }
         }
       }
     }

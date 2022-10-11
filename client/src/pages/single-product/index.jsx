@@ -62,7 +62,7 @@ const SingleProduct = () => {
             <div className={classes.stockTag}>OUT OF STOCK</div>
           )}
           <h2 className={classes.productTitle}>{product?.name}</h2>
-          <Rating initialValue="3" size="22" readonly="true" />
+          {/* <Rating initialValue="3" size="22" readonly="true" /> */}
           <p className={classes.productDesc}>{product?.description}</p>
           <div className={classes.colorPicker}>
             <p>Color :</p>
@@ -70,6 +70,7 @@ const SingleProduct = () => {
               {product?.colors.map((color, index) => {
                 return (
                   <div
+                    onClick={() => setColor(color)}
                     key={index}
                     className={classes.colorWrapper}
                     style={{ border: "1px solid black" }}
@@ -88,9 +89,9 @@ const SingleProduct = () => {
           </div>
           <div className={classes.quantity}>
             <div className={classes.quantityCounter}>
-              <div onClick={() => handleQuantity('remove')}>-</div>
-              <div>1</div>
-              <div onClick={() => handleQuantity('add')}>+</div>
+              <div onClick={() => handleQuantity("remove")}>-</div>
+              <div>{quantity}</div>
+              <div onClick={() => handleQuantity("add")}>+</div>
             </div>
           </div>
           <button className={classes.addToCart} onClick={addToCart}>
