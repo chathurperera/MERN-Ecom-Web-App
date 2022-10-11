@@ -4,7 +4,7 @@ import { Rating } from "react-simple-star-rating";
 import Button from "@mui/material/Button";
 
 const Filter = ({ filters, setFilters, setCategories, categories }) => {
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState("");
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -14,8 +14,8 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
         [name]: type === "checkbox" ? checked : value,
       };
     });
-    if(name === 'price'){
-      setPrice(value)
+    if (name === "price") {
+      setPrice(value);
     }
   };
 
@@ -28,16 +28,18 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
     setFilters({
       rating: "",
       price: "",
-      sort:"",
-      availability: false
+      sort: "",
+      availability: false,
     });
     setCategories({
       shorts: false,
       tanks: false,
-      shoes: false
+      shoes: false,
     });
-    setPrice('')
+    setPrice("");
   };
+
+  const genderTypes = ["male", "female", "unisex"];
 
   return (
     <div className={classes.filter}>
@@ -80,38 +82,18 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
         </ul>
       </div>
       <div className={classes.filterOption}>
-        <div className={classes.filterCollapse}>Ratings</div>
+        <div className={classes.filterCollapse}>Gender</div>
         <ul className={classes.filtersList}>
-          <li>
-            <input type="radio" name="rating" value="5" id="lvl5" />
-            <label htmlFor="lvl5">
-              <Rating initialValue="5" size="18" readonly="true" />
-            </label>
-          </li>
-          <li>
-            <input type="radio" name="rating" value="4" id="lvl4" />
-            <label htmlFor="lvl4">
-              <Rating initialValue="4" size="18" readonly="true" />
-            </label>
-          </li>
-          <li>
-            <input type="radio" name="rating" value="3" id="lvl3" />
-            <label htmlFor="lvl3">
-              <Rating initialValue="3" size="18" readonly="true" />
-            </label>
-          </li>
-          <li>
-            <input type="radio" name="rating" value="2" id="lvl2" />
-            <label htmlFor="lvl2">
-              <Rating initialValue="2" size="18" readonly="true" />
-            </label>
-          </li>
-          <li>
-            <input type="radio" name="rating" value="1" id="lvl1" />
-            <label htmlFor="lvl1">
-              <Rating initialValue="1" size="18" readonly="true" />
-            </label>
-          </li>
+          {genderTypes.map((gender) => {
+            return (
+              <li>
+                <input type="radio" name="gender" value={gender} id={gender} />
+                <label htmlFor={gender}>
+                  {gender.charAt(0).toUpperCase() + gender.slice(1)}
+                </label>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className={classes.filterOption}>
@@ -122,7 +104,7 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
               type="radio"
               name="price"
               value="40-500"
-              checked={price === '40-500'}
+              checked={price === "40-500"}
               onChange={handleChange}
               id="priceLvl1"
             />
@@ -133,7 +115,7 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
               type="radio"
               name="price"
               value="500-1000"
-              checked={price === '500-1000'}
+              checked={price === "500-1000"}
               onChange={handleChange}
               id="priceLvl2"
             />
@@ -144,7 +126,7 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
               type="radio"
               name="price"
               value="1000-2000"
-              checked={price === '1000-2000'}
+              checked={price === "1000-2000"}
               onChange={handleChange}
               id="priceLvl3"
             />
@@ -155,7 +137,7 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
               type="radio"
               name="price"
               value="2000-3000"
-              checked={price === '2000-3000'}
+              checked={price === "2000-3000"}
               onChange={handleChange}
               id="priceLvl4"
             />
