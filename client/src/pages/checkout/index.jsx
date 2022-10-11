@@ -7,7 +7,7 @@ import SelectAddress from "components/SelectAddress";
 import PaymentOptions from "components/PaymentOptions";
 import BillingAddress from "components/BillingAddress";
 const Checkout = () => {
-  const [checkoutStep, setCheckoutStep] = useState(3);
+  const [checkoutStep, setCheckoutStep] = useState(1);
 
   return (
     <div className={classes.checkout}>
@@ -21,7 +21,7 @@ const Checkout = () => {
           <PaymentOptions setCheckoutStep={setCheckoutStep} />
         )}
         <div>
-          <BillingAddress />
+          {checkoutStep === 3 &&  <BillingAddress />}
           <OrderSummary checkoutStep={checkoutStep} />
         </div>
       </div>

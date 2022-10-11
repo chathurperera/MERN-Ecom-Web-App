@@ -46,7 +46,7 @@ const CheckoutProgressBar = ({checkoutStep}) => {
         <div className={classes.dot}>
           {checkoutStep === 3 ? <img src={check} alt="check icon" /> : "3"}
         </div>
-        <small>Cart</small>
+        <small>Payment</small>
       </div>
     </div>
   );
