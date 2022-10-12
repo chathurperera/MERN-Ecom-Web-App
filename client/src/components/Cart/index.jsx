@@ -17,6 +17,7 @@ const Cart = ({ setShowCart }) => {
       <div className={classes.cartOverlay}></div>
       <div className={classes.cartWrapper}>
         <div className={classes.cartHeader}>
+          <div className={classes.clearCart} onClick={() => dispatch(clearCart())}>Clear Cart</div>
           <p>YOUR CART</p>
           <div
             onClick={() => setShowCart((prevState) => !prevState)}
@@ -26,7 +27,6 @@ const Cart = ({ setShowCart }) => {
           </div>
         </div>
         <div className={classes.cartBody}>
-          <div onClick={() => dispatch(clearCart())}>Clear Cart</div>
           {cart.products.map((product, index) => {
             return <CartItem product={product} key={index} />;
           })}
