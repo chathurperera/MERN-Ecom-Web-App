@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import classes from "./single-product.module.scss";
-import macBook1 from "../../assets/images/Mac Book 4.png";
 import macBook2 from "../../assets/images/Mac Book 3.png";
-import { Rating } from "react-simple-star-rating";
 import API from "api";
-import { addProduct } from "features/cartSlice";
-import { useDispatch } from "react-redux";
+import { addProduct, incrementCartItem } from "features/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 const SingleProduct = () => {
   const [product, setProduct] = useState();
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
+
+  const cart = useSelector((state) => state.cart);
+
   useEffect(() => {
     getProduct();
   }, []);
@@ -19,7 +20,15 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
 
   const addToCart = async () => {
+    const existingItem = cart.products.find((product) => product._id === id);
+    console.log("existingItem", existingItem);
+    if (existingItem) {
+      dispatch(incrementCartItem({ id, quantity }));
+      return;
+    }
     dispatch(addProduct({ ...product, quantity, color }));
+    setQuantity(1);
+    setColor("");
   };
 
   const handleQuantity = (type) => {
@@ -42,7 +51,7 @@ const SingleProduct = () => {
           <div className={classes.mainImage}>
             <img src={product?.imageUrl} alt={product?.name} />
           </div>
-          <div className={classes.secondaryImages}>
+          {/* <div className={classes.secondaryImages}>
             <div className={classes.secondaryImageHolder}>
               <img src={macBook2} alt="" />
             </div>
@@ -55,7 +64,7 @@ const SingleProduct = () => {
             <div className={classes.secondaryImageHolder}>
               <img src={macBook2} alt="" />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className={classes.productSelection}>
           {!product?.quantity && (
