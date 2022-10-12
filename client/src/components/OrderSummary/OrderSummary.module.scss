@@ -67,11 +67,10 @@
   transition: all ease 0.2s;
   border: none;
   padding: 15px 0;
+  text-decoration: none;
+  color: #fff;
   &:hover {
     background-color: #00ab56d0;
   }
-  a {
-    text-decoration: none;
-    color: #fff;
-  }
+  
 }

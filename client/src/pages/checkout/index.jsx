@@ -9,13 +9,13 @@ import BillingAddress from "components/BillingAddress";
 import { useSelector } from "react-redux";
 const Checkout = () => {
   const [checkoutStep, setCheckoutStep] = useState(1);
-  const cart = useSelector(state => state.cart);
-  console.log(cart)
+  const cart = useSelector((state) => state.cart);
+  console.log(cart);
   return (
     <div className={classes.checkout}>
       <CheckoutProgressBar checkoutStep={checkoutStep} />
       <div className={classes.order}>
-        {checkoutStep === 1 && <OrdersTable cart={cart}/>}
+        {checkoutStep === 1 && <OrdersTable cart={cart} />}
         {checkoutStep === 2 && (
           <SelectAddress setCheckoutStep={setCheckoutStep} />
         )}
@@ -23,8 +23,12 @@ const Checkout = () => {
           <PaymentOptions setCheckoutStep={setCheckoutStep} />
         )}
         <div>
-          {checkoutStep === 3 &&  <BillingAddress />}
-          <OrderSummary checkoutStep={checkoutStep} />
+          {checkoutStep === 3 && <BillingAddress />}
+          <OrderSummary
+            checkoutStep={checkoutStep}
+            setCheckoutStep={setCheckoutStep}
+            cart={cart}
+          />
         </div>
       </div>
     </div>

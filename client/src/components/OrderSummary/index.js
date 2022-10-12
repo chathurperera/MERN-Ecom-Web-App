@@ -1,14 +1,15 @@
 import React from "react";
 import classes from "./OrderSummary.module.scss";
 import { Link } from "react-router-dom";
-const OrderSummary = ({ checkoutStep }) => {
+
+const OrderSummary = ({setCheckoutStep , checkoutStep , cart }) => {
   return (
     <div className={classes.orderSummary}>
       <div className={classes.card}>
         <div className={classes.cardHeader}>Order Summary</div>
         <div className={classes.detail}>
           <span className={classes.label}>Sub Total</span>
-          <span className={classes.value}>$71.42</span>
+          <span className={classes.value}>${cart?.total}</span>
         </div>
         <div className={classes.detail}>
           <span className={classes.label}>Discount</span>
@@ -21,12 +22,12 @@ const OrderSummary = ({ checkoutStep }) => {
         <div className={classes.divider}></div>
         <div className={classes.total}>
           <span>Total</span>
-          <span>$66.42</span>
+          <span>${cart?.total}</span>
         </div>
       </div>
       {checkoutStep === 1 && (
-        <button className={classes.checkoutButton}>
-          <Link to="/">Check Out</Link>
+        <button className={classes.checkoutButton} onClick={() => setCheckoutStep(2)}>
+          Check Out
         </button>
       )}
     </div>
