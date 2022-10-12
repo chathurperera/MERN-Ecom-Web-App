@@ -18,7 +18,7 @@ const CartItem = ({ product }) => {
           <p className={classes.itemName}>{product?.name}</p>
           <img
             src={deleteIcon}
-            // onClick={() => dispatch(deleteItem({ product }))}
+            onClick={() => dispatch(deleteItem({ product }))}
             alt="delete icon"
           />
         </div>

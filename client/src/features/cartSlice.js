@@ -16,7 +16,6 @@ const cartSlice = createSlice({
       state.total = action.payload.price * action.payload.quantity;
     },
     deleteItem: (state, action) => {
-      // const deletingItem = state.products.find(product => product._id === action.payload.id )
       console.log("action.payload", action.payload);
       state.products = state.products.filter(
         (product) => product._id !== action.payload.product._id
