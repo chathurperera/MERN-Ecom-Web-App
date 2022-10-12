@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import classes from "./Header.module.scss";
 import logo from "../../assets/images/BlackLogo.svg";
 import CartIcon from "../../assets/images/CartIcon.svg";
-import user from "../../assets/images/user.png";
+import userIcon from "../../assets/images/user.png";
 import SearchIcon from "../../assets/images/SearchIcon.svg";
 import NavMenuButton from "../../assets/images/NavMenuButton.svg";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Cart from "../Cart";
 import { useSelector } from "react-redux";
 
+
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
-  const quantity = useSelector(state => state.cart.quantity);  
+  const quantity = useSelector((state) => state.cart.quantity);
+  const user = useSelector((state) => state.user);
   
+  const navigate = useNavigate();
   return (
     <header className={classes.header}>
       <div className={classes.container}>
@@ -46,15 +49,21 @@ const Header = () => {
             <img
               src={CartIcon}
               alt="cart icon"
-              
               onClick={() => setShowCart(!showCart)}
             />
-            {quantity > 0 && <div className={classes.cartCount}>{quantity}</div>}
+            {quantity > 0 && (
+              <div className={classes.cartCount}>{quantity}</div>
+            )}
           </div>
-          <Link to="login">
-            <img src={user} alt="user icon" />
-          </Link>
-
+          {user.currentUser ? (
+            <div className={classes.userProfilePic} onClick={() => navigate('/my-account')}>
+              {user.currentUser.user.firstName[0]}
+            </div>
+          ) : (
+            <Link to="login">
+              <img src={userIcon} alt="user icon" />
+            </Link>
+          )}
           <img
             src={NavMenuButton}
             className={classes.hamburgerIcon}

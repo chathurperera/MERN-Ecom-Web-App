@@ -20,7 +20,7 @@ const SingleProduct = () => {
   }, []);
 
   const addToCart = async () => {
-    const existingItem = cart.products?.find((product) => product._id === id);
+    const existingItem = cart.products?.find((product) => product.productId === id);
     if (existingItem) {
       const totalPrice = product.price * quantity;
       dispatch(addExistingProduct({ id, quantity, totalPrice }));

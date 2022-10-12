@@ -5,13 +5,25 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "features/cartSlice";
 import CartItem from "../CartItem";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ setShowCart }) => {
-  const [isEmptyCart, setIsEmptyCart] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+
   console.log("cart", cart);
 
+  const handleCheckout = () => {
+    if (!user.currentUser) {
+      navigate("/login");
+    } else {
+      navigate("/checkout");
+    }
+    setShowCart(false);
+  };
   return (
     <div className={classes.cart}>
       <div className={classes.cartOverlay}></div>
@@ -44,9 +56,7 @@ const Cart = ({ setShowCart }) => {
           </div>
           <div className={classes.btns}>
             {cart.products.length > 0 ? (
-              <Link to="/checkout" onClick={() => setShowCart(false)}>
-                Checkout
-              </Link>
+              <button onClick={handleCheckout}>Checkout</button>
             ) : (
               <Link to="/shop">Continue Shopping</Link>
             )}

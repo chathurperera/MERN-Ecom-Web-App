@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import classes from "./login.module.scss";
-import signUpImage from "../../assets/images/Sign Up Image (2).png";
 import showIcon from "../../assets/images/login/show.png";
 import hideIcon from "../../assets/images/login/hide.png";
 import Spinner from "../../components/Spinner";
 import { useNavigate } from "react-router-dom";
 import API from "../../api";
-
+import { loginStart, loginSuccess, loginFailure } from "features/userSlice";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => state.user)
+
   const [userInput, setUserInput] = useState({
     email: "kasun@gmail.com",
     password: "kasun123",
@@ -23,6 +28,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(loginStart);
     console.log("submitted");
     if (!userInput.email || !userInput.password) {
       return;
@@ -30,12 +36,14 @@ const Login = () => {
     setLoading(true);
     await API.post("/login", userInput)
       .then((res) => {
+        dispatch(loginSuccess(res.data.data));
         setLoading(false);
         console.log(res);
-        localStorage.setItem("token", res.data);
+        // localStorage.setItem("token", res.data);
         navigate("/");
       })
       .catch((error) => {
+        dispatch(loginFailure);
         setLoading(false);
         console.log(error);
       });

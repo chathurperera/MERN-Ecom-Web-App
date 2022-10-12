@@ -47,11 +47,21 @@ nav{
       padding: 15px 0;
     }
   }
-
+}
+.userProfilePic{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  background-color: #eee;
+  place-items: center;
+  font-weight: 600;
+  font-size: 17px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 .cartIconWrapper{
   position: relative;
-
 .cartCount{
   width: 15px;
   height: 15px;
@@ -69,6 +79,7 @@ nav{
 }
 .navIcons{
   display: flex;
+  align-items: center;
   gap: 20px;
 }
 .navIcons img {

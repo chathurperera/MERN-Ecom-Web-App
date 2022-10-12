@@ -10,6 +10,7 @@ const login = async (req, res) => {
   if (!existingUser) {
     res.status(401).json({ status: "error", error: "User doesn't exists!" });
   }
+
   if (await bycrypt.compare(password, existingUser.password)) {
     const token = jwt.sign(
       {
@@ -19,7 +20,15 @@ const login = async (req, res) => {
       SECRET,
       { expiresIn: "3d" }
     );
-    return res.status(200).json({ status: "success", data: token });
+
+    const user = {
+      email: existingUser.email,
+      firstName: existingUser.firstName,
+      lastName: existingUser.lastName,
+    };
+
+    console.log(user);
+    return res.status(200).json({ status: "success", data: { user, token } });
   } else {
     return res
       .status(400)
