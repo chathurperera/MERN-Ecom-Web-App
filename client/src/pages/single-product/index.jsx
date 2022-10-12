@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "./single-product.module.scss";
 import macBook2 from "../../assets/images/Mac Book 3.png";
 import API from "api";
-import { addProduct, deleteItem , addExistingProduct } from "features/cartSlice";
+import { addProduct, deleteItem, addExistingProduct } from "features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 const SingleProduct = () => {
@@ -12,24 +12,32 @@ const SingleProduct = () => {
   const [color, setColor] = useState("");
 
   const cart = useSelector((state) => state.cart);
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     getProduct();
   }, []);
-  
-  
+
   const addToCart = async () => {
     const existingItem = cart.products?.find((product) => product._id === id);
     if (existingItem) {
       const totalPrice = product.price * quantity;
-      dispatch(addExistingProduct({id , quantity , totalPrice }))
+      dispatch(addExistingProduct({ id, quantity, totalPrice }));
       setQuantity(1);
       setColor("");
       return;
     }
-    dispatch(addProduct({ ...product, quantity, color }));
+    dispatch(
+      addProduct({
+        productId: id,
+        price: product.price,
+        name: product.name,
+        imageUrl: product.imageUrl,
+        color,
+        quantity,
+      })
+    );
     setQuantity(1);
     setColor("");
   };
@@ -87,11 +95,18 @@ const SingleProduct = () => {
                     onClick={() => setColor(colorText)}
                     key={index}
                     className={classes.colorWrapper}
-                    style={color === colorText ? { border: "1px solid black" } : { border: "none" } }
                   >
                     <div
                       className={classes.color}
-                      style={{ backgroundColor: `${colorText}` }}
+                      style={
+                        color === colorText
+                          ? {
+                              backgroundColor: `${colorText}`,
+                              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                              transform: "scale(1.2)",
+                            }
+                          : { backgroundColor: `${colorText}` }
+                      }
                     ></div>
                   </div>
                 );
@@ -109,7 +124,7 @@ const SingleProduct = () => {
             </div>
           </div>
           <button className={classes.addToCart} onClick={addToCart}>
-          Add To Cart
+            Add To Cart
           </button>
         </div>
       </div>
