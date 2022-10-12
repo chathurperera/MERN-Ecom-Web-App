@@ -2,7 +2,11 @@ import React from "react";
 import classes from "./CartItem.module.scss";
 import itemImage from "../../assets/images/Watch Image-min.png";
 import deleteIcon from "../../assets/images/delete.png";
-import { deleteItem } from "features/cartSlice";
+import {
+  deleteItem,
+  incrementItemQuantity,
+  decrementItemQuantity,
+} from "features/cartSlice";
 import { useDispatch } from "react-redux";
 
 const CartItem = ({ product }) => {
@@ -24,11 +28,26 @@ const CartItem = ({ product }) => {
         </div>
         <div className={classes.cartItem__price}>
           <div className={classes.itemCount}>
-            <button className={classes.decrement}>-</button>
-            <div className={classes.count}>5</div>
-            <button className={classes.increment}>+</button>
+            <button
+              className={classes.decrement}
+              onClick={() =>
+                product?.quantity > 1 &&
+                dispatch(decrementItemQuantity({ product }))
+              }
+            >
+              -
+            </button>
+            <div className={classes.count}>{product?.quantity}</div>
+            <button
+              className={classes.increment}
+              onClick={() => dispatch(incrementItemQuantity({ product }))}
+            >
+              +
+            </button>
           </div>
-          <div className={classes.price}>$ 199.00 USD</div>
+          <div className={classes.price}>
+            $ {product?.price * product?.quantity}.00 USD
+          </div>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "./single-product.module.scss";
 import macBook2 from "../../assets/images/Mac Book 3.png";
 import API from "api";
-import { addProduct, incrementCartItem } from "features/cartSlice";
+import { addProduct } from "features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 const SingleProduct = () => {
@@ -23,7 +23,7 @@ const SingleProduct = () => {
     const existingItem = cart.products.find((product) => product._id === id);
     console.log("existingItem", existingItem);
     if (existingItem) {
-      dispatch(incrementCartItem({ id, quantity }));
+     
       return;
     }
     dispatch(addProduct({ ...product, quantity, color }));
