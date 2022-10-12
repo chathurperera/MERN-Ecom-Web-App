@@ -25,6 +25,18 @@ const cartSlice = createSlice({
       console.log("delete item ran");
     },
 
+    addExistingProduct: (state, action) => {
+      console.log("action.payload", action.payload);
+      const { id, quantity, totalPrice } = action.payload;
+      state.products = state.products.map((product) =>
+        product._id === id
+          ? { ...product, quantity: product.quantity + quantity }
+          : product
+      );
+      state.total += totalPrice;
+      console.log("state.total", state.total);
+    },
+    
     incrementItemQuantity: (state, action) => {
       state.products = state.products.map((product) =>
         product._id === action.payload.product._id
@@ -33,7 +45,7 @@ const cartSlice = createSlice({
       );
       state.total += action.payload.product.price;
     },
-
+    
     decrementItemQuantity: (state, action) => {
       state.products = state.products.map((product) =>
         product._id === action.payload.product._id
@@ -53,6 +65,7 @@ const cartSlice = createSlice({
 
 export const {
   addProduct,
+  addExistingProduct,
   incrementItemQuantity,
   decrementItemQuantity,
   deleteItem,

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "./single-product.module.scss";
 import macBook2 from "../../assets/images/Mac Book 3.png";
 import API from "api";
-import { addProduct, deleteItem } from "features/cartSlice";
+import { addProduct, deleteItem , addExistingProduct } from "features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 const SingleProduct = () => {
@@ -12,21 +12,20 @@ const SingleProduct = () => {
   const [color, setColor] = useState("");
   const [isItemAdded, setIsItemAdded] = useState(false);
   const cart = useSelector((state) => state.cart);
+  
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getProduct();
+    
+  }, []);
+  
+  
+  const addToCart = async () => {
     const existingItem = cart.products?.find((product) => product._id === id);
     if (existingItem) {
-      setIsItemAdded(true);
-    }
-  }, []);
-
-  const dispatch = useDispatch();
-
-  const addToCart = async () => {
-    if (isItemAdded) {
-      dispatch(deleteItem({ product }));
-      setIsItemAdded(false);
+      const totalPrice = product.price * quantity;
+      dispatch(addExistingProduct({id , quantity , totalPrice }))
       setQuantity(1);
       setColor("");
       return;
@@ -111,7 +110,7 @@ const SingleProduct = () => {
             </div>
           </div>
           <button className={classes.addToCart} onClick={addToCart}>
-            {isItemAdded ? "Remove from cart" : "Add To Cart"}
+          Add To Cart
           </button>
         </div>
       </div>

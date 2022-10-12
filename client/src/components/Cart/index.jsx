@@ -44,9 +44,11 @@ const Cart = ({ setShowCart }) => {
           </div>
           <div className={classes.btns}>
             {cart.products.length > 0 ? (
-              <Link to="/">Checkout </Link>
+              <Link to="/checkout" onClick={() => setShowCart(false)}>
+                Checkout
+              </Link>
             ) : (
-              <Link to="/">Continue Shopping</Link>
+              <Link to="/shop">Continue Shopping</Link>
             )}
           </div>
         </div>
