@@ -84,9 +84,9 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
       <div className={classes.filterOption}>
         <div className={classes.filterCollapse}>Gender</div>
         <ul className={classes.filtersList}>
-          {genderTypes.map((gender) => {
+          {genderTypes.map((gender ,index) => {
             return (
-              <li>
+              <li key={index}>
                 <input type="radio" name="gender" value={gender} id={gender} />
                 <label htmlFor={gender}>
                   {gender.charAt(0).toUpperCase() + gender.slice(1)}

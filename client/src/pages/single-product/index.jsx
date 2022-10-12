@@ -10,14 +10,13 @@ const SingleProduct = () => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
-  const [isItemAdded, setIsItemAdded] = useState(false);
+
   const cart = useSelector((state) => state.cart);
   
   const dispatch = useDispatch();
 
   useEffect(() => {
     getProduct();
-    
   }, []);
   
   
@@ -33,7 +32,6 @@ const SingleProduct = () => {
     dispatch(addProduct({ ...product, quantity, color }));
     setQuantity(1);
     setColor("");
-    setIsItemAdded(true);
   };
 
   const handleQuantity = (type) => {
@@ -43,6 +41,7 @@ const SingleProduct = () => {
       setQuantity(quantity + 1);
     }
   };
+
   const getProduct = async () => {
     API.get(`/products/${id}`).then((res) => {
       setProduct(res.data.data);
@@ -82,17 +81,17 @@ const SingleProduct = () => {
           <div className={classes.colorPicker}>
             <p>Color :</p>
             <div className={classes.colors}>
-              {product?.colors.map((color, index) => {
+              {product?.colors.map((colorText, index) => {
                 return (
                   <div
-                    onClick={() => setColor(color)}
+                    onClick={() => setColor(colorText)}
                     key={index}
                     className={classes.colorWrapper}
-                    style={{ border: "1px solid black" }}
+                    style={color === colorText ? { border: "1px solid black" } : { border: "none" } }
                   >
                     <div
                       className={classes.color}
-                      style={{ backgroundColor: `${color}` }}
+                      style={{ backgroundColor: `${colorText}` }}
                     ></div>
                   </div>
                 );
