@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "./single-product.module.scss";
 import macBook2 from "../../assets/images/Mac Book 3.png";
 import API from "api";
-import { addProduct } from "features/cartSlice";
+import { addProduct, deleteItem } from "features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 const SingleProduct = () => {
@@ -10,25 +10,31 @@ const SingleProduct = () => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
-
+  const [isItemAdded, setIsItemAdded] = useState(false);
   const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
     getProduct();
+    const existingItem = cart.products?.find((product) => product._id === id);
+    if (existingItem) {
+      setIsItemAdded(true);
+    }
   }, []);
 
   const dispatch = useDispatch();
 
   const addToCart = async () => {
-    const existingItem = cart.products.find((product) => product._id === id);
-    console.log("existingItem", existingItem);
-    if (existingItem) {
-     
+    if (isItemAdded) {
+      dispatch(deleteItem({ product }));
+      setIsItemAdded(false);
+      setQuantity(1);
+      setColor("");
       return;
     }
     dispatch(addProduct({ ...product, quantity, color }));
     setQuantity(1);
     setColor("");
+    setIsItemAdded(true);
   };
 
   const handleQuantity = (type) => {
@@ -73,6 +79,7 @@ const SingleProduct = () => {
           <h2 className={classes.productTitle}>{product?.name}</h2>
           {/* <Rating initialValue="3" size="22" readonly="true" /> */}
           <p className={classes.productDesc}>{product?.description}</p>
+          <p className={classes.price}>${product?.price}.00</p>
           <div className={classes.colorPicker}>
             <p>Color :</p>
             <div className={classes.colors}>
@@ -104,7 +111,7 @@ const SingleProduct = () => {
             </div>
           </div>
           <button className={classes.addToCart} onClick={addToCart}>
-            Add To Cart{" "}
+            {isItemAdded ? "Remove from cart" : "Add To Cart"}
           </button>
         </div>
       </div>

@@ -9,10 +9,9 @@
     grid-template-columns: 1fr 1fr;
   }
   .productImage {
-
     .mainImage {
       width: 500px;
-      height: 500px;
+      height: 100%;
       margin: 0 auto;
       img {
         width: 100%;
@@ -55,7 +54,7 @@
       font-weight: 600;
     }
     .productDesc {
-      margin-top: 40px;
+      margin-top: 25px;
       font-size: 15px;
     }
     .shipping {
@@ -116,6 +115,12 @@
         &:hover{
             background: #0062ffe0;
         }
+    }
+    .price{
+      margin-top: 10px;
+      font-weight: 600;
+      font-size: 30px;
+      color: rgb(245, 33, 33);
     }
   }
   .colorPicker{

@@ -18,11 +18,11 @@ const cartSlice = createSlice({
 
     deleteItem: (state, action) => {
       const { _id, quantity, price } = action.payload.product;
-      
+
       state.products = state.products.filter((product) => product._id !== _id);
       state.quantity -= 1;
       state.total -= quantity * price;
-      console.log('delete item ran')
+      console.log("delete item ran");
     },
 
     incrementItemQuantity: (state, action) => {

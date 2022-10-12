@@ -17,7 +17,12 @@ const Cart = ({ setShowCart }) => {
       <div className={classes.cartOverlay}></div>
       <div className={classes.cartWrapper}>
         <div className={classes.cartHeader}>
-          <div className={classes.clearCart} onClick={() => dispatch(clearCart())}>Clear Cart</div>
+          <div
+            className={classes.clearCart}
+            onClick={() => dispatch(clearCart())}
+          >
+            Clear Cart
+          </div>
           <p>YOUR CART</p>
           <div
             onClick={() => setShowCart((prevState) => !prevState)}
@@ -30,7 +35,7 @@ const Cart = ({ setShowCart }) => {
           {cart.products.map((product, index) => {
             return <CartItem product={product} key={index} />;
           })}
-          {isEmptyCart && <h3>Your Cart is Empty </h3>}
+          {cart.products?.length < 1 && <h3>Your Cart is Empty </h3>}
         </div>
         <div className={classes.cartFooter}>
           <div className={classes.total}>
@@ -38,7 +43,11 @@ const Cart = ({ setShowCart }) => {
             <p>${cart.total} USD</p>
           </div>
           <div className={classes.btns}>
-            <Link to="/">Checkout </Link>
+            {cart.products.length > 0 ? (
+              <Link to="/">Checkout </Link>
+            ) : (
+              <Link to="/">Continue Shopping</Link>
+            )}
           </div>
         </div>
       </div>
