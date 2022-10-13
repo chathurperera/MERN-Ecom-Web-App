@@ -10,6 +10,7 @@ const corsOptions = require("./config/corsOptions");
 const userRoute = require("./routes/userRoutes");
 const productRoute = require("./routes/productRoutes");
 const cartRoutes = require('./routes/cartRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 connectDB(process.env.MONGO_URI);
 
@@ -17,6 +18,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
+app.use("/api/v1/", authRoutes);
 app.use("/api/v1/", userRoute);
 app.use("/api/v1/products", productRoute);
 app.use("/api/v1/cart", cartRoutes);
