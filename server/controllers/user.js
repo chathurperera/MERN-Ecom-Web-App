@@ -1,7 +1,14 @@
 
 const User = require("../models/userModel");
 
-
+const getMe  = async(req,res) => {
+  try {
+    console.log('req.user',req.user)
+    res.status(200).json({message:'success'})
+  } catch (error) {
+    res.status(500).json({message:'something went wrong'})
+  }
+}
 
 const getAllUsers = async (req, res) => {
   try {
@@ -62,4 +69,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { updateUser, getAllUsers, deleteUser };
+module.exports = { updateUser, getAllUsers, deleteUser , getMe };

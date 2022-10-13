@@ -4,36 +4,49 @@ import dashboard from "../../assets/images/userProfile/dashboard.png";
 import shoppingBag from "../../assets/images/userProfile/shopping-bag.png";
 import user from "../../assets/images/userProfile/user.png";
 import password from "../../assets/images/userProfile/password.png";
-import logout from "../../assets/images/userProfile/logout.png";
+import logoutIcon from "../../assets/images/userProfile/logout.png";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logOut } from "features/userSlice";
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(logOut());
+    navigate("/");
+  };
+
   return (
     <aside className={classes.sidebar}>
       <div className={classes.linksHolder}>
         <div className={classes.sideLink}>
-          <Link to="/my-account" >
+          <Link to="/my-account">
             <img src={user} alt="user" />
-            Profile 
+            Profile
           </Link>
         </div>
         <div className={classes.sideLink}>
-          <Link to="/my-account/orders" activeClassName={classes.sidebarActiveLink}>
+          <Link
+            to="/my-account/orders"
+            activeClassName={classes.sidebarActiveLink}
+          >
             <img src={shoppingBag} alt="shopping bag" />
             Orders
           </Link>
         </div>
         <div className={classes.sideLink}>
-          <Link to="/my-account/orders" >
+          <Link to="/my-account/orders">
             <img src={password} alt="password lock" />
             Change password
           </Link>
         </div>
         <div className={classes.sideLink}>
-          <Link to="/my-account/orders" >
-            <img src={logout} alt="shopping bag" />
+          <div onClick={logout} className={classes.logout}>
+            <img src={logoutIcon} alt="shopping bag" />
             Logout
-          </Link>
+          </div>
         </div>
       </div>
     </aside>

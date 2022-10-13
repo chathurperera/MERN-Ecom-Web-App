@@ -28,6 +28,7 @@ const login = async (req, res) => {
       firstName: existingUser.firstName,
       lastName: existingUser.lastName,
       userId: existingUser._id,
+      address: existingUser.address,
     };
 
     console.log(user);

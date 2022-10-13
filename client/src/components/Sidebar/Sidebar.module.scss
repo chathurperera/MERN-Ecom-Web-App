@@ -20,10 +20,13 @@
     &:nth-child(1) {
       border-top: 1px solid #eee;
     }
-    &:hover a {
+    &:hover a  {
       padding-left: 8px;
     }
-    a {
+    .logout:hover{
+      padding-left: 8px;
+    }
+    a  , .logout{
       transition: all ease 0.3s;
       display: flex;
       align-items: center;
