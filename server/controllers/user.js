@@ -103,27 +103,29 @@ const getAllUsers = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const { firstName, lastName, email, id } = req.body;
-    if (!id || !email || !firstName || !lastName) {
-      return res.status(400).json({ message: "Provide all fields" });
+    const { userId , firstName ,lastName , email , address} = req.body;
+    if (!userId ) {
+      return res.status(400).json({ message: "ID is required" });
     }
 
-    const user = await User.findById(id).exec();
+    const user = await User.findById(userId).exec();
 
     //Preventing from using an email address that already exists
     const duplicate = await User.find({ email }).lean().exec();
-
-    if (duplicate.length && duplicate._id.toString() !== id) {
+    
+    if (duplicate.length && duplicate[0]._id.toString() !== userId) {
       return res.status(409).json({ message: "Duplicate email address" });
     }
 
     user.firstName = firstName;
     user.lastName = lastName;
     user.email = email;
+    user.address = address;
 
     const updatedUser = await user.save();
     res.status(200).json({ message: `${updatedUser.firstName} updated` });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "something went wrong", error: error });
   }
 };

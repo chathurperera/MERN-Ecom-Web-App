@@ -15,7 +15,7 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart }) => {
   };
 
   const handleCheckout = async () => {
-    console.log('ran');
+    console.log("ran");
     setLoading(true);
     await API.post("/cart", payload)
       .then((res) => {
@@ -51,11 +51,8 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart }) => {
         </div>
       </div>
       {checkoutStep === 1 && (
-        <button
-          className={classes.checkoutButton}
-          onClick={handleCheckout}
-        >
-          Check Out
+        <button className={classes.checkoutButton} onClick={handleCheckout}>
+          {loading ? <Spinner /> : "Check Out"}
         </button>
       )}
     </div>
