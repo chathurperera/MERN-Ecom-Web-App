@@ -46,7 +46,7 @@ const CartItem = ({ product }) => {
             </button>
           </div>
           <div className={classes.price}>
-            $ {product?.price * product?.quantity}.00 USD
+            $ {product?.price}.00 USD
           </div>
         </div>
       </div>

@@ -27,20 +27,20 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to="shop"> SHOP</NavLink>
+              <NavLink to="/shop"> SHOP</NavLink>
             </li>
             {/* <li onClick={() => setShowDropDown((prevState) => !prevState)}>
               SOLUTIONS <img src={downArrow} alt="down arrow" />
               {showDropDown && <MegaDropDown />}
             </li> */}
             <li>
-              <NavLink to="shop"> MENS </NavLink>
+              <NavLink to="/shop"> MENS </NavLink>
             </li>
             <li>
-              <NavLink to="shop"> WOMEN </NavLink>
+              <NavLink to="/shop"> WOMEN </NavLink>
             </li>
             <li>
-              <NavLink to="shop"> KIDS </NavLink>
+              <NavLink to="/shop"> KIDS </NavLink>
             </li>
           </ul>
         </nav>

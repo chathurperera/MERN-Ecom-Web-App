@@ -39,8 +39,9 @@ const cartSlice = createSlice({
     },
 
     incrementItemQuantity: (state, action) => {
+      console.log('action.payload',action.payload);
       state.products = state.products.map((product) =>
-        product.productId === action.payload.product._id
+        product.productId === action.payload.product.productId
           ? { ...product, quantity: product.quantity + 1 }
           : product
       );
@@ -49,7 +50,7 @@ const cartSlice = createSlice({
 
     decrementItemQuantity: (state, action) => {
       state.products = state.products.map((product) =>
-        product.productId === action.payload.product._id
+        product.productId === action.payload.product.productId
           ? { ...product, quantity: product.quantity - 1 }
           : product
       );

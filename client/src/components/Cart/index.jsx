@@ -58,7 +58,7 @@ const Cart = ({ setShowCart }) => {
             {cart.products.length > 0 ? (
               <button onClick={handleCheckout}>Checkout</button>
             ) : (
-              <Link to="/shop">Continue Shopping</Link>
+              <button onClick={() => navigate('/shop')}>Continue Shopping</button>
             )}
           </div>
         </div>
