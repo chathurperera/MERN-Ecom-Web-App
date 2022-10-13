@@ -9,7 +9,6 @@ const verifyToken = (req, res, next) => {
        return res.status(403).json({ status: "error", error: err });
       }
       req.user = user;
-      console.log("user from verifyToken", user);
       next();
     });
   } else {

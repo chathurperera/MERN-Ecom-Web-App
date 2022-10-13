@@ -27,7 +27,7 @@ const OrdersTable = ({ cart }) => {
             <tbody>
               {cart.products?.map((product) => {
                 return (
-                  <tr key={product._id}>
+                  <tr key={product.productId}>
                     <td className={classes.product}>
                       <div className={classes.productImage}>
                         <img src={product?.imageUrl} alt={product?.name} />

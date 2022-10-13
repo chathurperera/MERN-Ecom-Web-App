@@ -21,10 +21,13 @@ const login = async (req, res) => {
       { expiresIn: "3d" }
     );
 
+    console.log('existingUser',existingUser);
+
     const user = {
       email: existingUser.email,
       firstName: existingUser.firstName,
       lastName: existingUser.lastName,
+      userId:existingUser._id
     };
 
     console.log(user);

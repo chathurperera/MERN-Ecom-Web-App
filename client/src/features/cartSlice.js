@@ -18,12 +18,10 @@ const cartSlice = createSlice({
     },
 
     deleteItem: (state, action) => {
-      const { _id, quantity, price } = action.payload.product;
-
-      state.products = state.products.filter((product) => product.productId !== _id);
+      const { productId, quantity, price } = action.payload.product;
+      state.products = state.products.filter((product) => product.productId !== productId);
       state.quantity -= 1;
       state.total -= quantity * price;
-      console.log("delete item ran");
     },
 
     addExistingProduct: (state, action) => {
@@ -39,7 +37,6 @@ const cartSlice = createSlice({
     },
 
     incrementItemQuantity: (state, action) => {
-      console.log('action.payload',action.payload);
       state.products = state.products.map((product) =>
         product.productId === action.payload.product.productId
           ? { ...product, quantity: product.quantity + 1 }
