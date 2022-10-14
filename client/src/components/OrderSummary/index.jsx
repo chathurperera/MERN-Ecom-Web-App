@@ -2,32 +2,37 @@ import React, { useState } from "react";
 import classes from "./OrderSummary.module.scss";
 import { Link } from "react-router-dom";
 import API from "api";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Spinner from "components/Spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { clearCart } from "features/cartSlice";
 
 const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const payload = {
     products: cart.products,
     userId: user.currentUser.user.userId,
   };
 
-  const handleCheckout = async () => {
+  const createCart = async () => {
     console.log("ran");
     setLoading(true);
-    setCheckoutStep(2);
-    setLoading(false);
-    // await API.post("/cart", payload)
-    //   .then((res) => {
-    //     setLoading(false);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    let cartId;
+    await API.post("/cart", payload)
+      .then((res) => {
+        console.log(res);
+        cartId = res.data.savedCart._id;
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+
+    return cartId;
   };
 
   const submitOrder = async () => {
@@ -35,6 +40,24 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
       toast.error("Please select a payment method");
       return;
     }
+
+    const cartId = await createCart();
+    const orderInfo = {
+      userId: user.currentUser.user.userId,
+      cartId: cartId,
+      total: cart.total,
+    };
+
+    await API.post("/order", orderInfo)
+      .then((res) => {
+        setLoading(false);
+        console.log(res);
+        dispatch(clearCart());
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
   };
 
   return (
@@ -60,7 +83,10 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
         </div>
       </div>
       {checkoutStep === 1 && (
-        <button className={classes.checkoutButton} onClick={handleCheckout}>
+        <button
+          className={classes.checkoutButton}
+          onClick={() => setCheckoutStep(2)}
+        >
           {loading ? <Spinner /> : "Check Out"}
         </button>
       )}
