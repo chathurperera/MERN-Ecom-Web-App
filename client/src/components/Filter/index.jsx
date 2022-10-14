@@ -84,10 +84,16 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
       <div className={classes.filterOption}>
         <div className={classes.filterCollapse}>Gender</div>
         <ul className={classes.filtersList}>
-          {genderTypes.map((gender ,index) => {
+          {genderTypes.map((gender, index) => {
             return (
               <li key={index}>
-                <input type="radio" name="gender" value={gender} id={gender} />
+                <input
+                  type="radio"
+                  name="gender"
+                  onChange={handleChange}
+                  value={gender}
+                  id={gender}
+                />
                 <label htmlFor={gender}>
                   {gender.charAt(0).toUpperCase() + gender.slice(1)}
                 </label>
@@ -142,15 +148,6 @@ const Filter = ({ filters, setFilters, setCategories, categories }) => {
               id="priceLvl4"
             />
             <label htmlFor="priceLvl4">$2000 - $3000</label>
-          </li>
-        </ul>
-      </div>
-      <div className={classes.filterOption}>
-        <div className={classes.filterCollapse}>Availability</div>
-        <ul className={classes.filtersList}>
-          <li>
-            <input type="checkbox" name="" id="inStock" />
-            <label htmlFor="inStock">In Stock</label>
           </li>
         </ul>
       </div>

@@ -14,10 +14,9 @@ const AllProducts = () => {
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(null);
   const [filters, setFilters] = useState({
-    rating: "",
     price: "",
-    sort: "",
-    availability: false,
+    gender: "",
+    sort: ""
   });
 
   const [isProductsLoading, setIsProductsLoading] = useState(false);
@@ -36,10 +35,9 @@ const AllProducts = () => {
   const queryParams = {
     category: categoryQueryParams,
     page: page,
-    rating: "",
     minPrice: "",
     maxPrice: "",
-    availability: true,
+    gender: ""
   };
 
   //Setting up the price query
@@ -47,6 +45,10 @@ const AllProducts = () => {
     const priceRange = filters.price?.split("-");
     queryParams.minPrice = priceRange[0] && priceRange[0];
     queryParams.maxPrice = priceRange[1] && priceRange[1];
+  }
+
+  if (filters.gender) {
+    queryParams.gender = filters.gender;
   }
 
   if (filters.sort) {
@@ -112,9 +114,15 @@ const AllProducts = () => {
         </div>
       </div>
       <div className={classes.pagination}>
-        {totalResults > 10 && <div className={classes.paginationHolder}>
-          <Pagination count={totalResults / 10} page={page} onChange={handlePagination} />
-        </div>}
+        {totalResults > 10 && (
+          <div className={classes.paginationHolder}>
+            <Pagination
+              count={totalResults / 10}
+              page={page}
+              onChange={handlePagination}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

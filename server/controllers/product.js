@@ -25,10 +25,14 @@ const createProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
-    const { category, sort, minPrice, maxPrice, rating } = req.query;
+    const { category, sort, minPrice, maxPrice,  gender} = req.query;
 
     let queryObject = {};
 
+    if(gender){
+      queryObject.gender = gender;
+    }
+    
     if (category) {
       const categories = category.split(",");
       queryObject.category = { $in: categories };
