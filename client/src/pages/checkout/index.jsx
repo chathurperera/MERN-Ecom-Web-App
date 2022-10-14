@@ -12,10 +12,9 @@ const Checkout = () => {
   const cart = useSelector((state) => state.cart);
   const [order, setOrder] = useState({});
 
-
   useEffect(() => {
     setOrder(cart);
-  },[])
+  }, []);
 
   console.log(cart);
   return (
@@ -30,14 +29,18 @@ const Checkout = () => {
           />
         )}
         {checkoutStep === 3 && (
-          <PaymentOptions setCheckoutStep={setCheckoutStep} />
+          <PaymentOptions
+            setCheckoutStep={setCheckoutStep}
+            setOrder={setOrder}
+          />
         )}
         <div>
-          {checkoutStep === 3 && <BillingAddress />}
+          {checkoutStep === 3 && <BillingAddress address={order.address}  />}
           <OrderSummary
             checkoutStep={checkoutStep}
             setCheckoutStep={setCheckoutStep}
             cart={cart}
+            order={order}
           />
         </div>
       </div>

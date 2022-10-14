@@ -6,10 +6,21 @@ import mastercard from "assets/images/mastercard.png";
 import visa from "assets/images/visa.png";
 import backArrow from "assets/images/back.png";
 
-const PaymentOptions = ({ setCheckoutStep }) => {
+const PaymentOptions = ({ setCheckoutStep, setOrder }) => {
   const [selectedValue, setSelectedValue] = useState(null);
+  
   const handleChange = (e) => {
     setSelectedValue(e.target.value);
+  };
+
+  const selectPaymentMethod = (method) => {
+    setSelectedValue(method);
+    setOrder((prevState) => {
+      return {
+        ...prevState,
+        paymentOption: method,
+      };
+    });
   };
 
   return (
@@ -18,7 +29,7 @@ const PaymentOptions = ({ setCheckoutStep }) => {
         <h3>Payment Options</h3>
         <div
           className={classes.option}
-          onClick={() => setSelectedValue("card")}
+          onClick={() => selectPaymentMethod("card")}
         >
           <div className={classes.optionContent}>
             <div>
@@ -42,7 +53,7 @@ const PaymentOptions = ({ setCheckoutStep }) => {
         </div>
         <div
           className={classes.option}
-          onClick={() => setSelectedValue("paypal")}
+          onClick={() => selectPaymentMethod("paypal")}
         >
           <div className={classes.optionContent}>
             <div>
@@ -66,7 +77,10 @@ const PaymentOptions = ({ setCheckoutStep }) => {
             <img src={paypal} alt="paypal logo" />
           </div>
         </div>
-        <div className={classes.option} onClick={() => setSelectedValue("cod")}>
+        <div
+          className={classes.option}
+          onClick={() => selectPaymentMethod("cod")}
+        >
           <div className={classes.optionContent}>
             <div>
               <Radio

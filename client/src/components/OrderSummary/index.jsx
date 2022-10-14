@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import API from "api";
 import { useSelector } from "react-redux";
 import Spinner from "components/Spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const OrderSummary = ({ setCheckoutStep, checkoutStep, cart }) => {
+const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
 
@@ -26,6 +28,13 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart }) => {
     //   .catch((error) => {
     //     console.log(error);
     //   });
+  };
+
+  const submitOrder = async () => {
+    if (!order.paymentOption) {
+      toast.error("Please select a payment method");
+      return;
+    }
   };
 
   return (
@@ -55,6 +64,12 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart }) => {
           {loading ? <Spinner /> : "Check Out"}
         </button>
       )}
+      {checkoutStep === 3 && (
+        <button className={classes.checkoutButton} onClick={submitOrder}>
+          {loading ? <Spinner /> : "Create Order"}
+        </button>
+      )}
+      <ToastContainer />
     </div>
   );
 };
