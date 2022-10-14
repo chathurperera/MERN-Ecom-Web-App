@@ -112,9 +112,9 @@ const AllProducts = () => {
         </div>
       </div>
       <div className={classes.pagination}>
-        <div className={classes.paginationHolder}>
-          <Pagination count={10} page={page} onChange={handlePagination} />
-        </div>
+        {totalResults > 10 && <div className={classes.paginationHolder}>
+          <Pagination count={totalResults / 10} page={page} onChange={handlePagination} />
+        </div>}
       </div>
     </div>
   );

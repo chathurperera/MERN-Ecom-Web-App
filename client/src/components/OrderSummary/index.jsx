@@ -17,15 +17,15 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart }) => {
   const handleCheckout = async () => {
     console.log("ran");
     setLoading(true);
-    await API.post("/cart", payload)
-      .then((res) => {
-        setLoading(false);
-        setCheckoutStep(2);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
+    setCheckoutStep(2);
+    setLoading(false);
+    // await API.post("/cart", payload)
+    //   .then((res) => {
+    //     setLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   return (

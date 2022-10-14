@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./checkout.module.scss";
 import CheckoutProgressBar from "components/CheckoutProgressBar";
 import OrdersTable from "components/OrdersTable";
@@ -10,6 +10,13 @@ import { useSelector } from "react-redux";
 const Checkout = () => {
   const [checkoutStep, setCheckoutStep] = useState(1);
   const cart = useSelector((state) => state.cart);
+  const [order, setOrder] = useState({});
+
+
+  useEffect(() => {
+    setOrder(cart);
+  },[])
+
   console.log(cart);
   return (
     <div className={classes.checkout}>
@@ -17,7 +24,10 @@ const Checkout = () => {
       <div className={classes.order}>
         {checkoutStep === 1 && <OrdersTable cart={cart} />}
         {checkoutStep === 2 && (
-          <SelectAddress setCheckoutStep={setCheckoutStep} />
+          <SelectAddress
+            setCheckoutStep={setCheckoutStep}
+            setOrder={setOrder}
+          />
         )}
         {checkoutStep === 3 && (
           <PaymentOptions setCheckoutStep={setCheckoutStep} />
