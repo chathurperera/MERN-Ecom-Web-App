@@ -38,7 +38,7 @@ const Routing = () => {
         >
           <Route index element={<Profile />} />
           <Route path="/my-account/orders" element={<Orders />} />
-          <Route path="/my-account/orders/:id" element={<ViewOrder />} />
+          <Route path="/my-account/view-order/:id" element={<ViewOrder />} />
         </Route>
       </Routes>
     </BrowserRouter>
