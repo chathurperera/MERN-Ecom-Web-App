@@ -2,10 +2,10 @@ import API from "api";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import classes from "./orders.module.scss";
-
+import { useNavigate } from "react-router-dom";
 const Orders = () => {
   const user = useSelector((state) => state.user);
-
+  const navigate = useNavigate();
   useEffect(() => {
     getAllOrders();
   }, []);
@@ -32,7 +32,11 @@ const Orders = () => {
         <td>${order.total}.00</td>
         <td>
           <div>
-            <button>View</button>
+            <button
+              onClick={() => navigate(`/my-account/view-order/${order.cartId}`)}
+            >
+              View
+            </button>
             <button>Invoice</button>
           </div>
         </td>

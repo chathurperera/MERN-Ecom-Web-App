@@ -18,6 +18,9 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
   const payload = {
     products: cart.products,
     userId: user.currentUser.user.userId,
+    total: cart.total,
+    address: cart.address,
+    paymentMethod: order.paymentMethod,
   };
 
   const createCart = async () => {
@@ -38,12 +41,13 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
   };
 
   const submitOrder = async () => {
-    if (!order.paymentOption) {
+    if (!order.paymentMethod) {
       toast.error("Please select a payment method");
       return;
     }
 
     const cartId = await createCart();
+    
     const orderInfo = {
       userId: user.currentUser.user.userId,
       cartId: cartId,

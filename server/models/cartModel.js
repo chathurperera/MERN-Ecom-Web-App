@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-
 const CartSchema = mongoose.Schema(
   {
     products: [
@@ -28,6 +27,15 @@ const CartSchema = mongoose.Schema(
         },
       },
     ],
+    total: {
+      type: Number,
+    },
+    paymentMethod: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
     userId: {
       type: Schema.Types.ObjectId,
       ref: "User",

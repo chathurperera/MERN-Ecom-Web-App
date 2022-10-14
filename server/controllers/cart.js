@@ -10,6 +10,18 @@ const createCart = async (req, res) => {
   }
 };
 
+const getSingleCart = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const cart = await Cart.findById(id).exec();
+    
+    res.status(200).json({ status: "success", cart });
+  } catch (error) {
+    res.status(500).json({ status: "error", error: error });
+  }
+};
+
 module.exports = {
+  getSingleCart,
   createCart,
 };

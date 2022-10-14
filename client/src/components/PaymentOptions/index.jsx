@@ -18,7 +18,7 @@ const PaymentOptions = ({ setCheckoutStep, setOrder }) => {
     setOrder((prevState) => {
       return {
         ...prevState,
-        paymentOption: method,
+        paymentMethod: method,
       };
     });
   };
