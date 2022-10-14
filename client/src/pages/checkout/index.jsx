@@ -7,7 +7,9 @@ import SelectAddress from "components/SelectAddress";
 import PaymentOptions from "components/PaymentOptions";
 import BillingAddress from "components/BillingAddress";
 import { useSelector } from "react-redux";
-const Checkout = () => {
+import { Navigate } from "react-router-dom";
+
+const Checkout = ({ user }) => {
   const [checkoutStep, setCheckoutStep] = useState(1);
   const cart = useSelector((state) => state.cart);
   const [order, setOrder] = useState({});
@@ -17,6 +19,11 @@ const Checkout = () => {
   }, []);
 
   console.log(cart);
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+  
   return (
     <div className={classes.checkout}>
       <CheckoutProgressBar checkoutStep={checkoutStep} />
@@ -35,7 +42,7 @@ const Checkout = () => {
           />
         )}
         <div>
-          {checkoutStep === 3 && <BillingAddress address={order.address}  />}
+          {checkoutStep === 3 && <BillingAddress address={order.address} />}
           <OrderSummary
             checkoutStep={checkoutStep}
             setCheckoutStep={setCheckoutStep}

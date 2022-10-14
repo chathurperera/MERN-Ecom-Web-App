@@ -3,12 +3,16 @@ import { Outlet } from "react-router-dom";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import classes from "./userSharedLayout.module.scss";
-const userSharedLayout = () => {
+import { Navigate } from "react-router-dom";
+const userSharedLayout = ({ user }) => {
+  if (!user) {
+    return <Navigate to="/login" replace/>;
+  }
   return (
     <div>
       <Header />
       <div className={classes.layoutWrapper}>
-        <Sidebar /> 
+        <Sidebar />
         <Outlet />
       </div>
     </div>
