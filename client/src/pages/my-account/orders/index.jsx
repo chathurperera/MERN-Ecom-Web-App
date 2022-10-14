@@ -1,7 +1,45 @@
-import React from "react";
+import API from "api";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import classes from "./orders.module.scss";
 
-const orders = () => {
+const Orders = () => {
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    getAllOrders();
+  }, []);
+
+  const [orders, setOrders] = useState();
+
+  const getAllOrders = async () => {
+    await API.get(`/order/${user.currentUser.user.userId}`)
+      .then((res) => {
+        setOrders(res.data.orders);
+        console.log("res", res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const tableData = orders?.map((order) => {
+    return (
+      <tr key={order._id}>
+        <td>#{order._id}</td>
+        <td>August 29, 2022</td>
+        <td>{order.status}</td>
+        <td>${order.total}.00</td>
+        <td>
+          <div>
+            <button>View</button>
+            <button>Invoice</button>
+          </div>
+        </td>
+      </tr>
+    );
+  });
+
   return (
     <div className={classes.orders}>
       <div className={classes.ordersHolder}>
@@ -15,24 +53,11 @@ const orders = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>#568908</td>
-              <td>August 29, 2022</td>
-              <td>Completed</td>
-              <td>LKR 4,025.00 for 1 item</td>
-              <td>
-                <div>
-                  <button>View</button>
-                  <button>Invoice</button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
+          <tbody>{tableData}</tbody>
         </table>
       </div>
     </div>
   );
 };
 
-export default orders;
+export default Orders;

@@ -11,6 +11,17 @@ const createOrder = async (req, res) => {
   }
 };
 
+const getUserOrders = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const orders = await Order.find({ userId: id }).lean().exec();
+    console.log(orders);
+    res.status(200).json({ status: "success", orders });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
 module.exports = {
   createOrder,
+  getUserOrders,
 };

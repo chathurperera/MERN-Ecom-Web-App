@@ -30,7 +30,6 @@ const Sidebar = () => {
         <div className={classes.sideLink}>
           <Link
             to="/my-account/orders"
-            activeClassName={classes.sidebarActiveLink}
           >
             <img src={shoppingBag} alt="shopping bag" />
             Orders
