@@ -16,11 +16,11 @@ const Cart = ({ setShowCart }) => {
 
   console.log("cart", cart);
 
-  const handleCheckout = () => {
-    if (!user.currentUser) {
-      navigate("/login");
-    } else {
+  const handleNavigation = (navigateTo) => {
+    if (navigateTo === "checkout") {
       navigate("/checkout");
+    } else {
+      navigate("/shop");
     }
     setShowCart(false);
   };
@@ -56,9 +56,11 @@ const Cart = ({ setShowCart }) => {
           </div>
           <div className={classes.btns}>
             {cart.products.length > 0 ? (
-              <button onClick={handleCheckout}>Checkout</button>
+              <button onClick={() => handleNavigation("checkout")}>Checkout</button>
             ) : (
-              <button onClick={() => navigate('/shop')}>Continue Shopping</button>
+              <button onClick={() =>  handleNavigation("shop")}>
+                Continue Shopping
+              </button>
             )}
           </div>
         </div>

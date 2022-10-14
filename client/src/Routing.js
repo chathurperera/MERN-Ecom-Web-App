@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 
 const Routing = () => {
   const user = useSelector((state) => state.user);
+  console.log(user.currentUser);
   return (
     <BrowserRouter>
       <Routes>
@@ -26,14 +27,12 @@ const Routing = () => {
           <Route path="all-products/:id" element={<SingleProduct />} />
           <Route
             path="checkout"
-            user={user.currentUser}
-            element={<Checkout />}
+            element={<Checkout user={user.currentUser} />}
           />
         </Route>
         <Route
           path="/my-account"
-          user={user.currentUser}
-          element={<UserSharedLayout />}
+          element={<UserSharedLayout user={user.currentUser} />}
         >
           <Route index element={<Profile />} />
           <Route path="/my-account/orders" element={<Orders />} />
