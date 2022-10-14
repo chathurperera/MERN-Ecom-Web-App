@@ -11,6 +11,7 @@ import ViewOrder from "./pages/my-account/view-order";
 import AllProducts from "./pages/shop";
 import SingleProduct from "./pages/single-product";
 import Checkout from "./pages/checkout";
+import OrderSuccess from "./pages/order-success";
 import { useSelector } from "react-redux";
 
 const Routing = () => {
@@ -29,6 +30,7 @@ const Routing = () => {
             path="checkout"
             element={<Checkout user={user.currentUser} />}
           />
+          <Route path="order-success/:id" element={<OrderSuccess />} />
         </Route>
         <Route
           path="/my-account"

@@ -7,11 +7,13 @@ import Spinner from "components/Spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { clearCart } from "features/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const payload = {
     products: cart.products,
@@ -52,6 +54,7 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
       .then((res) => {
         setLoading(false);
         console.log(res);
+        navigate(`/order-success/${res.data.savedOrder._id}`);
         dispatch(clearCart());
       })
       .catch((error) => {
