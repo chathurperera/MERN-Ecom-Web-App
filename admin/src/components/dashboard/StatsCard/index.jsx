@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./StatsCard.module.scss";
-import totalProducts from "assets/images/products.png";
-import revenue from "assets/images/increasing.png";
-import users from "assets/images/group.png";
-import cart from "assets/images/shopping-cart.png";
+import totalProductsIcon from "assets/images/products.png";
+import revenueIcon from "assets/images/increasing.png";
+import usersIcon from "assets/images/group.png";
+import cartIcon from "assets/images/shopping-cart.png";
+import API from "api";
+
 const StatsCard = () => {
+  useEffect(() => {
+
+  },[])
+
+  const [allOrders, setAllOrders] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
+
+
   return (
     <div className={classes.statsCard}>
       <div className={classes.stats}>
@@ -13,7 +24,7 @@ const StatsCard = () => {
           <h3 className={classes.count}>765</h3>
         </div>
         <div className={classes.iconWrapper}>
-          <img src={totalProducts} alt="total products" />
+          <img src={totalProductsIcon} alt="total products" />
         </div>
       </div>
       <div className={classes.stats}>
@@ -22,7 +33,7 @@ const StatsCard = () => {
           <h3 className={classes.count}>765</h3>
         </div>
         <div className={classes.iconWrapper}>
-          <img src={revenue} alt="total revenue" />
+          <img src={revenueIcon} alt="total revenue" />
         </div>
       </div>
       <div className={classes.stats}>
@@ -31,7 +42,7 @@ const StatsCard = () => {
           <h3 className={classes.count}>20</h3>
         </div>
         <div className={classes.iconWrapper}>
-          <img src={users} alt="total users" />
+          <img src={usersIcon} alt="total users" />
         </div>
       </div>
       <div className={classes.stats}>
@@ -40,7 +51,7 @@ const StatsCard = () => {
           <h3 className={classes.count}>50</h3>
         </div>
         <div className={classes.iconWrapper}>
-          <img src={cart} alt="total orders" />
+          <img src={cartIcon} alt="total orders" />
         </div>
       </div>
     </div>

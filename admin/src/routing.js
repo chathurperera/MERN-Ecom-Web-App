@@ -6,6 +6,8 @@ import PanelLayout from "./layouts/panelLayout";
 import Products from "./pages/products";
 import EditProduct from "pages/edit-product";
 import CreateProduct from "pages/create-product";
+import '../src/App.scss';
+
 
 const Routing = () => {
   return (
