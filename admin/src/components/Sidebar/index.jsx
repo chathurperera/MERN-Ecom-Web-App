@@ -34,12 +34,12 @@ const Sidebar = () => {
         </Link>
       </div>
       <div className={classes.sidebar__option}>
-        <Link to="/all-order">
+        <Link to="/all-orders">
           <img src={ordersIcon} alt="all orders icon" /> Orders
         </Link>
       </div>
       <div className={classes.sidebar__option}>
-        <Link to="/all-users"> 
+        <Link to="/all-users">
           <img src={groupIcon} alt="all users icon" /> Users
         </Link>
       </div>

@@ -20,6 +20,24 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+const updateOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedOrder = await Order.findOneAndUpdate({ _id: id }, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updatedOrder) {
+      return res.status(400).json({ message: "Order doesn't exists" });
+    }
+
+    res.status(200).json({ message: "Order updated", data: updatedOrder });
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+};
+
 const getUserOrders = async (req, res) => {
   try {
     const { id } = req.params;
@@ -30,8 +48,10 @@ const getUserOrders = async (req, res) => {
     res.status(500).json({ message: "Something went wrong" });
   }
 };
+
 module.exports = {
   getAllOrders,
   createOrder,
+  updateOrder,
   getUserOrders,
 };
