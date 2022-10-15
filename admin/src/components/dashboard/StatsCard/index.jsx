@@ -6,22 +6,27 @@ import usersIcon from "assets/images/group.png";
 import cartIcon from "assets/images/shopping-cart.png";
 import API from "api";
 
-const StatsCard = () => {
+const StatsCard = ({ allOrders, allUsers, allProducts }) => {
+  const [totalRevenue, setTotalRevenue] = useState(null);
   useEffect(() => {
+    let totalRevenue = 0;
+    if (allOrders) {
+      console.log('allOrders',allOrders)
+      for (let order of [...allOrders]) {
+        totalRevenue += Number(order.total);
+      }
+    }
+    setTotalRevenue(totalRevenue);
+  },[]);
 
-  },[])
-
-  const [allOrders, setAllOrders] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
-  const [allUsers, setAllUsers] = useState([]);
-
+  console.log("totalRevenue", totalRevenue);
 
   return (
     <div className={classes.statsCard}>
       <div className={classes.stats}>
         <div className={classes.data}>
           <p className={classes.title}>Total Products</p>
-          <h3 className={classes.count}>765</h3>
+          <h3 className={classes.count}>{allProducts?.length}</h3>
         </div>
         <div className={classes.iconWrapper}>
           <img src={totalProductsIcon} alt="total products" />
@@ -30,7 +35,7 @@ const StatsCard = () => {
       <div className={classes.stats}>
         <div className={classes.data}>
           <p className={classes.title}>Revenue</p>
-          <h3 className={classes.count}>765</h3>
+          <h3 className={classes.count}>${totalRevenue}</h3>
         </div>
         <div className={classes.iconWrapper}>
           <img src={revenueIcon} alt="total revenue" />
@@ -39,7 +44,7 @@ const StatsCard = () => {
       <div className={classes.stats}>
         <div className={classes.data}>
           <p className={classes.title}>Total signups</p>
-          <h3 className={classes.count}>20</h3>
+          <h3 className={classes.count}>{allUsers?.length}</h3>
         </div>
         <div className={classes.iconWrapper}>
           <img src={usersIcon} alt="total users" />
@@ -48,7 +53,7 @@ const StatsCard = () => {
       <div className={classes.stats}>
         <div className={classes.data}>
           <p className={classes.title}>Total Orders</p>
-          <h3 className={classes.count}>50</h3>
+          <h3 className={classes.count}>{allOrders?.length}</h3>
         </div>
         <div className={classes.iconWrapper}>
           <img src={cartIcon} alt="total orders" />
