@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-console.log("token setup");
-console.log("token ", token);
+const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+const currentUser = user && JSON.parse(user).currentUser;
+const token = currentUser?.token;
 
 const API = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
