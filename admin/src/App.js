@@ -10,17 +10,15 @@ import "../src/App.scss";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="/" element={<PanelLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="products" element={<Products />} />
-          <Route path="create-product" element={<CreateProduct />} />
-          <Route path="products/edit/:id" element={<EditProduct />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="login" element={<Login />} />
+      <Route path="/" element={<PanelLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="products" element={<Products />} />
+        <Route path="create-product" element={<CreateProduct />} />
+        <Route path="products/edit/:id" element={<EditProduct />} />
+      </Route>
+    </Routes>
   );
 };
 
