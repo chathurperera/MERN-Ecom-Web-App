@@ -7,12 +7,14 @@ import Products from "./pages/products";
 import EditProduct from "pages/edit-product";
 import CreateProduct from "pages/create-product";
 import "../src/App.scss";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const user = useSelector(state => state.user);
   return (
     <Routes>
       <Route path="login" element={<Login />} />
-      <Route path="/" element={<PanelLayout />}>
+      <Route path="/" element={<PanelLayout user={user.currentUser} />}>
         <Route index element={<Dashboard />} />
         <Route path="products" element={<Products />} />
         <Route path="create-product" element={<CreateProduct />} />

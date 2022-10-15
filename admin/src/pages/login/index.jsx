@@ -3,14 +3,20 @@ import classes from "./login.module.scss";
 import API from "api";
 import { useNavigate } from "react-router-dom";
 import Spinner from "components/Spinner";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { loginStart, loginSuccess, loginFailure } from "features/userSlice";
+
 const Login = () => {
   const [userInput, setUserInput] = useState({
     email: "admin@gmail.com",
     password: "admin123",
   });
-  const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const user = useSelector((state) => state.user);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,20 +28,19 @@ const Login = () => {
     if (!userInput.email || !userInput.password) {
       return;
     }
-    setLoading(true);
-    console.log("submitted");
+    dispatch(loginStart());
+    
     await API.post("/login", userInput)
       .then((res) => {
-        setLoading(false);
-        console.log(res);
-        localStorage.setItem("token", res.data.data);
+        dispatch(loginSuccess(res.data.data));
         navigate("/");
       })
       .catch((error) => {
+        dispatch(loginFailure());
         console.log(error);
-        setLoading(false);
       });
   };
+  
   return (
     <div className={classes.login}>
       <form className={classes.loginHolder} onSubmit={submitDetails}>
@@ -62,7 +67,7 @@ const Login = () => {
             placeholder="enter your password"
           />
         </div>
-        <button>{loading ? <Spinner /> : " Login"}</button>
+        <button>{user.isFetching ? <Spinner /> : " Login"}</button>
       </form>
     </div>
   );

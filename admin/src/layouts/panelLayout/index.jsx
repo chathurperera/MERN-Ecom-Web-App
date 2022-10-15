@@ -2,15 +2,20 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import classes from "./panelLayout.module.scss";
-
-const PanelLayout = () => {
+import { Navigate } from "react-router-dom";
+const PanelLayout = ({user}) => {
+  console.log('user',user)
+  
+  if (!user) {
+    return <Navigate to="/login" replace/>;
+  }
   return (
-    <div className={classes.layout}>
+    <main className={classes.layout}>
       <Sidebar />
       <div className={classes.outletWrapper}>
         <Outlet />
       </div>
-    </div>
+    </main>
   );
 };
 
