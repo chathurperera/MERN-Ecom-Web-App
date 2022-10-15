@@ -5,6 +5,8 @@ import moment from "moment";
 import deleteIcon from "assets/images/delete.png";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AllOrders = () => {
   const [allOrders, setAllOrders] = useState();
@@ -22,9 +24,20 @@ const AllOrders = () => {
         console.log(error);
       });
   };
-  
-  const handleChange = (e) => {
-    console.log(e);
+
+  const handleChange = async (e, orderId) => {
+    const value = e.target.value;
+    console.log(value);
+    console.log(orderId);
+    await API.patch(`/order/${orderId}`, { status: value })
+      .then((res) => {
+        console.log(res);
+        toast.success("Order updated Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Something went wrong");
+      });
   };
 
   const deleteOrder = async (orderId) => {};
@@ -55,11 +68,11 @@ const AllOrders = () => {
                   <td className={classes.status}>
                     {/* {item.status} */}
                     <Select
-                    fullWidth
+                      fullWidth
                       defaultValue={item.status}
                       id="demo-select-small"
                       size="small"
-                      onChange={handleChange}
+                      onChange={(e) => handleChange(e,item._id)}
                     >
                       <MenuItem value="Not processed">Not processed</MenuItem>
                       <MenuItem value="Processing">Processing</MenuItem>
@@ -82,6 +95,7 @@ const AllOrders = () => {
           </tbody>
         </table>
       </div>
+      <ToastContainer />
     </div>
   );
 };
