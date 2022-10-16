@@ -7,6 +7,7 @@ import Products from "./pages/products";
 import EditProduct from "pages/edit-product";
 import CreateProduct from "pages/create-product";
 import AllOrders from "pages/all-orders";
+import AllUsers from "pages/all-users";
 import "../src/App.scss";
 import { useSelector } from "react-redux";
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="products" element={<Products />} />
         <Route path="create-product" element={<CreateProduct />} />
         <Route path="all-orders" element={<AllOrders />} />
+        <Route path="all-users" element={<AllUsers />} />
         <Route path="products/edit/:id" element={<EditProduct />} />
       </Route>
     </Routes>
