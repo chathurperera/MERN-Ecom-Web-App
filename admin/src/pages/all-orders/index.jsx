@@ -53,7 +53,7 @@ const AllOrders = () => {
         console.log(error);
       });
   };
-  
+
   const headings = ["Order ID", "User ID", "Date", "total", "status"];
 
   return (
@@ -106,6 +106,11 @@ const AllOrders = () => {
                 </tr>
               );
             })}
+            {allOrders?.length < 1 && (
+              <tr>
+                <h4>No orders found</h4>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
