@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+const user = JSON.parse(localStorage.getItem("persist:rootUser"))?.user;
 const currentUser = user && JSON.parse(user).currentUser;
 const token = currentUser?.token;
 

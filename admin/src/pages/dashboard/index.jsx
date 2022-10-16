@@ -1,14 +1,19 @@
-import API from "api";
 import React, { useEffect, useState } from "react";
 import StatsCard from "../../components/dashboard/StatsCard";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import classes from "./dashboard.module.scss";
+import { useSelector } from "react-redux";
+import API from "api";
 
 const Dashboard = () => {
+  const user = useSelector((state) => state.user);
+
+  API.defaults.headers.token = `Bearer ${user.currentUser.token}`;
+
   useEffect(() => {
     fetchAll();
-  }, []);
+  }, [user]);
 
   const [isFetching, setIsFetching] = useState(true);
   const [allUsers, setAllUsers] = useState();
@@ -17,17 +22,19 @@ const Dashboard = () => {
 
   const fetchAll = async () => {
     setIsFetching(true);
-    const allProducts = API.get("/products");
-    const allOrders = API.get("/order");
-    const allUsers = API.get("/");
+
+    const fetchAllProducts = API.get("/products");
+    const fetchAllUsers = API.get("/");
+    const fetchAllOrders = API.get("/order");
 
     const [productsResponse, ordersResponse, usersResponse] = await Promise.all(
-      [allProducts, allOrders, allUsers]
+      [fetchAllProducts, fetchAllOrders, fetchAllUsers]
     );
 
-    setAllProducts(productsResponse?.data.data);
     setAllOrders(ordersResponse?.data.data);
     setAllUsers(usersResponse?.data.data);
+    setAllProducts(productsResponse?.data.data);
+
     setIsFetching(false);
   };
 

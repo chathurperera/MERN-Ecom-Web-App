@@ -4,22 +4,22 @@ import totalProductsIcon from "assets/images/products.png";
 import revenueIcon from "assets/images/increasing.png";
 import usersIcon from "assets/images/group.png";
 import cartIcon from "assets/images/shopping-cart.png";
-import API from "api";
 
 const StatsCard = ({ allOrders, allUsers, allProducts }) => {
   const [totalRevenue, setTotalRevenue] = useState(null);
+
   useEffect(() => {
     let totalRevenue = 0;
+    
     if (allOrders) {
-      console.log('allOrders',allOrders)
       for (let order of [...allOrders]) {
         totalRevenue += Number(order.total);
       }
     }
-    setTotalRevenue(totalRevenue);
-  },[]);
 
-  console.log("totalRevenue", totalRevenue);
+    setTotalRevenue(totalRevenue);
+  }, []);
+
 
   return (
     <div className={classes.statsCard}>
