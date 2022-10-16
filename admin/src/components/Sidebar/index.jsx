@@ -7,22 +7,27 @@ import groupIcon from "../../assets/images/sidebar/group.png";
 import shoppingBag from "../../assets/images/shoppingBag.svg";
 import addProducts from "../../assets/images/addProducts.svg";
 import logoutIcon from "../../assets/images/sidebar/logout.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { logOut } from "features/userSlice";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.user);
   return (
     <div className={classes.sidebar}>
       <div className={classes.head}>
         <div className={classes.avatar}>
-          <p>J</p>
+          <p>{user.currentUser?.user.firstName[0].toUpperCase()}</p>
         </div>
         <div className={classes.adminName}>
           <p>Welcome back</p>
-          <p>Jon doe</p>
+          <p>
+            {user.currentUser?.user.firstName +
+              " " +
+              user.currentUser?.user.lastName}
+          </p>
         </div>
       </div>
       <div className={classes.sidebar__option}>

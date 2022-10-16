@@ -29,8 +29,11 @@ const AllUsers = () => {
     await API.delete(`/${userId}`)
       .then((res) => {
         console.log(res);
+        toast.success("User deleted");
+        getAllUsers();
       })
       .catch((error) => {
+        toast.error("Something went wrong!");
         console.log(error);
       });
   };
