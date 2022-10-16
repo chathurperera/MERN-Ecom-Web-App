@@ -6,9 +6,12 @@ const verifyToken = (req, res, next) => {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
+        console.log('error while verifying the token')
        return res.status(403).json({ status: "error", error: err });
       }
+      console.log('token verified')
       req.user = user;
+      console.log('verified user :',user)
       next();
     });
   } else {
@@ -32,6 +35,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
     if (req.user.isAdmin) {
       next();
     } else {
+      console.log('req.user.isAdmin is not an admin' , req.user.isAdmin)
       res
         .status(403)
         .json({ status: "error", error: "Authentication failed!" });

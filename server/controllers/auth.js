@@ -18,10 +18,10 @@ const login = async (req, res) => {
         isAdmin: existingUser.isAdmin,
       },
       SECRET,
-      { expiresIn: "3d" }
+      { expiresIn: "1d" }
     );
 
-    console.log("existingUser", existingUser);
+    // console.log("existingUser", existingUser);
 
     const user = {
       email: existingUser.email,

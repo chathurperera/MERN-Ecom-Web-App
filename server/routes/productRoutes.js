@@ -26,9 +26,9 @@ router.post("/", verifyTokenAndAdmin, createProduct);
 router.post("/upload", verifyTokenAndAdmin, upload.single('image') , uploadImage);
 router.delete("/:id", verifyTokenAndAdmin, deleteProduct);
 router.patch("/:id", verifyTokenAndAdmin, updateProduct);
+router.get("/",verifyTokenAndAdmin , getAllProducts);
 
 // PUBLIC ROUTES
-router.get("/", getAllProducts);
 router.get("/search", searchProducts);
 router.get("/:id", getSingleProduct);
 
