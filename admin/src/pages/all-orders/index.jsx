@@ -40,8 +40,22 @@ const AllOrders = () => {
       });
   };
 
-  const deleteOrder = async (orderId) => {};
+  const deleteOrder = async (orderId, cartId) => {
+    console.log("typeof orderId === 'string'", typeof orderId === "string");
+    console.log("typeof cartId === 'string'", typeof cartId === "string");
+    await API.delete(`/order/${orderId}`)
+      .then((res) => {
+        toast.success("Order deleted Successfully");
+        getAllOrders();
+      })
+      .catch((error) => {
+        toast.success("Something went wrong");
+        console.log(error);
+      });
+  };
+  
   const headings = ["Order ID", "User ID", "Date", "total", "status"];
+
   return (
     <div className={classes.addOrders}>
       <div className={classes.head}>
@@ -51,8 +65,8 @@ const AllOrders = () => {
         <table className={classes.allOrdersTable}>
           <thead>
             <tr>
-              {headings.map((heading) => (
-                <th>{heading}</th>
+              {headings.map((heading, index) => (
+                <th key={index}>{heading}</th>
               ))}
               <th></th>
             </tr>
@@ -60,7 +74,7 @@ const AllOrders = () => {
           <tbody>
             {allOrders?.map((item, index) => {
               return (
-                <tr key={index}>
+                <tr key={item._id}>
                   <td>{item._id}</td>
                   <td>{item.userId}</td>
                   <td>{moment(item.createdAt).format("LL")}</td>
@@ -72,7 +86,7 @@ const AllOrders = () => {
                       defaultValue={item.status}
                       id="demo-select-small"
                       size="small"
-                      onChange={(e) => handleChange(e,item._id)}
+                      onChange={(e) => handleChange(e, item._id)}
                     >
                       <MenuItem value="Not processed">Not processed</MenuItem>
                       <MenuItem value="Processing">Processing</MenuItem>
@@ -84,7 +98,7 @@ const AllOrders = () => {
                     <div className={classes.actionButtons}>
                       <img
                         src={deleteIcon}
-                        onClick={() => deleteOrder(item._id)}
+                        onClick={() => deleteOrder(item._id, item.cartId)}
                         alt="delete item"
                       />
                     </div>

@@ -1,4 +1,6 @@
 const Order = require("../models/orderModel");
+const Cart = require("../models/cartModel");
+const Product = require("../models/productModel");
 
 const createOrder = async (req, res) => {
   try {
@@ -38,6 +40,23 @@ const updateOrder = async (req, res) => {
   }
 };
 
+const deleteOrder = async (req, res) => {
+  try {
+    const orderId = req.params.id;
+    const order = await Order.findOne({ _id: orderId });
+    const foundCart = await Cart.findOne({ _id: order.cartId });
+
+    increaseQuantity(foundCart.products);
+
+    await Order.deleteOne({ _id: orderId });
+    await Cart.deleteOne({ _id: foundCart._id });
+    
+    res.status(200).json({ message: "Order deleted" });
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+};
+
 const getUserOrders = async (req, res) => {
   try {
     const { id } = req.params;
@@ -49,11 +68,22 @@ const getUserOrders = async (req, res) => {
   }
 };
 
-
+const increaseQuantity = (products) => {
+  let bulkOptions = products.map((product) => {
+    return {
+      updateOne: {
+        filter: { _id: product.foundCart },
+        update: { $inc: { quantity: product.quantity } },
+      },
+    };
+  });
+  Product.bulkWrite(bulkOptions);
+};
 
 module.exports = {
   getAllOrders,
   createOrder,
   updateOrder,
   getUserOrders,
+  deleteOrder,
 };

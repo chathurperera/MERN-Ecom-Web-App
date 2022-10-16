@@ -4,6 +4,7 @@ const {
   createOrder,
   getUserOrders,
   getAllOrders,
+  deleteOrder,
   updateOrder,
 } = require("../controllers/order");
 const {
@@ -13,6 +14,7 @@ const {
 
 router.post("/", verifyToken, createOrder);
 router.get("/", verifyTokenAndAdmin, getAllOrders);
+router.delete("/:id", verifyTokenAndAdmin, deleteOrder);
 router.patch("/:id", verifyTokenAndAdmin, updateOrder);
 router.get("/:id", verifyToken, getUserOrders);
 
