@@ -6,7 +6,14 @@ import ordersIcon from "../../assets/images/sidebar/shopping-cart.png";
 import groupIcon from "../../assets/images/sidebar/group.png";
 import shoppingBag from "../../assets/images/shoppingBag.svg";
 import addProducts from "../../assets/images/addProducts.svg";
+import logoutIcon from "../../assets/images/sidebar/logout.png";
+import { useDispatch } from "react-redux";
+
+import { logOut } from "features/userSlice";
+
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className={classes.sidebar}>
       <div className={classes.head}>
@@ -42,6 +49,12 @@ const Sidebar = () => {
         <Link to="/all-users">
           <img src={groupIcon} alt="all users icon" /> Users
         </Link>
+      </div>
+      <div
+        className={classes.sidebar__option}
+        onClick={() => dispatch(logOut())}
+      >
+        <img src={logoutIcon} alt="all users icon" /> Logout
       </div>
     </div>
   );
