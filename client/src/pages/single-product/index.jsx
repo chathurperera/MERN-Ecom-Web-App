@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import classes from "./single-product.module.scss";
-import macBook2 from "../../assets/images/Mac Book 3.png";
+import shoppingCartIcon from "../../assets/images/shopping-cart-icon.png";
 import API from "api";
 import { addProduct, deleteItem, addExistingProduct } from "features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Spinner from "components/Spinner";
 const SingleProduct = () => {
   const [product, setProduct] = useState();
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
-
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
   const cart = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
@@ -20,16 +21,24 @@ const SingleProduct = () => {
   }, []);
 
   const addToCart = async () => {
+    
+    setIsAddingToCart(true);
+    const addingTimeout = setTimeout(() => setIsAddingToCart(false), 1000);
+
     const existingItem = cart.products?.find(
       (product) => product.productId === id
     );
+
     if (existingItem) {
       const totalPrice = product.price * quantity;
       dispatch(addExistingProduct({ id, quantity, totalPrice }));
+      setIsAddingToCart(false);
+      clearTimeout(addingTimeout);
       setQuantity(1);
       setColor("");
       return;
     }
+
     dispatch(
       addProduct({
         productId: id,
@@ -40,6 +49,7 @@ const SingleProduct = () => {
         quantity,
       })
     );
+
     setQuantity(1);
     setColor("");
   };
@@ -127,8 +137,18 @@ const SingleProduct = () => {
                 {quantity}
                 <button onClick={() => handleQuantity("add")}>+</button>
               </div>
+              <small>Available {product?.quantity}</small>
             </div>
-            <button className={classes.addToCart} onClick={addToCart}>
+            <button
+              className={classes.addToCart}
+              onClick={addToCart}
+              disabled={isAddingToCart}
+            >
+              {isAddingToCart ? (
+                <Spinner />
+              ) : (
+                <img src={shoppingCartIcon} alt="a cart" />
+              )}
               Add To Cart
             </button>
           </div>

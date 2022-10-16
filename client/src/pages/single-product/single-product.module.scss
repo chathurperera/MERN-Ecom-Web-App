@@ -57,7 +57,7 @@
       margin-top: 25px;
       font-size: 15px;
     }
-    .productCustomize{
+    .productCustomize {
       padding-top: 20px;
       display: flex;
       align-items: center;
@@ -72,10 +72,10 @@
       }
     }
     .quantity {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       padding-top: 30px;
+      small {
+        color: rgb(99, 115, 129);
+      }
       .quantityCounter {
         display: flex;
         flex-direction: row;
@@ -132,24 +132,33 @@
         }
       }
     }
-    .actionButtons{
+    .actionButtons {
       display: flex;
       align-items: center;
       gap: 20px;
     }
     .addToCart {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       margin-top: 20px;
       border: none;
       min-width: 120px;
       border-radius: 30px;
-      padding: 10px;
+      padding: 10px 12px;
       text-align: center;
       color: #fff;
       cursor: pointer;
       font-size: 14px;
       background-color: #0063ff;
       transition: all ease 0.2s;
+      &:disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+      }
+      img {
+        width: 18px;
+      }
       &:hover {
         background: #0062ffe0;
       }
