@@ -4,7 +4,6 @@ import Sidebar from "../../components/Sidebar";
 import classes from "./panelLayout.module.scss";
 import { Navigate } from "react-router-dom";
 const PanelLayout = ({user}) => {
-  console.log('user',user)
   
   if (!user) {
     return <Navigate to="/login" replace/>;
