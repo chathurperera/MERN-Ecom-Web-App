@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const multer = require('multer');
+const multer = require("multer");
 const {
   createProduct,
   getAllProducts,
@@ -8,7 +8,7 @@ const {
   deleteProduct,
   getSingleProduct,
   searchProducts,
-  uploadImage
+  uploadImage,
 } = require("../controllers/product");
 const {
   verifyToken,
@@ -16,19 +16,22 @@ const {
   verifyTokenAndAdmin,
 } = require("../middleware/verifyToken");
 
-const storage = multer.memoryStorage()
-const upload = multer({ storage: storage })
-
-
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 // ADMIN ROUTES
 router.post("/", verifyTokenAndAdmin, createProduct);
-router.post("/upload", verifyTokenAndAdmin, upload.single('image') , uploadImage);
+router.post(
+  "/upload",
+  verifyTokenAndAdmin,
+  upload.single("image"),
+  uploadImage
+);
 router.delete("/:id", verifyTokenAndAdmin, deleteProduct);
 router.patch("/:id", verifyTokenAndAdmin, updateProduct);
-router.get("/",verifyTokenAndAdmin , getAllProducts);
 
 // PUBLIC ROUTES
+router.get("/", getAllProducts);
 router.get("/search", searchProducts);
 router.get("/:id", getSingleProduct);
 

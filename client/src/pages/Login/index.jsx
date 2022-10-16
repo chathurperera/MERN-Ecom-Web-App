@@ -18,8 +18,8 @@ const Login = () => {
   const user = useSelector(state => state.user)
 
   const [userInput, setUserInput] = useState({
-    email: "kasun@gmail.com",
-    password: "kasun123",
+    email: "dasun@gmail.com",
+    password: "12345678",
   });
 
   const handleChange = (e) => {

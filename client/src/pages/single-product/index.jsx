@@ -20,7 +20,9 @@ const SingleProduct = () => {
   }, []);
 
   const addToCart = async () => {
-    const existingItem = cart.products?.find((product) => product.productId === id);
+    const existingItem = cart.products?.find(
+      (product) => product.productId === id
+    );
     if (existingItem) {
       const totalPrice = product.price * quantity;
       dispatch(addExistingProduct({ id, quantity, totalPrice }));
@@ -86,46 +88,50 @@ const SingleProduct = () => {
           {/* <Rating initialValue="3" size="22" readonly="true" /> */}
           <p className={classes.productDesc}>{product?.description}</p>
           <p className={classes.price}>${product?.price}.00</p>
-          <div className={classes.colorPicker}>
-            <p>Color :</p>
-            <div className={classes.colors}>
-              {product?.colors.map((colorText, index) => {
-                return (
-                  <div
-                    onClick={() => setColor(colorText)}
-                    key={index}
-                    className={classes.colorWrapper}
-                  >
+          <div className={classes.productCustomize}>
+            <div className={classes.colorPicker}>
+              <p>Color :</p>
+              <div className={classes.colors}>
+                {product?.colors.map((colorText, index) => {
+                  return (
                     <div
-                      className={classes.color}
-                      style={
-                        color === colorText
-                          ? {
-                              backgroundColor: `${colorText}`,
-                              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                              transform: "scale(1.2)",
-                            }
-                          : { backgroundColor: `${colorText}` }
-                      }
-                    ></div>
-                  </div>
-                );
-              })}
+                      onClick={() => setColor(colorText)}
+                      key={index}
+                      className={classes.colorWrapper}
+                    >
+                      <div
+                        className={classes.color}
+                        style={
+                          color === colorText
+                            ? {
+                                backgroundColor: `${colorText}`,
+                                boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                                transform: "scale(1.2)",
+                              }
+                            : { backgroundColor: `${colorText}` }
+                        }
+                      ></div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className={classes.brand}>
+              Brand : <span>{product?.brand}</span>
             </div>
           </div>
-          <div className={classes.shipping}>
-            Brand : <span>{product?.brand}</span>
-          </div>
-          <div className={classes.quantity}>
-            <div className={classes.quantityCounter}>
-              <div onClick={() => handleQuantity("remove")}>-</div>
-              <div>{quantity}</div>
-              <div onClick={() => handleQuantity("add")}>+</div>
+          <div className={classes.actionButtons}>
+            <div className={classes.quantity}>
+              <div className={classes.quantityCounter}>
+                <button onClick={() => handleQuantity("remove")}>-</button>
+                {quantity}
+                <button onClick={() => handleQuantity("add")}>+</button>
+              </div>
             </div>
+            <button className={classes.addToCart} onClick={addToCart}>
+              Add To Cart
+            </button>
           </div>
-          <button className={classes.addToCart} onClick={addToCart}>
-            Add To Cart
-          </button>
         </div>
       </div>
     </div>
