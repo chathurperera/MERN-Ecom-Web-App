@@ -8,8 +8,8 @@ const ACCESS_KEY = process.env.ACCESS_KEY;
 const SECRET_ACCESS_KEY = process.env.SECRET_ACCESS_KEY;
 
 const s3 = new AWS.S3({
-  accessKeyId: ACCESS_KEY, 
-  secretAccessKey: SECRET_ACCESS_KEY
+  accessKeyId: ACCESS_KEY,
+  secretAccessKey: SECRET_ACCESS_KEY,
 });
 
 const createProduct = async (req, res) => {
@@ -25,14 +25,14 @@ const createProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
-    const { category, sort, minPrice, maxPrice,  gender} = req.query;
+    const { category, sort, minPrice, maxPrice, gender } = req.query;
 
     let queryObject = {};
 
-    if(gender){
+    if (gender) {
       queryObject.gender = gender;
     }
-    
+
     if (category) {
       const categories = category.split(",");
       queryObject.category = { $in: categories };
@@ -127,12 +127,21 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   const { id: productID } = req.params;
   try {
-    const product = await Product.findOneAndDelete({ _id: productID });
-    if (!product) {
+    const deletedProduct = await Product.findOneAndDelete({ _id: productID });
+    console.log('deleted product',deletedProduct)
+    
+    if (!deletedProduct) {
       return res
         .status(404)
         .json({ status: "error", error: `No Product with id ${productID}` });
     }
+
+    //Deleting the file from S3 bucket
+    const imageUrl = deletedProduct.imageUrl;
+    const fileKey = imageUrl.replace('https://mern-ecom-website.s3.ap-south-1.amazonaws.com/', '');
+    deleteImage(fileKey);
+
+
     res.status(200).json({ status: "success", message: "Product deleted" });
   } catch (error) {
     res.status(500).json({ status: "error", error: "Something went wrong" });
@@ -145,9 +154,6 @@ const uploadImage = async (req, res) => {
     console.log("req.file", req.file);
     req.file.buffer;
 
-    const randomImageName = (bytes = 32) =>
-      crypto.randomBytes(bytes).toString("hex");
-
     const params = {
       Bucket: BUCKET_NAME,
       Key: `${req.file.originalname}-${Date.now()}`,
@@ -155,18 +161,34 @@ const uploadImage = async (req, res) => {
       ContentType: req.file.mimetype,
     };
 
-     s3.upload(params, (err, data) => {
+    s3.upload(params, (err, data) => {
       if (err) {
         console.log("Error occurred while trying to upload to S3 bucket", err);
-        return res.status(200).json({ message: "upload failed" });
+        return res.status(500).json({ message: "upload failed" });
       }
-      return res.status(200).json({ message: "success" , imageURL:data.Location });
+      return res
+        .status(200)
+        .json({ message: "success", imageURL: data.Location });
     });
-
   } catch (error) {
     console.log(error);
     return res.send(400).json({ status: "error", error: error });
   }
+};
+
+const deleteImage = (fileKey) => {
+  const params = {
+    Bucket: BUCKET_NAME,
+    Key: fileKey,
+  };
+  s3.deleteObject(params, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: err });
+    }
+    console.log("data", data);
+    console.log("FIle deleted");
+  });
 };
 
 module.exports = {
