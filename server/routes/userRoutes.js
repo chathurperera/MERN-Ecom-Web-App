@@ -4,17 +4,18 @@ const {
   updateUser,
   getAllUsers,
   deleteUser,
-  getMe
+  updatePassword,
+  getMe,
 } = require("../controllers/user");
 const {
   verifyToken,
   verifyTokenAndAdmin,
 } = require("../middleware/verifyToken");
 
-
 router.patch("/update", verifyToken, updateUser);
-router.get("/", verifyTokenAndAdmin , getAllUsers);
-router.get("/me", verifyToken , getMe);
+router.patch("/:id", verifyToken, updatePassword);
+router.get("/", verifyTokenAndAdmin, getAllUsers);
+router.get("/me", verifyToken, getMe);
 router.delete("/:id", verifyTokenAndAdmin, deleteUser);
 
 module.exports = router;

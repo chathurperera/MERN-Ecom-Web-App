@@ -1,14 +1,14 @@
-
 const User = require("../models/userModel");
+const bcrypt = require("bcryptjs");
 
-const getMe  = async(req,res) => {
+const getMe = async (req, res) => {
   try {
-    console.log('req.user',req.user)
-    res.status(200).json({message:'success'})
+    console.log("req.user", req.user);
+    res.status(200).json({ message: "success" });
   } catch (error) {
-    res.status(500).json({message:'something went wrong'})
+    res.status(500).json({ message: "something went wrong" });
   }
-}
+};
 
 const getAllUsers = async (req, res) => {
   try {
@@ -24,8 +24,8 @@ const getAllUsers = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const { userId , firstName ,lastName , email , address} = req.body;
-    if (!userId ) {
+    const { userId, firstName, lastName, email, address } = req.body;
+    if (!userId) {
       return res.status(400).json({ message: "ID is required" });
     }
 
@@ -44,11 +44,34 @@ const updateUser = async (req, res) => {
     user.address = address;
 
     const updatedUser = await user.save();
-    
+
     res.status(200).json({ message: `${updatedUser.firstName} updated` });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "something went wrong", error: error });
+  }
+};
+
+const updatePassword = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { oldPassword, newPassword } = req.body;
+
+    const existingUser = await User.findOne({ _id: id });
+    console.log("existingUser", existingUser);
+
+    if (await bcrypt.compare(oldPassword, existingUser.password)) {
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      existingUser.password = hashedPassword;
+      existingUser.save();
+    } else {
+      return res
+        .status(400)
+        .json({ message: "Please enter your correct old password." });
+    }
+    res.status(200).json({ message: "Password changed successfully" });
+  } catch (error) {
+    re.status(500).json({ message: "Something went wrong" });
   }
 };
 
@@ -69,4 +92,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { updateUser, getAllUsers, deleteUser , getMe };
+module.exports = { updateUser, updatePassword, getAllUsers, deleteUser, getMe };
