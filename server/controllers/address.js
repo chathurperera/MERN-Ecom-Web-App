@@ -24,4 +24,15 @@ const getMyAddress = async (req, res) => {
 
   res.status(200).json({ allAddress });
 };
-module.exports = { createAddress, getMyAddress };
+
+const deleteAddress = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Address.findOneAndDelete({ _id: id });
+    res.status(200).json({ message: "Address deleted successfully" });
+    
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+module.exports = { deleteAddress, createAddress, getMyAddress };

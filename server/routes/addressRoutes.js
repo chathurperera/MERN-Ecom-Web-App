@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { createAddress, getMyAddress } = require("../controllers/address");
+const { createAddress, getMyAddress, deleteAddress } = require("../controllers/address");
 const {
   verifyTokenAndAuthorization,
   verifyToken,
@@ -8,5 +8,6 @@ const {
 
 router.post("/", verifyToken, createAddress);
 router.get("/:id", verifyToken, getMyAddress);
+router.delete("/:id", verifyToken, deleteAddress);
 
 module.exports = router;

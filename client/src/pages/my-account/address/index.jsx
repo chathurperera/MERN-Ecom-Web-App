@@ -36,6 +36,17 @@ const MyAddress = () => {
     });
   };
 
+  const deleteAddress = async (addressID) => {
+    await API.delete(`/address/${addressID}`)
+      .then((res) => {
+        console.log(res);
+        getAllAddress();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const getAllAddress = async () => {
     await API.get(`/address/${userId}`).then((res) => {
       console.log(res);
@@ -70,6 +81,7 @@ const MyAddress = () => {
           state: "",
           postalCode: "",
         });
+        getAllAddress();
         toast.success("Address created");
         setIsSubmitting(false);
       })
@@ -93,7 +105,7 @@ const MyAddress = () => {
                 <p>{address.state}</p>
                 <p>{address.postalCode}</p>
               </address>
-              <button>Remove</button>
+              <button onClick={() => deleteAddress(address._id)}>Remove</button>
             </div>
           );
         })}
