@@ -92,55 +92,6 @@ const Dashboard = () => {
             id=""
           />
         </div>
-        <div className={classes.inputGroup}>
-          <label htmlFor="">Address</label>
-          <input
-            type="text"
-            name="address"
-            value={address.address}
-            onChange={(event) =>
-              setAddress({ ...address, address: event.target.value })
-            }
-            id=""
-          />
-        </div>
-        <div className={classes.nameBox}>
-          <div className={classes.inputGroup}>
-            <label htmlFor="">City</label>
-            <input
-              type="text"
-              value={address.city}
-              id=""
-              onChange={(event) =>
-                setAddress({ ...address, city: event.target.value })
-              }
-            />
-          </div>
-          <div className={classes.inputGroup}>
-            <label htmlFor="">State</label>
-            <input
-              type="text"
-              value={address.state}
-              onChange={(event) =>
-                setAddress({ ...address, state: event.target.value })
-              }
-            />
-          </div>
-        </div>
-        <div className={classes.nameBox}>
-          <div className={classes.inputGroup}>
-            <label htmlFor="">Postal Code</label>
-            <input
-              type="text"
-              value={address.postalCode}
-              onChange={(event) =>
-                setAddress({ ...address, postalCode: event.target.value })
-              }
-            />
-          </div>
-          <div></div>
-        </div>
-
         <button className={classes.saveBtn}>Save Changes</button>
       </form>
       <ToastContainer />
