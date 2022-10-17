@@ -7,6 +7,6 @@ const {
 } = require("../middleware/verifyToken");
 
 router.post("/", verifyToken, createAddress);
-router.get("/", verifyToken, getMyAddress);
+router.get("/:id", verifyToken, getMyAddress);
 
 module.exports = router;

@@ -5,9 +5,13 @@ import "react-toastify/dist/ReactToastify.css";
 import Spinner from "components/Spinner";
 import API from "api";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const MyAddress = () => {
   const user = useSelector((state) => state.user);
+  const { userId } = user.currentUser.user;
+
+  const [allAddress, setAllAddress] = useState([]);
   const [addressInfo, setAddressInfo] = useState({
     name: "",
     address: "",
@@ -18,6 +22,10 @@ const MyAddress = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    getAllAddress();
+  }, []);
+
   const handleChange = (e) => {
     const { value, name } = e.target;
     setAddressInfo((prevState) => {
@@ -25,6 +33,13 @@ const MyAddress = () => {
         ...prevState,
         [name]: value,
       };
+    });
+  };
+
+  const getAllAddress = async () => {
+    await API.get(`/address/${userId}`).then((res) => {
+      console.log(res);
+      setAllAddress(res.data.allAddress);
     });
   };
 
@@ -48,9 +63,18 @@ const MyAddress = () => {
     })
       .then((res) => {
         console.log(res);
+        setAddressInfo({
+          name: "",
+          address: "",
+          city: "",
+          state: "",
+          postalCode: "",
+        });
+        toast.success("Address created");
         setIsSubmitting(false);
       })
       .catch((error) => {
+        toast.error("Something went wrong");
         console.log(error);
         setIsSubmitting(false);
       });
@@ -59,18 +83,20 @@ const MyAddress = () => {
   return (
     <div className={classes.myAddress}>
       <div className={classes.addressCardWrapper}>
-        <div className={classes.addressCard}>
-          <h6 className={classes.name}>
-            Jayvion Simon 
-          </h6>{" "}
-          <address>
-            <p>B 35 2/2 Soyspura housing Scheme Moratuwa </p>
-            <p>Moratuwa</p>
-            <p>Western Province</p>
-            <p>10400</p>
-          </address>
-          <button>Remove</button>
-        </div>
+        {allAddress?.map((address) => {
+          return (
+            <div className={classes.addressCard}>
+              <h6 className={classes.name}>{address.name}</h6>{" "}
+              <address>
+                <p>{address.address} </p>
+                <p>{address.city}</p>
+                <p>{address.state}</p>
+                <p>{address.postalCode}</p>
+              </address>
+              <button>Remove</button>
+            </div>
+          );
+        })}
       </div>
       <form className={classes.wrapper} onSubmit={handleSubmit}>
         <div className={classes.twoCol}>
