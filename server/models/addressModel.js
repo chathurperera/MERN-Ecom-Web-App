@@ -6,6 +6,9 @@ const AddressSchema = new mongoose.Schema(
     userId: {
       type: Schema.Types.ObjectId,
     },
+    name: {
+      type: String,
+    },
     address: {
       type: String,
     },

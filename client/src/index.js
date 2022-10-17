@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Routing from "./Routing";
 import "../src/index.scss";
+import '../src/styles/main.scss'
 import { Provider } from "react-redux";
 import { store, persistor } from "app/store";
 import { PersistGate } from "redux-persist/lib/integration/react";

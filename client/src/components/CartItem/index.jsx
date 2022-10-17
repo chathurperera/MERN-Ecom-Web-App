@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./CartItem.module.scss";
-import itemImage from "../../assets/images/Watch Image-min.png";
 import deleteIcon from "../../assets/images/delete.png";
 import {
   deleteItem,

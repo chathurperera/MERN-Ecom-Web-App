@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Sidebar.module.scss";
-import dashboard from "../../assets/images/userProfile/dashboard.png";
+import addressIcon from "../../assets/images/userProfile/address.png";
 import shoppingBag from "../../assets/images/userProfile/shopping-bag.png";
 import user from "../../assets/images/userProfile/user.png";
 import password from "../../assets/images/userProfile/password.png";
@@ -33,6 +33,14 @@ const Sidebar = () => {
           >
             <img src={shoppingBag} alt="shopping bag" />
             Orders
+          </Link>
+        </div>
+        <div className={classes.sideLink}>
+          <Link
+            to="/my-account/address"
+          >
+            <img src={addressIcon} alt="address icon" />
+            Address
           </Link>
         </div>
         <div className={classes.sideLink}>

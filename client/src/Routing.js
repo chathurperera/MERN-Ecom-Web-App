@@ -13,6 +13,7 @@ import SingleProduct from "./pages/single-product";
 import Checkout from "./pages/checkout";
 import OrderSuccess from "./pages/order-success";
 import { useSelector } from "react-redux";
+import MyAddress from "./pages/my-account/address";
 
 const Routing = () => {
   const user = useSelector((state) => state.user);
@@ -32,12 +33,14 @@ const Routing = () => {
           />
           <Route path="order-success/:id" element={<OrderSuccess />} />
         </Route>
+        
         <Route
           path="/my-account"
           element={<UserSharedLayout user={user.currentUser} />}
         >
           <Route index element={<Profile />} />
           <Route path="/my-account/orders" element={<Orders />} />
+          <Route path="/my-account/address" element={<MyAddress />} />
           <Route path="/my-account/view-order/:id" element={<ViewOrder />} />
         </Route>
       </Routes>
