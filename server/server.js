@@ -12,6 +12,7 @@ const productRoute = require("./routes/productRoutes");
 const cartRoutes = require('./routes/cartRoutes');
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const addressRoutes = require('./routes/addressRoutes');
 
 connectDB(process.env.MONGO_URI);
 
