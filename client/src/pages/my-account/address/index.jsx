@@ -97,7 +97,7 @@ const MyAddress = () => {
       <div className={classes.addressCardWrapper}>
         {allAddress?.map((address) => {
           return (
-            <div className={classes.addressCard}>
+            <div className={classes.addressCard} key={address._id}>
               <h6 className={classes.name}>{address.name}</h6>{" "}
               <address>
                 <p>{address.address} </p>

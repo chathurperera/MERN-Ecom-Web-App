@@ -7,7 +7,9 @@
   padding: 24px;
   margin-bottom: 24px;
   display: flex;
+  justify-content: space-between;
   max-width: 700px;
+  min-width: 500px;
 
   &Details {
     .name {
@@ -29,7 +31,6 @@
   &Buttons {
     display: flex;
     align-items: flex-end;
-    width: 50%;
     justify-content: flex-end;
     button {
       display: inline-flex;
@@ -53,10 +54,6 @@
       margin-right: 10px;
       &:hover {
         background-color: rgba(145, 158, 171, 0.08);
-      }
-      &:first-child {
-        border-color: rgb(207, 204, 204);
-        color: #010203;
       }
     }
   }

@@ -1,12 +1,6 @@
 import React from "react";
 import classes from "./AddressCard.module.scss";
-const AddressCard = ({
-  setOrder,
-  setCheckoutStep,
-  firstName,
-  lastName,
-  address
-}) => {
+const AddressCard = ({ setOrder, setCheckoutStep, address }) => {
   const selectAddress = () => {
     setOrder((prevState) => {
       return {
@@ -19,9 +13,7 @@ const AddressCard = ({
   return (
     <div className={classes.address}>
       <div className={classes.addressDetails}>
-        <p className={classes.name}>
-          {firstName + " " + lastName} <span>(Home)</span>
-        </p>
+        <p className={classes.name}>{address.name}</p>
         <address className={classes.completeAddress}>
           {address?.address},
           <br />
@@ -34,7 +26,6 @@ const AddressCard = ({
         {/* <p className={classes.contact}>365-374-4961</p> */}
       </div>
       <div className={classes.addressButtons}>
-        <button>Delete</button>
         <button onClick={selectAddress}>Deliver to this Address</button>
       </div>
     </div>
