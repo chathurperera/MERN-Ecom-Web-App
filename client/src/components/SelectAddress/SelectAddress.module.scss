@@ -1,9 +1,9 @@
 .selectAddress {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
-  
+  .addressCardWrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
   .backButton {
     display: flex;
     align-items: center;

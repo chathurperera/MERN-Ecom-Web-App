@@ -7,9 +7,10 @@
   padding: 24px;
   margin-bottom: 24px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   max-width: 700px;
-  min-width: 500px;
+
 
   &Details {
     .name {

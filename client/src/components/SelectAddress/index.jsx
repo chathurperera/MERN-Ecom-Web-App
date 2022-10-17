@@ -23,16 +23,18 @@ const SelectAddress = ({ setCheckoutStep, setOrder }) => {
   return (
     <>
       <div className={classes.selectAddress}>
-        {availableAddresses?.map((address) => {
-          return (
-            <AddressCard
-              setOrder={setOrder}
-              setCheckoutStep={setCheckoutStep}
-              address={address}
-            />
-          );
-        })}
-        <AddNewAddress />
+        <div className={classes.addressCardWrapper}>
+          {availableAddresses?.map((address) => {
+            return (
+              <AddressCard
+                setOrder={setOrder}
+                setCheckoutStep={setCheckoutStep}
+                address={address}
+              />
+            );
+          })}
+        </div>
+        <AddNewAddress setAvailableAddresses={setAvailableAddresses} />
         <div className={classes.backButton} onClick={() => setCheckoutStep(1)}>
           <img src={backArrow} alt="back arrow" />
           Back
