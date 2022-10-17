@@ -23,13 +23,13 @@ const AddressCard = ({
           {firstName + " " + lastName} <span>(Home)</span>
         </p>
         <address className={classes.completeAddress}>
-          {address.address},
+          {address?.address},
           <br />
-          {address.city && address.city}
+          {address?.city && address?.city}
           <br />
-          {address.state && address.state}
+          {address?.state && address?.state}
           <br />
-          {address.postalCode && address.postalCode}
+          {address?.postalCode && address?.postalCode}
         </address>
         {/* <p className={classes.contact}>365-374-4961</p> */}
       </div>
