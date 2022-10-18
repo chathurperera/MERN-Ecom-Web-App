@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import API from "api";
 import LatestOrders from "components/dashboard/LatestOrders";
 import SkeletonLoader from "components/SkeletonLoader";
+import LatestUsers from "components/dashboard/LatestUsers";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
@@ -38,10 +39,6 @@ const Dashboard = () => {
     setIsFetching(false);
   };
 
- 
-  
-  const latestSignupsHeading = ["Name", "Email", "Date"];
-
   return (
     <div>
       {!isFetching ? (
@@ -53,9 +50,9 @@ const Dashboard = () => {
       ) : (
         <SkeletonLoader />
       )}
-
       <div className={classes.dashboardTables}>
-        <LatestOrders allOrders={allOrders?.slice(0,4)} />
+        <LatestOrders allOrders={allOrders?.slice(0, 4)} />
+        <LatestUsers allUsers={allUsers?.slice(0, 4)} />
       </div>
     </div>
   );

@@ -1,13 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./LatestOrders.module.scss";
 
 const LatestOrders = ({ allOrders }) => {
   const headings = ["Order ID", "Total", "Status"];
+  const navigate = useNavigate();
+  
   return (
     <div className={classes.latestOrders}>
       <div className={classes.head}>
         <h5>Latest Orders</h5>
-        <button>View All</button>
+        <button onClick={() => navigate("/all-orders")}>View All</button>
       </div>
       <table>
         <thead>
@@ -33,7 +36,7 @@ const LatestOrders = ({ allOrders }) => {
                           ? "#ef4b4b"
                           : order.status === "Shipped"
                           ? "#38cb89"
-                          : "#ffab00"
+                          : "#ffab00",
                     }}
                   >
                     {order.status}
