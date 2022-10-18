@@ -9,7 +9,7 @@ const LatestUsers = ({ allUsers }) => {
     <div className={classes.latestOrders}>
       <div className={classes.head}>
         <h5>Latest Users</h5>
-        <button onClick={() => navigate("/all-orders")}>View All</button>
+        <button onClick={() => navigate("/all-users")}>View All</button>
       </div>
       <table>
         <thead>

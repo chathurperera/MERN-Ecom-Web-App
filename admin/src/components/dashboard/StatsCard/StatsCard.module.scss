@@ -1,7 +1,8 @@
 .statsCard {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  padding: 15px 20px;
+  gap: 12px;
+  padding: 15px 0;
   border-radius: 12px;
   .stats {
     padding: 10px 15px;

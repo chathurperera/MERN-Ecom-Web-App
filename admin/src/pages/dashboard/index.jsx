@@ -40,7 +40,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className={classes.dashboard}>
       {!isFetching ? (
         <StatsCard
           allUsers={allUsers}
