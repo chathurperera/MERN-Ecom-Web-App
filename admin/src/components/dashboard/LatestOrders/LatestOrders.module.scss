@@ -12,7 +12,8 @@
     align-items: center;
     justify-content: space-between;
     h5 {
-      font-size: 15px;
+      font-size: 18px;
+      padding-left: 10px;
       font-family: $poppins;
     }
     button {
@@ -30,10 +31,13 @@
     }
   }
   table {
+    width: 100%;
     margin-top: 20px;
     thead {
-      background-color: #f4f6f5;
-      tr th {
+    //   background-color: #f4f6f5;
+    tr th {
+        border-bottom: 1px solid #e6ebf1;
+          border-top: 1px solid #e6ebf1;
         font-size: 15px;
         padding: 8px 10px;
         color: #637381;
@@ -43,10 +47,38 @@
         &:nth-child(1) {
           border-top-left-radius: 5px;
           border-bottom-left-radius: 5px;
+        //   min-width: 300px;
         }
         &:last-child {
           border-top-right-radius: 5px;
           border-bottom-right-radius: 5px;
+        }
+      }
+    }
+    tbody {
+      tr td {
+        padding: 10px;
+        font-size: 14px;
+      }
+      .orderId {
+        color: rgb(33, 43, 54);
+      }
+      .total{
+        font-family: $inter;
+        font-weight: 600;
+        color: rgb(219, 42, 42);
+      }
+      .status{
+        span{
+            display: block;
+            padding: 4px 9px;
+            border-radius: 5px;
+            font-size: 12px;
+            text-align: center;
+            width: max-content;
+            min-width: 80px;
+            // background-color: #664dc9;
+            color: #fff;
         }
       }
     }

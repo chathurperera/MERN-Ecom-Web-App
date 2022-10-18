@@ -4,6 +4,7 @@ import classes from "./dashboard.module.scss";
 import { useSelector } from "react-redux";
 import API from "api";
 import LatestOrders from "components/dashboard/LatestOrders";
+import SkeletonLoader from "components/SkeletonLoader";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
@@ -50,11 +51,11 @@ const Dashboard = () => {
           allOrders={allOrders}
         />
       ) : (
-        skeletonLoader
+        <SkeletonLoader />
       )}
 
       <div className={classes.dashboardTables}>
-        <LatestOrders />
+        <LatestOrders allOrders={allOrders?.slice(0,4)} />
       </div>
     </div>
   );
