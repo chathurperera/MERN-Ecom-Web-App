@@ -8,7 +8,7 @@ const login = async (req, res) => {
   const existingUser = await User.findOne({ email }).lean();
 
   if (!existingUser) {
-    res.status(401).json({ status: "error", error: "User doesn't exists!" });
+    res.status(401).json({ message: "User doesn't exists!" });
   }
 
   if (await bycrypt.compare(password, existingUser.password)) {
@@ -21,8 +21,6 @@ const login = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    // console.log("existingUser", existingUser);
-
     const user = {
       email: existingUser.email,
       firstName: existingUser.firstName,
@@ -31,12 +29,9 @@ const login = async (req, res) => {
       address: existingUser.address,
     };
 
-    console.log(user);
     return res.status(200).json({ status: "success", data: { user, token } });
   } else {
-    return res
-      .status(400)
-      .json({ status: "error", error: "Invalid credentials!" });
+    return res.status(400).json({ message: "Invalid credentials!" });
   }
 };
 

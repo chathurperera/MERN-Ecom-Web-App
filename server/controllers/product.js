@@ -128,8 +128,8 @@ const deleteProduct = async (req, res) => {
   const { id: productID } = req.params;
   try {
     const deletedProduct = await Product.findOneAndDelete({ _id: productID });
-    console.log('deleted product',deletedProduct)
-    
+    console.log("deleted product", deletedProduct);
+
     if (!deletedProduct) {
       return res
         .status(404)
@@ -138,9 +138,9 @@ const deleteProduct = async (req, res) => {
 
     //Deleting the file from S3 bucket
     const imageUrl = deletedProduct.imageUrl;
-    const fileKey = imageUrl.replace('https://mern-ecom-website.s3.ap-south-1.amazonaws.com/', '');
+    const fileKey = imageUrl.replace("https://mern-ecom.s3.amazonaws.com/", "");
+    
     deleteImage(fileKey);
-
 
     res.status(200).json({ status: "success", message: "Product deleted" });
   } catch (error) {
@@ -154,9 +154,12 @@ const uploadImage = async (req, res) => {
     console.log("req.file", req.file);
     req.file.buffer;
 
+    const randomKeyName = (bytes = 16) =>
+      crypto.randomBytes(bytes).toString("hex");
+
     const params = {
       Bucket: BUCKET_NAME,
-      Key: `${req.file.originalname}-${Date.now()}`,
+      Key: randomKeyName(),
       Body: req.file.buffer,
       ContentType: req.file.mimetype,
     };
