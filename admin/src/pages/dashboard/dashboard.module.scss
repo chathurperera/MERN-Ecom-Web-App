@@ -1,10 +1,19 @@
-.skeletonLoader{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-    padding: 0 20px;
-    margin-top: 20px;
-    .skeletonCard{
-        display: flex;
-    }
+@import "styles/variables";
+@import "styles/mixins.scss";
+
+.skeletonLoader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 0 20px;
+  margin-top: 20px;
+  .skeletonCard {
+    display: flex;
+  }
 }
+.dashboardTables {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 40px;
+}
+

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import StatsCard from "../../components/dashboard/StatsCard";
 import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
 import classes from "./dashboard.module.scss";
 import { useSelector } from "react-redux";
 import API from "api";
+import LatestOrders from "components/dashboard/LatestOrders";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
@@ -91,6 +91,9 @@ const Dashboard = () => {
     </div>
   );
 
+  
+  const latestSignupsHeading = ["Name", "Email", "Date"];
+
   return (
     <div>
       {!isFetching ? (
@@ -102,6 +105,10 @@ const Dashboard = () => {
       ) : (
         skeletonLoader
       )}
+
+      <div className={classes.dashboardTables}>
+        <LatestOrders />
+      </div>
     </div>
   );
 };

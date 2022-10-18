@@ -132,7 +132,7 @@ const CreateProduct = () => {
   return (
     <div className={classes.editProduct}>
       <div className={classes.head}>
-        <h3>Create Product</h3>{" "}
+      <h3>Create Product</h3>{" "}
       </div>
       <form className={classes.productCard} onSubmit={handleSubmit}>
         <Grid container spacing={2}>
