@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import StatsCard from "../../components/dashboard/StatsCard";
-import Skeleton from "@mui/material/Skeleton";
 import classes from "./dashboard.module.scss";
 import { useSelector } from "react-redux";
 import API from "api";
@@ -38,59 +37,7 @@ const Dashboard = () => {
     setIsFetching(false);
   };
 
-  const skeletonLoader = (
-    <div className={classes.skeletonLoader}>
-      <div className={classes.skeletonCard}>
-        <div>
-          <Skeleton variant="rectangular" width={80} height={8} />
-          <Skeleton
-            variant="rectangular"
-            sx={{ marginTop: "7px" }}
-            width={60}
-            height={30}
-          />
-        </div>
-        <Skeleton variant="circular" width={55} height={55} />
-      </div>
-      <div className={classes.skeletonCard}>
-        <div>
-          <Skeleton variant="rectangular" width={80} height={8} />
-          <Skeleton
-            variant="rectangular"
-            sx={{ marginTop: "7px" }}
-            width={60}
-            height={30}
-          />
-        </div>
-        <Skeleton variant="circular" width={55} height={55} />
-      </div>
-      <div className={classes.skeletonCard}>
-        <div>
-          <Skeleton variant="rectangular" width={80} height={8} />
-          <Skeleton
-            variant="rectangular"
-            sx={{ marginTop: "7px" }}
-            width={60}
-            height={30}
-          />
-        </div>
-        <Skeleton variant="circular" width={55} height={55} />
-      </div>
-      <div className={classes.skeletonCard}>
-        <div>
-          <Skeleton variant="rectangular" width={80} height={8} />
-          <Skeleton
-            variant="rectangular"
-            sx={{ marginTop: "7px" }}
-            width={60}
-            height={30}
-          />
-        </div>
-        <Skeleton variant="circular" width={55} height={55} />
-      </div>
-    </div>
-  );
-
+ 
   
   const latestSignupsHeading = ["Name", "Email", "Date"];
 
