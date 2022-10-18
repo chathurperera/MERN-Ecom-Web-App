@@ -26,7 +26,7 @@ const LatestUsers = ({ allUsers }) => {
                 <td className={classes.orderId}>
                   {user.firstName + " " + user.lastName}
                 </td>
-                <td className={classes.total}>{user.email}</td>
+                <td className={classes.email}>{user.email}</td>
                 <td className={classes.status}>
                   {moment(user.createdAt).format("LL")}
                 </td>
