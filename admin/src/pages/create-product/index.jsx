@@ -26,7 +26,6 @@ const CreateProduct = () => {
 
   const [submissionLoading, setSubmissionLoading] = useState(false);
   const [fileUploadLoading, setFileUploadLoading] = useState(false);
-  const [publicImageURL, setPublicImageURL] = useState("");
   const [file, setFile] = useState("");
 
   const handleChange = (event) => {
@@ -66,24 +65,6 @@ const CreateProduct = () => {
     );
   });
 
-  const imageUpload = async () => {
-    const formData = new FormData();
-    formData.append("image", file);
-    setFileUploadLoading(true);
-    await API.post("/products/upload", formData)
-      .then((res) => {
-        console.log(res);
-        setFileUploadLoading(false);
-        setPublicImageURL(res.data.imageURL);
-        console.log("productDetails in imageUpload", productDetails);
-        setFile("");
-      })
-      .catch((err) => {
-        setFileUploadLoading(false);
-        console.log(err);
-      });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmissionLoading(true);
@@ -102,12 +83,15 @@ const CreateProduct = () => {
       console.log("please complete all the fields");
       return;
     }
-    // upload image
+
+    // IMAGE UPLOAD
     let imageURL = "";
 
     const formData = new FormData();
     formData.append("image", file);
     setFileUploadLoading(true);
+
+    //GETTING THE IMAGE URL
     await API.post("/products/upload", formData)
       .then((res) => {
         console.log(res);
@@ -121,9 +105,21 @@ const CreateProduct = () => {
         console.log(err);
       });
 
+    //CREATING THE PRODUCT
     await API.post("/products", { ...productDetails, imageUrl: imageURL })
       .then((res) => {
         setSubmissionLoading(false);
+        setProductDetails({
+          name: "",
+          description: "",
+          brand: "",
+          colors: [],
+          price: "",
+          gender: "male",
+          category: "shorts",
+          quantity: "",
+          imageUrl: "",
+        });
         toast.success("Product Created");
       })
       .catch((error) => {
@@ -132,6 +128,7 @@ const CreateProduct = () => {
         setSubmissionLoading(false);
       });
   };
+
   return (
     <div className={classes.editProduct}>
       <div className={classes.head}>
