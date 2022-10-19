@@ -24,9 +24,10 @@ const SelectAddress = ({ setCheckoutStep, setOrder }) => {
     <>
       <div className={classes.selectAddress}>
         <div className={classes.addressCardWrapper}>
-          {availableAddresses?.map((address) => {
+          {availableAddresses?.map((address, index) => {
             return (
               <AddressCard
+                key={index}
                 setOrder={setOrder}
                 setCheckoutStep={setCheckoutStep}
                 address={address}

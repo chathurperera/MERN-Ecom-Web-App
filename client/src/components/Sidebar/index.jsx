@@ -44,7 +44,7 @@ const Sidebar = () => {
           </Link>
         </div>
         <div className={classes.sideLink}>
-          <Link to="/my-account/orders">
+          <Link to="/my-account/change-password">
             <img src={password} alt="password lock" />
             Change password
           </Link>

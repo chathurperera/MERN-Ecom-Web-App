@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./login.module.scss";
 import showIcon from "../../assets/images/login/show.png";
 import hideIcon from "../../assets/images/login/hide.png";
+import exclamationMark from "../../assets/images/login/exclamation-mark.png";
 import Spinner from "../../components/Spinner";
 import { useNavigate } from "react-router-dom";
 import API from "../../api";
@@ -12,14 +13,16 @@ import { useDispatch, useSelector } from "react-redux";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.user)
+  const user = useSelector((state) => state.user);
 
   const [userInput, setUserInput] = useState({
     email: "dasun@gmail.com",
-    password: "12345678",
+    password: "10265659086",
   });
 
   const handleChange = (e) => {
@@ -45,15 +48,23 @@ const Login = () => {
       .catch((error) => {
         dispatch(loginFailure);
         setLoading(false);
+        setErrorMessage(error.response.data.message);
         console.log(error);
       });
   };
+
 
   return (
     <main className={classes.login}>
       <div className={classes.loginRight}>
         <div className={classes.loginWrapper}>
           <h4>Login</h4>
+          {errorMessage !== "" && (
+            <small>
+              <img src={exclamationMark} alt="exclamation mark" />
+              {errorMessage}
+            </small>
+          )}
           <form action="" onSubmit={handleSubmit}>
             <div className={classes.inputHolder}>
               <label htmlFor="email">Email</label>

@@ -1,7 +1,8 @@
 .selectAddress {
   .addressCardWrapper{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: flex-end;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
     gap: 15px;
   }
   .backButton {
