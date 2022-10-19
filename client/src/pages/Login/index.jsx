@@ -60,7 +60,7 @@ const Login = () => {
         <div className={classes.loginWrapper}>
           <h4>Login</h4>
           {errorMessage !== "" && (
-            <small>
+            <small className={classes.validationError}>
               <img src={exclamationMark} alt="exclamation mark" />
               {errorMessage}
             </small>
