@@ -7,19 +7,11 @@
   <tbody>
     <tr>
       <td>Live site</td>
-      <td><a href="https://california-ecommerce.onrender.com/"><b>https://california-ecommerce.onrender.com/</b></a></td>
+      <td><a href="https://mern-ecom-webapp.onrender.com/"><b>https://mern-ecom-webapp.onrender.com/</b></a></td>
     </tr>
     <tr>
       <td>Admin Dashboard</td>
-      <td><a href="https://california-ecommerce.onrender.com/"><b>https://california-ecommerce.onrender.com/</b></a></td>
-    </tr>
-    <tr>
-      <td>Admin Dashboard Github repo</td>
-      <td><a href="https://github.com/chathurperera/MERN-Ecommerce-Admin/"><b>https://github.com/chathurperera/MERN-Ecommerce-Admin/</b></a></td>
-    </tr>
-      <tr>
-      <td>Backend Github repo</td>
-      <td><a href="https://github.com/chathurperera/MERN-Ecommerce-Backend/"><b>https://github.com/chathurperera/MERN-Ecommerce-Backend/</b></a></td>
+      <td><a href="https://mern-ecommerce-admin.vercel.app"><b>https://mern-ecommerce-admin.vercel.app</b></a></td>
     </tr>
   </tbody>
 </table>
