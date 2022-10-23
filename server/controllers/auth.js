@@ -5,13 +5,26 @@ const User = require("../models/userModel");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email) {
+    res.status(401).json({ message: "You must enter an email address!" });
+  }
+
+  if (!password) {
+    res.status(401).json({ message: "You must enter a password!" });
+  }
+
+  //GETTING THE EXISTING USER
   const existingUser = await User.findOne({ email }).lean();
 
   if (!existingUser) {
     res.status(401).json({ message: "User doesn't exists!" });
   }
 
-  if (await bycrypt.compare(password, existingUser.password)) {
+  //COMPARING PASSWORDS
+  const isMatch = await bycrypt.compare(password, existingUser.password);
+  
+  if (isMatch) {
     const token = jwt.sign(
       {
         id: existingUser._id,
