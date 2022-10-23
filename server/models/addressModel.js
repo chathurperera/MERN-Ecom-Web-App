@@ -10,7 +10,7 @@ const AddressSchema = new mongoose.Schema(
     name: {
       type: String,
     },
-    address: {
+    street: {
       type: String,
     },
     city: {
@@ -21,11 +21,7 @@ const AddressSchema = new mongoose.Schema(
     },
     postalCode: {
       type: String,
-    },
-    isDefault: {
-      type: Boolean,
-      default: false,
-    },
+    }
   },
   {
     timestamps: true,

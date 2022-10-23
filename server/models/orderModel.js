@@ -14,6 +14,23 @@ const OrderSchema = new mongoose.Schema(
     total: {
       type: Number,
     },
+    paymentMethod: {
+      type: String,
+    },
+    shippingAddress: {
+      street: {
+        type: String,
+      },
+      city: {
+        type: String,
+      },
+      state: {
+        type: String,
+      },
+      postalCode: {
+        type: String,
+      },
+    },
     status: {
       type: String,
       default: "Not processed",

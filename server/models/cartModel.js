@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 const CartSchema = mongoose.Schema(
   {
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     products: [
       {
         productId: {
@@ -29,16 +33,6 @@ const CartSchema = mongoose.Schema(
     ],
     total: {
       type: Number,
-    },
-    paymentMethod: {
-      type: String,
-    },
-    address: {
-      type: String,
-    },
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
     },
   },
   { timestamps: true }
