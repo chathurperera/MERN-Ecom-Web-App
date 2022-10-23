@@ -1,11 +1,44 @@
 const Order = require("../models/orderModel");
 const Cart = require("../models/cartModel");
 const Product = require("../models/productModel");
+const User = require("../models/userModel");
+let client = require("@sendgrid/mail");
+client.setApiKey(process.env.SENDGRID_API_KEY);
 
 const createOrder = async (req, res) => {
   try {
     const newOrder = new Order(req.body);
     const savedOrder = await newOrder.save();
+    const user = await User.findOne({ _id: Number(req.body.userId) });
+    //ORDER CONFIRMATION EMAIL
+    client
+      .send({
+        to: {
+          email: user.email,
+          name: "John",
+        },
+        from: {
+          email: "chathuraperera007@gmail.com",
+          name: "California MERN Ecommerce",
+        },
+        templateId: "d-7468459ea2854821a7d9d1928aa3a7e1",
+        dynamicTemplateData: {
+          name: req.body.userName,
+          orderId: savedOrder._id,
+          cartTotal: req.body.total,
+          orderTotal: req.body.total + 5,
+          address: req.body.shippingAddress.street,
+          city: req.body.shippingAddress.city,
+          state: req.body.shippingAddress.state,
+          postalCode: req.body.shippingAddress.postalCode,
+        },
+      })
+      .then(() => {
+        console.log("Email was sent");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     res.status(201).json({ message: "Order created", savedOrder });
   } catch (error) {
@@ -50,7 +83,7 @@ const deleteOrder = async (req, res) => {
 
     await Order.deleteOne({ _id: orderId });
     await Cart.deleteOne({ _id: foundCart._id });
-    
+
     res.status(200).json({ message: "Order deleted" });
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
