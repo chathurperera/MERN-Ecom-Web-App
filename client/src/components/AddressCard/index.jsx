@@ -1,21 +1,23 @@
 import React from "react";
 import classes from "./AddressCard.module.scss";
 const AddressCard = ({ setOrder, setCheckoutStep, address }) => {
+
   const selectAddress = () => {
     setOrder((prevState) => {
       return {
         ...prevState,
-        address: address,
+        shippingAddress: address,
       };
     });
     setCheckoutStep(3);
   };
+
   return (
     <div className={classes.address}>
       <div className={classes.addressDetails}>
         <p className={classes.name}>{address.name}</p>
         <address className={classes.completeAddress}>
-          {address?.address},
+          {address?.street},
           <br />
           {address?.city && address?.city}
           <br />

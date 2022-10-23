@@ -10,7 +10,7 @@ const BillingAddress = ({ address }) => {
         {address?.name}
       </p>
       <address className={classes.address}>
-        {address.address}
+        {address.street}
         <br />
         {address.city}
         <br />

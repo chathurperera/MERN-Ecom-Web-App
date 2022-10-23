@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import classes from "./OrderSummary.module.scss";
-import { Link } from "react-router-dom";
 import API from "api";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "components/Spinner";
@@ -16,15 +15,12 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
   const navigate = useNavigate();
 
   const payload = {
-    products: cart.products,
     userId: user.currentUser.user.userId,
+    products: cart.products,
     total: cart.total,
-    address: cart.address,
-    paymentMethod: order.paymentMethod,
   };
 
   const createCart = async () => {
-    console.log("ran");
     setLoading(true);
     let cartId;
     await API.post("/cart", payload)
@@ -40,6 +36,7 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
     return cartId;
   };
 
+  //CREATE ORDER
   const submitOrder = async () => {
     if (!order.paymentMethod) {
       toast.error("Please select a payment method");
@@ -47,11 +44,13 @@ const OrderSummary = ({ setCheckoutStep, checkoutStep, cart, order }) => {
     }
 
     const cartId = await createCart();
-    
+
     const orderInfo = {
       userId: user.currentUser.user.userId,
       cartId: cartId,
       total: cart.total,
+      paymentMethod: order.paymentMethod,
+      shippingAddress: order.shippingAddress,
     };
 
     await API.post("/order", orderInfo)

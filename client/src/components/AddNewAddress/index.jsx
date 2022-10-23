@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 const AddNewAddress = ({ setAvailableAddresses }) => {
   const [addressInfo, setAddressInfo] = useState({
     name: "",
-    address: "",
+    street: "",
     city: "",
     state: "",
     postalCode: "",
@@ -35,7 +35,7 @@ const AddNewAddress = ({ setAvailableAddresses }) => {
   const resetFields = () => {
     setAddressInfo({
       name: "",
-      address: "",
+      street: "",
       city: "",
       state: "",
       postalCode: "",
@@ -72,7 +72,7 @@ const AddNewAddress = ({ setAvailableAddresses }) => {
             label="Address"
             id="filled-size-small"
             size="small"
-            value={addressInfo.address}
+            value={addressInfo.street}
             name="address"
             onChange={handleChange}
             fullWidth

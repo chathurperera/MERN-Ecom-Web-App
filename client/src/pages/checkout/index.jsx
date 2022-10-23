@@ -42,7 +42,7 @@ const Checkout = ({ user }) => {
           />
         )}
         <div>
-          {checkoutStep === 3 && <BillingAddress address={order.address} />}
+          {checkoutStep === 3 && <BillingAddress address={order.shippingAddress} />}
           <OrderSummary
             checkoutStep={checkoutStep}
             setCheckoutStep={setCheckoutStep}

@@ -9,9 +9,7 @@ const verifyToken = (req, res, next) => {
         console.log('error while verifying the token')
        return res.status(403).json({ status: "error", error: err });
       }
-      console.log('token verified')
       req.user = user;
-      console.log('verified user :',user)
       next();
     });
   } else {

@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "pages/home";
-import Login from "pages/login";
-import Signup from "pages/sign-up";
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Signup from "./pages/sign-up";
 import UserSharedLayout from "./layouts/userSharedLayout";
 import MainLayout from "./layouts/mainLayout";
 import Profile from "./pages/my-account/profile";

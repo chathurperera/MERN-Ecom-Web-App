@@ -14,7 +14,7 @@ const MyAddress = () => {
   const [allAddress, setAllAddress] = useState([]);
   const [addressInfo, setAddressInfo] = useState({
     name: "",
-    address: "",
+    street: "",
     city: "",
     state: "",
     postalCode: "",
@@ -26,6 +26,7 @@ const MyAddress = () => {
     getAllAddress();
   }, []);
 
+  //HANDLE INPUT CHANGES
   const handleChange = (e) => {
     const { value, name } = e.target;
     setAddressInfo((prevState) => {
@@ -36,6 +37,7 @@ const MyAddress = () => {
     });
   };
 
+  //DELETE AN ADDRESS
   const deleteAddress = async (addressID) => {
     await API.delete(`/address/${addressID}`)
       .then((res) => {
@@ -47,6 +49,7 @@ const MyAddress = () => {
       });
   };
 
+  //GET ALL ADDRESSES
   const getAllAddress = async () => {
     await API.get(`/address/${userId}`).then((res) => {
       console.log(res);
@@ -54,6 +57,7 @@ const MyAddress = () => {
     });
   };
 
+  //CREATE A NEW ADDRESS
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -76,7 +80,7 @@ const MyAddress = () => {
         console.log(res);
         setAddressInfo({
           name: "",
-          address: "",
+          street: "",
           city: "",
           state: "",
           postalCode: "",
@@ -100,7 +104,7 @@ const MyAddress = () => {
             <div className={classes.addressCard} key={address._id}>
               <h6 className={classes.name}>{address.name}</h6>{" "}
               <address>
-                <p>{address.address} </p>
+                <p>{address.street} </p>
                 <p>{address.city}</p>
                 <p>{address.state}</p>
                 <p>{address.postalCode}</p>
@@ -118,16 +122,18 @@ const MyAddress = () => {
               type="text"
               id=""
               name="name"
+              value={addressInfo.name}
               onChange={handleChange}
               required
             />
           </div>
         </div>
         <div className={classes.inputGroup}>
-          <label htmlFor="">Address</label>
+          <label htmlFor="">Address/Street</label>
           <input
             type="text"
-            name="address"
+            name="street"
+            value={addressInfo.street}
             id=""
             onChange={handleChange}
             required
@@ -136,11 +142,23 @@ const MyAddress = () => {
         <div className={classes.twoCol}>
           <div className={classes.inputGroup}>
             <label htmlFor="">City</label>
-            <input type="text" name="city" onChange={handleChange} required />
+            <input
+              type="text"
+              name="city"
+              value={addressInfo.city}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className={classes.inputGroup}>
-            <label htmlFor="">State</label>
-            <input type="text" name="state" onChange={handleChange} required />
+            <label htmlFor="">State/Province</label>
+            <input
+              type="text"
+              name="state"
+              value={addressInfo.state}
+              onChange={handleChange}
+              required
+            />
           </div>
         </div>
         <div className={classes.twoCol}>
@@ -148,6 +166,7 @@ const MyAddress = () => {
             <label htmlFor="">Postal Code</label>
             <input
               type="text"
+              value={addressInfo.postalCode}
               name="postalCode"
               onChange={handleChange}
               required

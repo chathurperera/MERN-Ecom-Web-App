@@ -14,6 +14,7 @@ const SelectAddress = ({ setCheckoutStep, setOrder }) => {
     getAllAddresses();
   }, []);
 
+  //FETCHING ALL ADDRESSES
   const getAllAddresses = async () => {
     API.get(`/address/${user.currentUser.user.userId}`).then((res) => {
       setAvailableAddresses(res.data.allAddress);

@@ -9,7 +9,7 @@ const createOrder = async (req, res) => {
   try {
     const newOrder = new Order(req.body);
     const savedOrder = await newOrder.save();
-    const user = await User.findOne({ _id: Number(req.body.userId) });
+    const user = await User.findOne({ _id: req.body.userId });
     //ORDER CONFIRMATION EMAIL
     client
       .send({
@@ -42,6 +42,7 @@ const createOrder = async (req, res) => {
 
     res.status(201).json({ message: "Order created", savedOrder });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Something went wrong" });
   }
 };

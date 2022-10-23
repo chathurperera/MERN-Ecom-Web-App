@@ -3,9 +3,11 @@ import axios from "axios";
 const user = JSON.parse(localStorage.getItem("persist:rootUser"))?.user;
 const currentUser = user && JSON.parse(user).currentUser;
 const token = currentUser?.token;
+console.log('token',token);
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  // baseURL: 'https://california-ecommerce-backend.onrender.com/api/v1',
+  baseURL: 'http://localhost:5000/api/v1',
   headers: {
     token: `Bearer ${token}`,
   },
