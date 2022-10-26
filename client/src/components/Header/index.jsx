@@ -64,11 +64,6 @@ const Header = () => {
               <img src={userIcon} alt="user icon" />
             </Link>
           )}
-          <img
-            src={NavMenuButton}
-            className={classes.hamburgerIcon}
-            alt="hambuger icon"
-          />
         </div>
       </div>
       {showCart && <Cart setShowCart={setShowCart} />}

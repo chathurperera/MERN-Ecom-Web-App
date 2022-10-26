@@ -1,9 +1,10 @@
 .selectAddress {
-  .addressCardWrapper{
+  .addressCardWrapper {
     display: grid;
     justify-content: flex-end;
     grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
     gap: 15px;
+    position: relative;
   }
   .backButton {
     display: flex;
@@ -28,6 +29,16 @@
     color: #212b36;
     font-weight: 600;
     font-size: 13px;
-    
+  }
+  .noAddress {
+    padding: 20px;
+    border-radius:15px;
+    border: 2px dashed #eee;
+    position: absolute;
+    position: absolute;
+    left: 50%;
+    top: -40px;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 }
