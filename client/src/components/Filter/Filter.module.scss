@@ -52,4 +52,10 @@
       width: 200px;
     }
   }
+
+  @media (max-width:768px) {
+    &Title{
+      flex-direction: column;
+    }
+  }
 }

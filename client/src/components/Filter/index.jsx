@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import classes from "./Filter.module.scss";
-import { Rating } from "react-simple-star-rating";
-import Button from "@mui/material/Button";
+
 
 const Filter = ({ filters, setFilters, setCategories, categories }) => {
   const [price, setPrice] = useState("");
