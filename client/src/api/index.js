@@ -6,8 +6,8 @@ const token = currentUser?.token;
 
 
 const API = axios.create({
-  // baseURL: 'https://mern-ecom-webapp.onrender.com/api/v1',
-  baseURL: 'http://localhost:5000/api/v1',
+  baseURL: 'https://mern-ecom-webapp.onrender.com/api/v1',
+  // baseURL: 'http://localhost:5000/api/v1',
   headers: {
     token: `Bearer ${token}`,
   },
