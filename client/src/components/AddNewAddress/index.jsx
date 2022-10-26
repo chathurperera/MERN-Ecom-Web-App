@@ -73,7 +73,7 @@ const AddNewAddress = ({ setAvailableAddresses }) => {
             id="filled-size-small"
             size="small"
             value={addressInfo.street}
-            name="address"
+            name="street"
             onChange={handleChange}
             fullWidth
           />

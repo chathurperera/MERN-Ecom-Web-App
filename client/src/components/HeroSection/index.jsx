@@ -20,7 +20,7 @@ const HeroSection = () => {
           Get ready for your biggest season yet, hit those intervals hard with
           explosive, energy-returning cushioning.
         </small>
-        <Link to="">Shop Now</Link>
+        <Link to="/shop">Shop Now</Link>
       </div>
     </div>
   );

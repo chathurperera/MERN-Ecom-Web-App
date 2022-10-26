@@ -35,6 +35,9 @@ const SelectAddress = ({ setCheckoutStep, setOrder }) => {
               />
             );
           })}
+          {availableAddresses?.length === 0 && (
+          <div className={classes.noAddress}>Please Add your shipping address</div>
+          )}
         </div>
         <AddNewAddress setAvailableAddresses={setAvailableAddresses} />
         <div className={classes.backButton} onClick={() => setCheckoutStep(1)}>
