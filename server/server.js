@@ -35,6 +35,7 @@ const PORT = process.env.PORT || 5000;
 if (process.env.NODE_ENV === "production") {
   //SET STATIC FOLDER
   app.use(express.static("client/build"));
+  app.use(express.static("admin/build"));
   app.get('/admin',(req,res) => {
     res.sendFile(path.resolve(__dirname, "admin", "build", "index.html"));
   })
