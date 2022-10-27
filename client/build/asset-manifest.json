@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.8ecb8c19.css",
-    "main.js": "/static/js/main.b159e728.js",
+    "main.css": "/static/css/main.63e8e06a.css",
+    "main.js": "/static/js/main.a620e015.js",
     "static/media/UAHeroImage.png": "/static/media/UAHeroImage.2a19876d1bfebba7e6f4.png",
     "static/media/heroImageSmallScreen.png": "/static/media/heroImageSmallScreen.c0d231c74a42d705082e.png",
     "static/media/categoryImageLaptop.png": "/static/media/categoryImageLaptop.292d6169ed9ca351ac7d.png",
@@ -10,7 +10,6 @@
     "static/media/woman.png": "/static/media/woman.213d62aa5bf4a3e97ae8.png",
     "static/media/categoryWatch.png": "/static/media/categoryWatch.84cd2f988fe63a817362.png",
     "static/media/phoneCategory.png": "/static/media/phoneCategory.febab560019282ac85e8.png",
-    "static/media/Mac Book 3.png": "/static/media/Mac Book 3.79fe9d8ad844bd026f90.png",
     "static/media/kids.png": "/static/media/kids.f837e54f739d5af8f14a.png",
     "static/media/shoes.png": "/static/media/shoes.6c17f517010c44e54de2.png",
     "static/media/order.svg": "/static/media/order.11d9079d66306b463f5f7a45d57bcc48.svg",
@@ -20,11 +19,11 @@
     "static/media/CartIcon.svg": "/static/media/CartIcon.970ae18c578601810ba02fd2f4456d0d.svg",
     "static/media/NavMenuButton.svg": "/static/media/NavMenuButton.e4d97f6d96f93ceecea64ff3331ff0a1.svg",
     "static/media/SearchIcon.svg": "/static/media/SearchIcon.b63cc19a196a4b2fcbd06cdf81778fc7.svg",
-    "main.8ecb8c19.css.map": "/static/css/main.8ecb8c19.css.map",
-    "main.b159e728.js.map": "/static/js/main.b159e728.js.map"
+    "main.63e8e06a.css.map": "/static/css/main.63e8e06a.css.map",
+    "main.a620e015.js.map": "/static/js/main.a620e015.js.map"
   },
   "entrypoints": [
-    "static/css/main.8ecb8c19.css",
-    "static/js/main.b159e728.js"
+    "static/css/main.63e8e06a.css",
+    "static/js/main.a620e015.js"
   ]
 }
