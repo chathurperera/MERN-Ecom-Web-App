@@ -12,6 +12,9 @@ const s3 = new AWS.S3({
   secretAccessKey: SECRET_ACCESS_KEY,
 });
 
+//@desc   Create a product
+//@route  POST /api/v1/products
+//@access Private
 const createProduct = async (req, res) => {
   try {
     const newProduct = new Product(req.body);
@@ -23,6 +26,9 @@ const createProduct = async (req, res) => {
   }
 };
 
+//@desc   Get all products
+//@route  GET /api/v1/products
+//@access Private
 const getAllProducts = async (req, res) => {
   try {
     const { category, sort, minPrice, maxPrice, gender } = req.query;
@@ -76,6 +82,9 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+//@desc   Search for a product
+//@route  GET /api/v1/products
+//@access Private
 const searchProducts = async (req, res) => {
   try {
     const { name } = req.query;
@@ -90,6 +99,9 @@ const searchProducts = async (req, res) => {
   }
 };
 
+//@desc   Get one product
+//@route  GET /api/v1/products
+//@access Private
 const getSingleProduct = async (req, res) => {
   try {
     const productID = req.params.id;
@@ -100,6 +112,9 @@ const getSingleProduct = async (req, res) => {
   }
 };
 
+//@desc   Update a product
+//@route  PUT /api/v1/products
+//@access Private
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -124,6 +139,9 @@ const updateProduct = async (req, res) => {
   }
 };
 
+//@desc   Delete a product
+//@route  DELETE /api/v1/products
+//@access Private
 const deleteProduct = async (req, res) => {
   const { id: productID } = req.params;
   try {
@@ -147,6 +165,7 @@ const deleteProduct = async (req, res) => {
     res.status(500).json({ status: "error", error: "Something went wrong" });
   }
 };
+
 
 const uploadImage = async (req, res) => {
   try {

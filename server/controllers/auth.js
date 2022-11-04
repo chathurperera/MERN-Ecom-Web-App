@@ -3,6 +3,9 @@ const bycrypt = require("bcryptjs");
 const SECRET = process.env.JWT_SECRET;
 const User = require("../models/userModel");
 
+//@desc   Login
+//@route  POST /api/v1/
+//@access Public
 const login = async (req, res) => {
   const { email, password } = req.body;
   const existingUser = await User.findOne({ email }).lean();
@@ -38,6 +41,9 @@ const login = async (req, res) => {
   }
 };
 
+//@desc   SignUp
+//@route  POST /api/v1/
+//@access Public
 const signUp = async (req, res) => {
   const {
     email,

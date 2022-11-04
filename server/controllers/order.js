@@ -5,6 +5,9 @@ const User = require("../models/userModel");
 let client = require("@sendgrid/mail");
 client.setApiKey(process.env.SENDGRID_API_KEY);
 
+//@desc   Create Order
+//@route  POST /api/v1/order
+//@access Private
 const createOrder = async (req, res) => {
   try {
     const newOrder = new Order(req.body);
@@ -47,6 +50,9 @@ const createOrder = async (req, res) => {
   }
 };
 
+//@desc   Get all carts
+//@route  GET /api/v1/cart
+//@access Private
 const getAllOrders = async (req, res) => {
   try {
     const allOrders = await Order.find({}).lean().exec();
@@ -56,6 +62,9 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+//@desc   Update order
+//@route  PUT /api/v1/order
+//@access Private
 const updateOrder = async (req, res) => {
   try {
     const { id } = req.params;
@@ -74,6 +83,9 @@ const updateOrder = async (req, res) => {
   }
 };
 
+//@desc   Delete Order
+//@route  DELETE /api/v1/order
+//@access Private
 const deleteOrder = async (req, res) => {
   try {
     const orderId = req.params.id;
@@ -91,6 +103,9 @@ const deleteOrder = async (req, res) => {
   }
 };
 
+//@desc   Get my orders
+//@route  GET /api/v1/order
+//@access Private
 const getUserOrders = async (req, res) => {
   try {
     const { id } = req.params;
@@ -101,6 +116,7 @@ const getUserOrders = async (req, res) => {
     res.status(500).json({ message: "Something went wrong" });
   }
 };
+
 
 const increaseQuantity = (products) => {
   let bulkOptions = products.map((product) => {

@@ -1,6 +1,9 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 
+//@desc   Get my details
+//@route  GET /api/v1
+//@access Private
 const getMe = async (req, res) => {
   try {
     console.log("req.user", req.user);
@@ -10,6 +13,9 @@ const getMe = async (req, res) => {
   }
 };
 
+//@desc   Get all users
+//@route  GET /api/v1
+//@access Private
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find({ isAdmin: false })
@@ -22,6 +28,9 @@ const getAllUsers = async (req, res) => {
   } catch (error) {}
 };
 
+//@desc   Update account details
+//@route  PATCH /api/v1
+//@access Private
 const updateUser = async (req, res) => {
   try {
     const { userId, firstName, lastName, email, address } = req.body;
@@ -52,6 +61,9 @@ const updateUser = async (req, res) => {
   }
 };
 
+//@desc   Update password
+//@route  PATCH /api/v1
+//@access Private
 const updatePassword = async (req, res) => {
   try {
     const { id } = req.params;
@@ -75,6 +87,9 @@ const updatePassword = async (req, res) => {
   }
 };
 
+//@desc   Delete a account
+//@route  DELETE /api/v1
+//@access Private
 const deleteUser = async (req, res) => {
   try {
     console.log("controller");

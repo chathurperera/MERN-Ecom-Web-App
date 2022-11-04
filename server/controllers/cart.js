@@ -1,5 +1,8 @@
 const Cart = require("../models/cartModel");
 
+//@desc   Create cart
+//@route  POST /api/v1/cart
+//@access Private
 const createCart = async (req, res) => {
   try {
     const newCart = new Cart(req.body);
@@ -10,6 +13,9 @@ const createCart = async (req, res) => {
   }
 };
 
+//@desc   Get cart
+//@route  Get /api/v1/cart
+//@access Private
 const getSingleCart = async (req, res) => {
   try {
     const { id } = req.params;
