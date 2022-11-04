@@ -1,5 +1,8 @@
 const Address = require("../models/addressModel");
 
+//@desc   Create Address
+//@route  POST /api/v1/address
+//@access Private
 const createAddress = async (req, res) => {
   try {
     const { userId } = req.body;
@@ -14,6 +17,9 @@ const createAddress = async (req, res) => {
   }
 };
 
+//@desc   Get Address
+//@route  Get /api/v1/address
+//@access Private
 const getMyAddress = async (req, res) => {
   const { id } = req.params;
   const allAddress = await Address.find({ userId: id }).exec();
@@ -25,6 +31,9 @@ const getMyAddress = async (req, res) => {
   res.status(200).json({ allAddress });
 };
 
+//@desc   Delete Address
+//@route  DELETE /api/v1/address
+//@access Private
 const deleteAddress = async (req, res) => {
   try {
     const { id } = req.params;
