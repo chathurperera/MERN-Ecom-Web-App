@@ -7,7 +7,7 @@
   <tbody>
     <tr>
       <td>Live site</td>
-      <td><a href="https://mern-ecom-webapp.onrender.com/"><b>https://mern-ecom-webapp.onrender.com/</b></a></td>
+      <td><a href="https://california-ecommerce.cyclic.app/"><b>https://california-ecommerce.cyclic.app/</b></a></td>
     </tr>
     <tr>
       <td>Admin Dashboard</td>
