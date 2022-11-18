@@ -117,7 +117,6 @@ const getUserOrders = async (req, res) => {
   }
 };
 
-
 const increaseQuantity = (products) => {
   let bulkOptions = products.map((product) => {
     return {
