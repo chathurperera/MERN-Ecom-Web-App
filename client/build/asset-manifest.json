@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.63e8e06a.css",
-    "main.js": "/static/js/main.a620e015.js",
+    "main.css": "/static/css/main.099c7c77.css",
+    "main.js": "/static/js/main.5b3ef0d3.js",
     "static/media/UAHeroImage.png": "/static/media/UAHeroImage.2a19876d1bfebba7e6f4.png",
     "static/media/heroImageSmallScreen.png": "/static/media/heroImageSmallScreen.c0d231c74a42d705082e.png",
     "static/media/categoryImageLaptop.png": "/static/media/categoryImageLaptop.292d6169ed9ca351ac7d.png",
@@ -19,11 +19,11 @@
     "static/media/CartIcon.svg": "/static/media/CartIcon.970ae18c578601810ba02fd2f4456d0d.svg",
     "static/media/NavMenuButton.svg": "/static/media/NavMenuButton.e4d97f6d96f93ceecea64ff3331ff0a1.svg",
     "static/media/SearchIcon.svg": "/static/media/SearchIcon.b63cc19a196a4b2fcbd06cdf81778fc7.svg",
-    "main.63e8e06a.css.map": "/static/css/main.63e8e06a.css.map",
-    "main.a620e015.js.map": "/static/js/main.a620e015.js.map"
+    "main.099c7c77.css.map": "/static/css/main.099c7c77.css.map",
+    "main.5b3ef0d3.js.map": "/static/js/main.5b3ef0d3.js.map"
   },
   "entrypoints": [
-    "static/css/main.63e8e06a.css",
-    "static/js/main.a620e015.js"
+    "static/css/main.099c7c77.css",
+    "static/js/main.5b3ef0d3.js"
   ]
 }
