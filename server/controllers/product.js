@@ -188,9 +188,10 @@ const uploadImage = async (req, res) => {
         console.log("Error occurred while trying to upload to S3 bucket", err);
         return res.status(500).json({ message: "upload failed" });
       }
+      const imageURL = `${process.env.CLOUDFRONT_DOMAIN}${data.key}`;
       return res
         .status(200)
-        .json({ message: "success", imageURL: data.Location });
+        .json({ message: "success", imageURL: imageURL });
     });
   } catch (error) {
     console.log(error);
